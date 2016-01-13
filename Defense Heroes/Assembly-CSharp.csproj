@@ -70,8 +70,17 @@
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardAndroidDevice.cs" />
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
+     <Compile Include="Assets\Game\DB\Mysql.cs" />
+     <Compile Include="Assets\Game\NetWork\Client.cs" />
      <Compile Include="Assets\Game\Plugins\Android\Plugin_Mgr.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Charcter\Enemy.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Charcter\Player.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Logic\Logic.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\Map.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\Shell.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Senser\Gyroscpe.cs" />
+     <Compile Include="Assets\Game\Sound\Sound.cs" />
+     <Compile Include="Assets\Game\UI\UI.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Cardboard\Resources\SkyboxMesh.shader" />
