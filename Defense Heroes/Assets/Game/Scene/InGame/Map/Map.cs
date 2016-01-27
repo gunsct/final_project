@@ -86,7 +86,7 @@ public class Map : MonoBehaviour {
 				Vector3 oPos = new Vector3 (map [i, j].xPos, map [i, j].yPos, map [i, j].zPos); 
 
 				//타입설정
-				switch (charList [j]) {
+				switch (charList [j]) {//왜 j가 20일때 값을 않넣어줄까?
 					case "p":
 						map [i, j].type = Shell.sType.PATH;
 					//GameObject Path = (GameObject)Instantiate (oPath, oPos, Quaternion.identity);
@@ -110,7 +110,7 @@ public class Map : MonoBehaviour {
 				}
 			
 
-				Debug.Log (charList[j] +" "+ map [i, j].type +" "+ map [i, j].xPos +" "+ map [i, j].yPos +" "+ map [i, j].zPos);
+				Debug.Log (i + " " + j + " " +charList[j] +" "+ map [i, j].type +" "+ map [i, j].xPos +" "+ map [i, j].yPos +" "+ map [i, j].zPos);
 			}
 		}
 			
