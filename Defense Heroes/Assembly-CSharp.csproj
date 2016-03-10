@@ -75,6 +75,7 @@
      <Compile Include="Assets\Game\Plugins\Android\Plugin_Mgr.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Enemy.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Player.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Logic\Logic.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\Map.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\Shell.cs" />

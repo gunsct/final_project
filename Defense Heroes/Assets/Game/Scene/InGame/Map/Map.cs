@@ -77,7 +77,7 @@ public class Map : MonoBehaviour {
 	//******************************************************************************
 	void MapSetting(){
 		map = new Shell[cntLine,cntLine];//shell배열 선언
-		oBlock =  MonoBehaviour.Instantiate(Resources.Load("prefabs/Block") as GameObject);
+		//oBlock =  MonoBehaviour.Instantiate(Resources.Load("prefabs/Block") as GameObject);//이건 직접 폴더에서 부기 개멍청함
 
 
 		for(int i = 0; i < cntLine; i++){//1차원 배열로 1자씩 떼서 21개단위로 본다
