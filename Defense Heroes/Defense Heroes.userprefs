@@ -1,9 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Map\Map.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\UI\IngameButton.cs">
     <Files>
-      <File FileName="Assets\Game\Scene\InGame\Map\Map.cs" Line="106" Column="15" />
+      <File FileName="Assets\Game\UI\MainButton.cs" Line="21" Column="28" />
+      <File FileName="Assets\Game\UI\MainUI.cs" Line="23" Column="4" />
+      <File FileName="Assets\Game\Scene\InGame\Map\Map.cs" Line="1" Column="1" />
       <File FileName="Assets\Game\Scene\InGame\Map\Shell.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\UI\IngameUI.cs" Line="16" Column="3" />
+      <File FileName="Assets\Game\Scene\SceneManager.cs" Line="18" Column="3" />
+      <File FileName="Assets\Game\UI\IngameButton.cs" Line="17" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

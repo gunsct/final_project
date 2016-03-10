@@ -16,6 +16,9 @@ public class Map : MonoBehaviour {
 	public GameObject oSpawn;
 	public GameObject oMiniTower;
 	public GameObject oMainTower;
+	public GameObject oCastleLong;
+	public GameObject oCastleCorner;
+	public GameObject oDoor;
 	//public GameObject oPath;
 
 	//cvs용 변수들
@@ -47,7 +50,10 @@ public class Map : MonoBehaviour {
 	void ExcelLoader(int _stageNum){
 		switch (_stageNum) {
 			case 0:
-				csvFile = (TextAsset)Resources.Load ("map") as TextAsset;
+				csvFile = (TextAsset)Resources.Load ("stage1") as TextAsset;
+				break;
+			case 1:
+				csvFile = (TextAsset)Resources.Load ("stage2") as TextAsset;
 				break;
 		}
 
@@ -86,7 +92,7 @@ public class Map : MonoBehaviour {
 				Vector3 oPos = new Vector3 (map [i, j].xPos, map [i, j].yPos, map [i, j].zPos); 
 
 				//타입설정
-				switch (charList [j]) {//왜 j가 20일때 값을 않넣어줄까?
+				switch (charList [j]) {//왜 j가 14일때 값을 않넣어줄까?
 					case "p":
 						map [i, j].type = Shell.sType.PATH;
 					//GameObject Path = (GameObject)Instantiate (oPath, oPos, Quaternion.identity);
@@ -95,17 +101,70 @@ public class Map : MonoBehaviour {
 						map [i, j].type = Shell.sType.BLOCK;
 						GameObject Block = (GameObject)Instantiate (oBlock, oPos, Quaternion.identity);
 						break;
+
 					case "s":
 						map [i, j].type = Shell.sType.SPAWN;
 						GameObject Spawn = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
 						break;
-					case "a":
+					case "s2":
+						map [i, j].type = Shell.sType.SPAWN;
+						GameObject Spawn2 = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
+						break;
+					case "s3":
+						map [i, j].type = Shell.sType.SPAWN;
+						GameObject Spawn3 = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
+						break;
+
+					case "mn":
 						map [i, j].type = Shell.sType.MINITOWER;
 						GameObject MiniTower = (GameObject)Instantiate (oMiniTower, oPos, Quaternion.identity);
 						break;
 					case "m":
 						map [i, j].type = Shell.sType.MAINTOWER;
 						GameObject MainTower = (GameObject)Instantiate (oMainTower, oPos, Quaternion.identity);
+						MainTower.transform.Rotate (270, 0, 0);
+						break;
+
+					case "cv":
+						map [i, j].type = Shell.sType.MAINTOWER;
+						GameObject CastleLongV = (GameObject)Instantiate (oCastleLong, oPos, Quaternion.identity);
+						CastleLongV.transform.Rotate (0, 90, 0);
+						break;
+					case "ch":
+						map [i, j].type = Shell.sType.MAINTOWER;
+						GameObject CastleLongH = (GameObject)Instantiate (oCastleLong, oPos, Quaternion.identity);
+						CastleLongH.transform.Rotate (0, 0, 0);
+						break;
+					case "clu":
+						map [i, j].type = Shell.sType.MAINTOWER;
+						GameObject CastleLongLU = (GameObject)Instantiate (oCastleCorner, oPos, Quaternion.identity);
+						CastleLongLU.transform.Rotate (0, 270, 0);
+						break;
+					case "cld":
+						map [i, j].type = Shell.sType.MAINTOWER;
+						GameObject CastleLongLD = (GameObject)Instantiate (oCastleCorner, oPos, Quaternion.identity);
+						CastleLongLD.transform.Rotate (0, 0, 0);
+						break;
+					case "cru":
+						map [i, j].type = Shell.sType.MAINTOWER;
+						GameObject CastleLongRU = (GameObject)Instantiate (oCastleCorner, oPos, Quaternion.identity);
+						CastleLongRU.transform.Rotate (0, 180, 0);
+						break;
+					case "crd":
+						map [i, j].type = Shell.sType.MAINTOWER;
+						GameObject CastleLongRD = (GameObject)Instantiate (oCastleCorner, oPos, Quaternion.identity);
+						CastleLongRD.transform.Rotate (0, 90, 0);
+						break;
+
+					case "dd":
+						map [i, j].type = Shell.sType.MAINTOWER;
+						GameObject DoorD = (GameObject)Instantiate (oDoor, oPos, Quaternion.identity);
+						DoorD.transform.Rotate (0, 180, 0);
+						break;
+					case "du":
+						map [i, j].type = Shell.sType.MAINTOWER;
+						GameObject DoorU = (GameObject)Instantiate (oDoor, oPos, Quaternion.identity);
+						DoorU.transform.Rotate (0, 0, 0);
 						break;
 				}
 			

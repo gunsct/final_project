@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Shell : MonoBehaviour {
-	public enum sType { NONE, PATH, BLOCK, CASTLE, SPAWN, MINITOWER, MAINTOWER };
+	public enum sType { NONE, PATH, BLOCK, CASTLE, SPAWN, MINITOWER, MAINTOWER, CASTLELONG, CASTLECORNER, DOOR };
 	public sType type;//셀의 타입
 	public float xPos, yPos, zPos;//좌표
 

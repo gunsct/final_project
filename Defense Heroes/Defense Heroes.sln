@@ -5,6 +5,8 @@ Project("{FB3EA2B6-44F0-B1E1-0793-2628C96F4D32}") = "Defense Heroes", "Assembly-
 EndProject
 Project("{FB3EA2B6-44F0-B1E1-0793-2628C96F4D32}") = "Defense Heroes", "Assembly-CSharp.csproj", "{CC3FD8E4-DE47-B886-6FF7-18E6A7D93DC4}"
 EndProject
+Project("{FB3EA2B6-44F0-B1E1-0793-2628C96F4D32}") = "Defense Heroes", "Assembly-CSharp-Editor-firstpass.csproj", "{E2AE60FB-E46C-7806-A05E-1C75D9648AAF}"
+EndProject
 Project("{FB3EA2B6-44F0-B1E1-0793-2628C96F4D32}") = "Defense Heroes", "Assembly-CSharp-Editor.csproj", "{2007B820-D10A-3640-2F8C-AA8904380CD0}"
 EndProject
 Global
@@ -21,6 +23,10 @@ Global
 		{CC3FD8E4-DE47-B886-6FF7-18E6A7D93DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC3FD8E4-DE47-B886-6FF7-18E6A7D93DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC3FD8E4-DE47-B886-6FF7-18E6A7D93DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2AE60FB-E46C-7806-A05E-1C75D9648AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2AE60FB-E46C-7806-A05E-1C75D9648AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2AE60FB-E46C-7806-A05E-1C75D9648AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2AE60FB-E46C-7806-A05E-1C75D9648AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2007B820-D10A-3640-2F8C-AA8904380CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2007B820-D10A-3640-2F8C-AA8904380CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2007B820-D10A-3640-2F8C-AA8904380CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
