@@ -6,17 +6,25 @@ public class ShootLaser : MonoBehaviour {
 	public Camera aimCamera;
 	public GameObject shootButton;
 	RaycastHit hitObj;
+	public bool shotOn;
 
+	public GameObject player;
 	// Use this for initialization
 	void Start () {
+		StartCoroutine (ShootSpeed());//버튼누르면 반복
 		//라인 렌더러 설정
 		laser = GetComponent<LineRenderer> ();
 		laser.SetColors (Color.white, Color.black);
 		laser.SetWidth (0.5f, 0.5f);
+
+		shotOn = false;
+		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+
 		//나중에 버튼 누를때 씀
 		LaserRender();
 
@@ -33,6 +41,7 @@ public class ShootLaser : MonoBehaviour {
 
 			Raycasting (aim);//레이 날림
 		} else {//발사 중지
+			shotOn = false;
 			laser.enabled = false;//레이저 감춤
 		}
 	}
@@ -51,12 +60,12 @@ public class ShootLaser : MonoBehaviour {
 			Debug.DrawRay(_ray.origin, hitObj.point, Color.green);//가시화
 			laser.SetPosition(1,hitObj.point);//레이저 맞는 부분
 
-			StartCoroutine ("ShootSpeed");//버튼누르면 반복
+			shotOn = true;
 		}
 
 		else{
-			StopCoroutine ("ShootSpeed");//버튼 떼면 반복 중단
 			Debug.DrawRay(_ray.origin, _ray.direction *100, Color.red);//가시화
+			shotOn = false;
 		}
 	}
 
@@ -76,9 +85,11 @@ public class ShootLaser : MonoBehaviour {
 	}
 
 	IEnumerator ShootSpeed(){//버튼 누를시 반복 처리하는곳
-		ShotPocess (hitObj);//타격받은 대상 처리
-		yield return new WaitForSeconds (GetComponent<Player>().speed);
-		//StartCoroutine ("ShootSpeed");
+		if(shotOn == true)
+			ShotPocess (hitObj);//타격받은 대상 처리
+		
+		yield return new WaitForSeconds (0.1f);//player.GetComponent<Player> ().speed
+		StartCoroutine (ShootSpeed());
 	}
 		
 }
