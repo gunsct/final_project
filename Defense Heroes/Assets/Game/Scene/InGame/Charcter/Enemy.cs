@@ -15,4 +15,8 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		//정해진 타입으로 수치 설정 및 이동 로직에서 길찾기 가져다 쓸것
 	}
+
+	void DestroyObj(){
+		Destroy (this.gameObject, 0.0f);
+	}
 }

@@ -19,11 +19,11 @@ public class IngameButton : MonoBehaviour {
 		Application.LoadLevel (0);
 	}
 
-	void ShootButton(){
+	void ShootButtonOn(){//버튼누르고있으면 발사
 		bShoot = true;
 	}
 
-	void OnEnable(){
+	void ShootButtonOff(){//버튼떼면 중지
 		bShoot = false;
 	}
 }
