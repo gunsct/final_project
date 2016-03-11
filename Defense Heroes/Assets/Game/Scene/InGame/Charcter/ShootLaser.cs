@@ -5,20 +5,26 @@ public class ShootLaser : MonoBehaviour {
 	private LineRenderer laser;
 	public Camera aimCamera;
 	public GameObject shootButton;
+	RaycastHit hitObj;
 
 	// Use this for initialization
 	void Start () {
+		//라인 렌더러 설정
+		laser = GetComponent<LineRenderer> ();
+		laser.SetColors (Color.white, Color.black);
+		laser.SetWidth (0.5f, 0.5f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//나중에 버튼 누를때 씀
+		LaserRender();
 
+	}
+
+
+	void LaserRender(){
 		if (shootButton.GetComponent<IngameButton> ().bShoot == true) {//발사
-			//라인 렌더러 설정
-			laser = GetComponent<LineRenderer> ();
-			laser.SetColors (Color.white, Color.black);
-			laser.SetWidth (0.5f, 0.5f);
 			laser.enabled = true;//레이저 보이게
 			//라인 렌더러 시작,끝
 			laser.SetPosition (0, transform.position);//레이저 시작점
@@ -31,7 +37,6 @@ public class ShootLaser : MonoBehaviour {
 		}
 	}
 
-
 	//******************************************************************************
 	//설명 : 레이캐스팅 후 레이저 가시화
 	//리턴값 : 
@@ -40,16 +45,17 @@ public class ShootLaser : MonoBehaviour {
 	//2016.03.10
 	//******************************************************************************
 	void Raycasting(Ray _ray){
-		RaycastHit hitObj;
+		
 
 		if(Physics.Raycast(_ray, out hitObj, Mathf.Infinity)){
 			Debug.DrawRay(_ray.origin, hitObj.point, Color.green);//가시화
 			laser.SetPosition(1,hitObj.point);//레이저 맞는 부분
 
-			ShotPocess (hitObj);//타격받은 대상 처리
+			StartCoroutine ("ShootSpeed");//버튼누르면 반복
 		}
 
 		else{
+			StopCoroutine ("ShootSpeed");//버튼 떼면 반복 중단
 			Debug.DrawRay(_ray.origin, _ray.direction *100, Color.red);//가시화
 		}
 	}
@@ -64,10 +70,15 @@ public class ShootLaser : MonoBehaviour {
 	//******************************************************************************
 	void ShotPocess(RaycastHit _hitObj){
 		if (_hitObj.transform.tag.Equals ("Enemy")) {
-			_hitObj.transform.SendMessage ("DestroyObj", 0.0f);
+			_hitObj.transform.SendMessage ("GetShot", 0.0f);
 		}
-		
+
 	}
 
+	IEnumerator ShootSpeed(){//버튼 누를시 반복 처리하는곳
+		ShotPocess (hitObj);//타격받은 대상 처리
+		yield return new WaitForSeconds (GetComponent<Player>().speed);
+		//StartCoroutine ("ShootSpeed");
+	}
 		
 }
