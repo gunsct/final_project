@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		hp = 0.0f;
-		dmg = 0.1f;
+		dmg = 1.0f;
 		fullDmg = 0.0f;
 		splash = 0.0f;
 		speed = 0.1f;

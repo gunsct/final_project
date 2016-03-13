@@ -7,13 +7,13 @@ public class Enemy : MonoBehaviour {
 	public float hp;
 	public float dmg;
 
-	GameObject player; 
+	private GameObject player; 
 
 	// Use this for initialization
 	void Start () {
 		//랜덤으로 타입 정해주고
 		dmg = 0.0f;
-		hp = 10.0f;
+		hp = 30.0f;
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 	}
 
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour {
 
 	void GetShot(){
 		//맞을경우 체력 감ㅗ
-		Debug.Log (player.GetComponent <Player> ().dmg);
+		//Debug.Log (player.GetComponent <Player> ().dmg);
 		hp -= player.GetComponent <Player> ().dmg;
 		//Destroy (this.gameObject, 0.0f);
 	}
