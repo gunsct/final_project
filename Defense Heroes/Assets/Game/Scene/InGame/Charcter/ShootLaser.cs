@@ -2,14 +2,15 @@
 using System.Collections;
 
 public class ShootLaser : MonoBehaviour {
+	private bool shotOn;
+	private float shotSpeed;
+
+	RaycastHit hitObj;
 	private LineRenderer laser;
+
 	public Camera aimCamera;
 	public GameObject shootButton;
 	private GameObject player;
-
-	RaycastHit hitObj;
-	private bool shotOn;
-	private float shotSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +35,7 @@ public class ShootLaser : MonoBehaviour {
 
 
 	void LaserRender(){
-		if (shootButton.GetComponent<IngameButton> ().bShoot == true) {//발사
+		if (shootButton.GetComponent<IngameButton> ().bShoot == true && player.GetComponent<Player>().mp > 0.0f) {//mp가 있고 버튼 누르면 발사
 			laser.enabled = true;//레이저 보이게
 			//라인 렌더러 시작,끝
 			laser.SetPosition (0, transform.position);//레이저 시작점
