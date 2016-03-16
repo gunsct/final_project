@@ -3,15 +3,18 @@ using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class ShootLaser : MonoBehaviour {
-	private bool shotOn;
+	public bool shotOn;
 	private float shotSpeed;
 
-	RaycastHit hitObj;
+	public RaycastHit hitObj;
 	private LineRenderer laser;
 
 	public Camera aimCamera;
 	public GameObject shootButton;
 	private GameObject player;
+	public GameObject shootEffet;
+	public GameObject shotedEffet;
+
 	public AudioClip audioClip;
 	AudioSource audio;
 	// Use this for initialization
@@ -23,7 +26,9 @@ public class ShootLaser : MonoBehaviour {
 		laser.SetWidth (0.5f, 0.5f);
 
 		shotOn = false;
+
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
+
 		audio = GetComponent<AudioSource>();
 	}
 	
@@ -33,7 +38,6 @@ public class ShootLaser : MonoBehaviour {
 		shotSpeed = player.GetComponent<Player>().speed;//이 스크립트가 붙어있어야가능할거 아니라면 게임오브젝트로 연결해줘야되
 		LaserRender();
 	}
-
 
 	void LaserRender(){
 		if (shootButton.GetComponent<IngameButton> ().bShoot == true && player.GetComponent<Player>().mp > 0.0f) {//mp가 있고 버튼 누르면 발사
@@ -46,12 +50,17 @@ public class ShootLaser : MonoBehaviour {
 			Raycasting (aim);//레이 날림
 			audio.PlayOneShot(audioClip, 0.3f);
 			audio.loop = true;
+
+			shootEffet.SetActive (true);
 		} 
 
 		else {//발사 중지
 			shotOn = false;
 			laser.enabled = false;//레이저 감춤
 			audio.loop = false;
+
+			shootEffet.SetActive (false);
+			shotedEffet.SetActive(false);
 		}
 	}
 
@@ -64,16 +73,15 @@ public class ShootLaser : MonoBehaviour {
 	//******************************************************************************
 	void Raycasting(Ray _ray){
 		if(Physics.Raycast(_ray, out hitObj, Mathf.Infinity)){
-			Debug.DrawRay(_ray.origin, hitObj.point, Color.green);//가시화
 			laser.SetPosition(1,hitObj.point);//레이저 맞는 부분
 
+			shotedEffet.SetActive(true);
+			shotedEffet.transform.position = hitObj.point;
 			shotOn = true;
-			Debug.Log (shotSpeed);
 		}
 
 		else{
-			Debug.DrawRay(_ray.origin, _ray.direction *100, Color.red);//가시화
-
+			shotedEffet.SetActive(false);
 			shotOn = false;
 		}
 	}

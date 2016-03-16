@@ -4,7 +4,8 @@ using System.Collections;
 public class IngameUI : MonoBehaviour {
 	public float sec = 0.0f;
 	private int waveTime;
-	string tScore, tPoint;
+	private string tScore, tPoint, tEHp;
+	public float eHp = 0.0f;
 
 	private GameObject player;
 	private GameObject hpBar;
@@ -12,6 +13,8 @@ public class IngameUI : MonoBehaviour {
 	private GameObject timeBar;
 	private GameObject score;
 	private GameObject point;
+	private GameObject enemyHp;
+	private GameObject shootPoint;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +25,8 @@ public class IngameUI : MonoBehaviour {
 		timeBar = GameObject.Find ("Time Bar");
 		score = GameObject.Find ("Score");
 		point = GameObject.Find ("Point");
+		enemyHp = GameObject.Find ("EnemyHp");
+		shootPoint = GameObject.Find ("ShootPoint");
 
 		//해상도 고정
 		Screen.SetResolution(Screen.width, Screen.height, true);
@@ -59,8 +64,17 @@ public class IngameUI : MonoBehaviour {
 
 		tScore = "SCORE : " + player.GetComponent<Player> ().score;
 		tPoint = "POINT   : " + player.GetComponent<Player> ().point;
+		tEHp = "HP:" + eHp;
+
 		score.GetComponent<UILabel> ().text = tScore;
 		point.GetComponent<UILabel> ().text = tPoint;
+
+		if (shootPoint.GetComponent<ShootLaser> ().shotOn == true) {
+			enemyHp.SetActive (true);
+			enemyHp.GetComponent<UILabel> ().text = tEHp;
+		}
+		else 
+			enemyHp.SetActive (false);
 
 		Debug.Log (sec +" "+ gameObject.GetComponent<Map> ().waveTime);
 

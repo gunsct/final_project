@@ -9,8 +9,8 @@ public class Enemy : MonoBehaviour {
 	public int point;
 	public int score;
 
-	private GameObject player; 
-
+	private GameObject player;
+	private GameObject manager;
 	// Use this for initialization
 	void Start () {
 		//랜덤으로 타입 정해주고
@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour {
 		score = 50;
 
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
+		manager = GameObject.Find ("GameManager");
 	}
 
 	// Update is called once per frame
@@ -31,6 +32,8 @@ public class Enemy : MonoBehaviour {
 	void GetShot(){
 		//맞을경우 체력 감ㅗ
 		hp -= player.GetComponent <Player> ().dmg;
+		manager.GetComponent<IngameUI> ().eHp = hp;
+
 		if (hp <= 0) {
 			player.GetComponent <Player> ().point += point;
 			player.GetComponent <Player> ().score += score;
