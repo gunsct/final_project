@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class ShootLaser : MonoBehaviour {
 	private bool shotOn;
 	private float shotSpeed;
@@ -11,19 +12,19 @@ public class ShootLaser : MonoBehaviour {
 	public Camera aimCamera;
 	public GameObject shootButton;
 	private GameObject player;
-
+	public AudioClip audioClip;
+	AudioSource audio;
 	// Use this for initialization
 	void Start () {
 		StartCoroutine ("ShootSpeed");//버튼누르면 반복
 
 		//라인 렌더러 설정
 		laser = GetComponent<LineRenderer> ();
-		laser.SetColors (Color.white, Color.black);
 		laser.SetWidth (0.5f, 0.5f);
 
 		shotOn = false;
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
-
+		audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -37,16 +38,20 @@ public class ShootLaser : MonoBehaviour {
 	void LaserRender(){
 		if (shootButton.GetComponent<IngameButton> ().bShoot == true && player.GetComponent<Player>().mp > 0.0f) {//mp가 있고 버튼 누르면 발사
 			laser.enabled = true;//레이저 보이게
+
 			//라인 렌더러 시작,끝
 			laser.SetPosition (0, transform.position);//레이저 시작점
 			Ray aim = aimCamera.ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0f));//카메라 정면으로
 
 			Raycasting (aim);//레이 날림
+			audio.PlayOneShot(audioClip, 0.3f);
+			audio.loop = true;
 		} 
 
 		else {//발사 중지
 			shotOn = false;
 			laser.enabled = false;//레이저 감춤
+			audio.loop = false;
 		}
 	}
 
@@ -88,8 +93,15 @@ public class ShootLaser : MonoBehaviour {
 	}
 
 	IEnumerator ShootSpeed(){//버튼 누를시 반복 처리하는곳
+		if (shootButton.GetComponent<IngameButton> ().bShoot == true) {
+			laser.SetColors (new Color (Random.value, Random.value, Random.value, 1.0f), 
+				new Color (Random.value, Random.value, Random.value, 1.0f));
+			laser.SetWidth (Random.Range(0.2f,0.8f), Random.Range(0.2f,0.8f));
+		}
+
 		if(shotOn == true)
 			ShotPocess (hitObj);//타격받은 대상 처리
+		
 		yield return new WaitForSeconds (shotSpeed);//
 		StartCoroutine ("ShootSpeed");
 	}

@@ -2,17 +2,15 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	public float hp;
-	public float maxHp;
-	public float mp;
-	public float maxMp;
-	public float reMp;
-	public float interval;
-	public float refairTime;
+	public float hp, maxHp;
+	public float mp, maxMp, reMp;
+	public float interval, refairTime;
 	public float speed;
 	public float dmg;
 	public float fullDmg;
 	public float splash;
+	public int point;
+	public int score;
 
 	public GameObject shootButton;//버튼 변수 가져오려고
 
@@ -23,13 +21,12 @@ public class Player : MonoBehaviour {
 		mp = 0.0f;
 		maxMp = 100.0f;
 		reMp = 1.0f;
-		interval = 0.0f;
-		refairTime = 0.01f;
+		interval = 0.01f;
 		speed = 0.1f;
 		dmg = 1.0f;
 		fullDmg = 0.0f;
 		splash = 0.0f;
-
+		point = score = 0;
 
 		shootButton = GameObject.Find ("Button");
 		StartCoroutine ("ManageMp");

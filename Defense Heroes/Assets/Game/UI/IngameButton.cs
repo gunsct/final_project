@@ -21,6 +21,7 @@ public class IngameButton : MonoBehaviour {
 
 	void ShootButtonOn(){//버튼누르고있으면 발사
 		bShoot = true;
+
 	}
 
 	void ShootButtonOff(){//버튼떼면 중지

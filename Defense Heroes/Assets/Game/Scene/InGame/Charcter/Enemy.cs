@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour {
 	private float lange;
 	public float hp;
 	public float dmg;
+	public int point;
+	public int score;
 
 	private GameObject player; 
 
@@ -14,21 +16,26 @@ public class Enemy : MonoBehaviour {
 		//랜덤으로 타입 정해주고
 		dmg = 0.0f;
 		hp = 30.0f;
+		point = 10;
+		score = 50;
+
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 	}
 
 	// Update is called once per frame
 	void Update () {
 		//정해진 타입으로 수치 설정 및 이동 로직에서 길찾기 가져다 쓸것
-		if (hp <= 0) {
-			Destroy (this.gameObject, 0.0f);
-		}
+
 	}
 
 	void GetShot(){
 		//맞을경우 체력 감ㅗ
-		//Debug.Log (player.GetComponent <Player> ().dmg);
 		hp -= player.GetComponent <Player> ().dmg;
-		//Destroy (this.gameObject, 0.0f);
+		if (hp <= 0) {
+			player.GetComponent <Player> ().point += point;
+			player.GetComponent <Player> ().score += score;
+
+			Destroy (this.gameObject, 0.0f);
+		}
 	}
 }

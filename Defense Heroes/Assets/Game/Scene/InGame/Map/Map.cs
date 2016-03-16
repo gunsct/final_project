@@ -10,6 +10,7 @@ public class Map : MonoBehaviour {
 	public float shellSize = 2.0f;//셀간격, 좌표에 사용될것 
 	Shell[,] map =null;
 	public int stageNum = 0;//스테이지 번호
+	public float waveTime = 0.0f;
 
 	//맵 오브젝트
 	public GameObject oBlock;
@@ -51,9 +52,11 @@ public class Map : MonoBehaviour {
 		switch (_stageNum) {
 			case 0:
 				csvFile = (TextAsset)Resources.Load ("stage1") as TextAsset;
+				waveTime = 90.0f;
 				break;
 			case 1:
 				csvFile = (TextAsset)Resources.Load ("stage2") as TextAsset;
+				waveTime = 120.0f;
 				break;
 		}
 
