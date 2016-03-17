@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	public float hp, maxHp;
 	public float mp, maxMp, reMp;
-	public float interval, refairTime;
+	public float interval, refillTime;
 	public float speed;
 	public float dmg;
 	public float fullDmg;
@@ -36,6 +36,14 @@ public class Player : MonoBehaviour {
 	void Update () {
 	}
 
+	/***************************************************************
+	 * @brief 발사 여부에 따른 마나 감소와 충전 관리
+	 * 코루틴 속도를 공격속도, 회복속도에 따라 제어
+	 * @param float $interval 코루틴으로 이 함수 처리 간격
+	 * @param float $mp 마나
+	 * @param float $speed 공격속도
+	 * @param float $refillTime 회복속도
+	***************************************************************/
 	void MpState(){//발사상태면 마나 까이고 아니면 충전
 		if (shootButton.GetComponent<IngameButton> ().bShoot == true) {
 			interval = speed;
@@ -45,7 +53,7 @@ public class Player : MonoBehaviour {
 		} 
 
 		else {
-			interval = refairTime;
+			interval = refillTime;
 			if (mp < maxMp) {
 				mp += reMp;
 			}
@@ -55,6 +63,9 @@ public class Player : MonoBehaviour {
 	void HpState(){
 		}
 
+	/***************************************************************
+	 * @brief 정해진 간격에 따라 MpState() 처리
+	***************************************************************/
 	IEnumerator ManageMp(){//
 		MpState ();//타격받은 대상 처리
 		yield return new WaitForSeconds (interval);//

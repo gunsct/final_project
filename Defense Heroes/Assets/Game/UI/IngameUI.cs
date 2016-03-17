@@ -47,6 +47,20 @@ public class IngameUI : MonoBehaviour {
 
 	}
 
+	/***************************************************************
+	 * @brief 0.1초 간격으로 플레이중에 나오는 UI들을 관리, 랜더링해줌
+	 * @param Gameobject $shotBar 마나 게이지
+	 * @param Gameobject $timeBar 타임바
+	 * @param Gameobject $score	스코어
+	 * @param Gameobject $point 포인트
+	 * @param Gameobject $enemyHp 적 체력 표시
+	 * @param float $sec 타이머용
+	 * @param float $waveTime 타이머용 웨이브 타임
+	 * @param int $eHp 적 체력, 적 클래스에서 피격시 바뀜
+	 * @param Sting $tScore 스코어 텍스트
+	 * @param Sting $tPoint 포인트 텍스트
+	 * @param Sting $tEHp 적 체력 텍스트
+	***************************************************************/ 
 	IEnumerator Frame1(){//
 		sec += 0.1f;
 		shotBar.GetComponent<UISlider>().sliderValue =  player.GetComponent<Player>().mp / player.GetComponent<Player>().maxMp;

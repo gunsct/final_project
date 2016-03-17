@@ -17,9 +17,12 @@ public class Gyroscpe : MonoBehaviour {
 		Invoke("gyroupdate",0.1f);
 	}
 
-	//아래 세팅은 카메라 본체가 회전하면서 관찰하는 것으로 세팅할 것임.
+	/***************************************************************
+	 * @brief 자이로센서를 설정하고 타워 헤드에 연동함, 각도도 제한
+	 * @param Gyroscope $gyro 자이로센서
+	 * @param Quaternion $transquat 센서와 오브젝트간 값 연결용
+	***************************************************************/
 	void gyroupdate(){
-		// 기본 자이로는 오브젝트 관찰 기준이라 카메라 기준으로 변경
 		//쿼터니언 하나 만들고
 		Quaternion transquat = Quaternion.identity; 
 		transquat.w = gyro.attitude.w;

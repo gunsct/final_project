@@ -41,13 +41,15 @@ public class Map : MonoBehaviour {
 	}
 
 
-	//******************************************************************************
-	//설명 : 엑셀에서 만든 맵을 cvs로 바꾼 후 텍스트를 읽어들이는 기능
-	//리턴값 : 
-	//매개변수 : int형의 스테이지 번호
-	//매개변수명 : _stageNum
-	//2016.01.24, 27 
-	//******************************************************************************
+	/***************************************************************
+	 * @brief 엑셀에서 만든 맵을 csv로 바꾼 후 텍스트를 읽어들이는 기능
+	 * @param int $_stageNum 스테이지 번호
+	 * @param TextAsset $csvFile csv파일 불러옴
+	 * @param float $waveTime 웨이브 시간
+	 * @param String $fileFullStr csv텍스트 전체
+	 * @param String $strList csv텍스트 라인별
+	 * @param String $cntLine csv텍스트 단어별	
+	***************************************************************/
 	void ExcelLoader(int _stageNum){
 		switch (_stageNum) {
 			case 0:
@@ -71,13 +73,18 @@ public class Map : MonoBehaviour {
 	}
 
 
-	//******************************************************************************
-	//설명 : 읽어들인 텍트로 shell의 속성을 지정하고 맵을 만들어준다.
-	//리턴값 : 
-	//매개변수 :
-	//매개변수명 : 
-	//2016.01.24, 27
-	//******************************************************************************
+	/***************************************************************
+	 * @brief 읽어들인 텍트로 shell의 속성을 지정하고 맵을 만들어준다.
+	 * @param Shell[] $map Shell 클래스로 구성된 맵
+	 * @param GameObject $oBlock 벽
+	 * @param GameObject $oSpawn 스포너
+	 * @param GameObject $oMiniTower 미니타워
+	 * @param GameObject $oMainTower 메인타워
+	 * @param GameObject $oCastleLong 성벽 1자
+	 * @param GameObject $oCastleCorner 성벽 코너
+	 * @param GameObject $oDoor 성문
+	 * @see 맵 오브젝트중 성벽과 문은 방향에 따라 복사 오브젝트가 다름
+	***************************************************************/
 	void MapSetting(){
 		map = new Shell[cntLine,cntLine];//shell배열 선언
 		//oBlock =  MonoBehaviour.Instantiate(Resources.Load("prefabs/Block") as GameObject);//이건 직접 폴더에서 부기 개멍청함

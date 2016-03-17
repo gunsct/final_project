@@ -26,9 +26,14 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//정해진 타입으로 수치 설정 및 이동 로직에서 길찾기 가져다 쓸것
-
 	}
 
+	/***************************************************************
+	 * @brief 피격시 체력, 점수, 포인트 관리 해당 클래스들에게 값 전달
+	 * @param int $hp 체력
+	 * @prarm int $point 포인트
+	 * @param int $score 점수
+	***************************************************************/
 	void GetShot(){
 		//맞을경우 체력 감ㅗ
 		hp -= player.GetComponent <Player> ().dmg;
