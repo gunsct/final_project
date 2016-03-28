@@ -80,8 +80,14 @@
      <Compile Include="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Warrior.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Logic\Logic.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Logic\Node.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\AStar.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\GridManager.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\Map.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\PriorityQueue.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\Shell.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\TestCode.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\UnityFlock.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Senser\Gyroscpe.cs" />
      <Compile Include="Assets\Game\Scene\SceneManager.cs" />
      <Compile Include="Assets\Game\Sound\Sound.cs" />

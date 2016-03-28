@@ -97,9 +97,10 @@ public class Map : MonoBehaviour {
 				map[i,j] = new Shell();//각 맵의 shell을 초기화..이거때문에 에러남 ㅠ..
 
 				//좌표설정
-				map [i, j].xPos = j * shellSize;
-				map [i, j].zPos = i * shellSize;
-				Vector3 oPos = new Vector3 (map [i, j].xPos, map [i, j].yPos, map [i, j].zPos); 
+				map [i, j].position.x = j * shellSize;
+				map [i, j].position.z = i * shellSize;
+				map [i, j].position.y = 0.0f;
+				Vector3 oPos = new Vector3 (map [i, j].position.x, map [i, j].position.y, map [i, j].position.z); 
 
 				//타입설정
 				switch (charList [j]) {//왜 j가 14일때 값을 않넣어줄까?
@@ -179,7 +180,7 @@ public class Map : MonoBehaviour {
 				}
 			
 
-				Debug.Log (i + " " + j + " " +charList[j] +" "+ map [i, j].type +" "+ map [i, j].xPos +" "+ map [i, j].yPos +" "+ map [i, j].zPos);
+				Debug.Log (i + " " + j + " " +charList[j] +" "+ map [i, j].type +" "+ map [i, j].position.x +" "+ map [i, j].position.y +" "+ map [i, j].position.z);
 			}
 		}
 			

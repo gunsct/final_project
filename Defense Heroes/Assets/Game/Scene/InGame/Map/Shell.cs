@@ -1,26 +1,65 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class Shell : MonoBehaviour {
+public class Shell : MonoBehaviour, IComparable {
 	public enum sType { NONE, PATH, BLOCK, CASTLE, SPAWN, MINITOWER, MAINTOWER, CASTLELONG, CASTLECORNER, DOOR };
 	public sType type;//셀의 타입
-	public float xPos, yPos, zPos;//좌표
 
-	public int heuristicCost; //이 셀부터 목적지까지 거리
-	public int finalCost; //시작점부터 이 셀까지 거리 + 이 셀부터 목적지까지 거리
-	public Shell parent; //이전 셀
-
+	#region Fields
+	public float nodeTotalCost;         //Total cost so far for the node
+	public float estimatedCost;         //Estimated cost from this node to the goal node
+	public bool bObstacle;              //Does the node is an obstacle or not
+	public Shell parent;                 //Parent of the node in the linked list
+	public Vector3 position;            //Position of the node
+	#endregion
 	// Use this for initialization
 	void Start () {
-		type = sType.NONE;
-		xPos = yPos = zPos = 0;
-		heuristicCost = 0;
-		finalCost = 0;
-		parent = null;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	}
+
+	public Shell()
+	{
+		this.type = sType.NONE;
+		this.estimatedCost = 0.0f;
+		this.nodeTotalCost = 1.0f;
+		this.bObstacle = false;
+		this.parent = null;
+	}
+
+	/// <summary>
+	//Constructor with adding position to the node creation
+	/// </summary>
+	public Shell(Vector3 pos)
+	{
+		this.type = sType.NONE;
+		this.estimatedCost = 0.0f;
+		this.nodeTotalCost = 1.0f;
+		this.bObstacle = false;
+		this.parent = null;
+
+		this.position = pos;
+	}
+
+	/// <summary>
+	//Make the node to be noted as an obstacle
+	/// </summary>
+	public void MarkAsObstacle()
+	{
+		this.bObstacle = true;
+	}
+
+	public int CompareTo(object obj)
+	{
+		Shell node = (Shell)obj;
+		if (this.estimatedCost < node.estimatedCost)
+			return -1;
+		if (this.estimatedCost > node.estimatedCost)
+			return 1;
+
+		return 0;
 	}
 }
