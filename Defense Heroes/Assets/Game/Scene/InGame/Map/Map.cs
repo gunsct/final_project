@@ -11,6 +11,8 @@ public class Map : MonoBehaviour {
 	Shell[,] map =null;
 	public int stageNum = 0;//스테이지 번호
 	public float waveTime = 0.0f;
+	public GameObject[] blockArray;
+	private int blockCnt = 0;
 
 	//맵 오브젝트
 	public GameObject oBlock;
@@ -31,6 +33,7 @@ public class Map : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		blockArray = new GameObject[200];
 		ExcelLoader (stageNum);
 		MapSetting ();
 	}
@@ -111,6 +114,7 @@ public class Map : MonoBehaviour {
 					case "b":
 						map [i, j].type = Shell.sType.BLOCK;
 						GameObject Block = (GameObject)Instantiate (oBlock, oPos, Quaternion.identity);
+						blockArray [blockCnt++] = Block;
 						break;
 
 					case "s":

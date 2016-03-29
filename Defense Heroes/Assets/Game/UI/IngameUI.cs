@@ -90,7 +90,7 @@ public class IngameUI : MonoBehaviour {
 		else 
 			enemyHp.SetActive (false);
 
-		Debug.Log (sec +" "+ gameObject.GetComponent<Map> ().waveTime);
+		//Debug.Log (sec +" "+ gameObject.GetComponent<Map> ().waveTime);
 
 		yield return new WaitForSeconds (0.1f);//
 		StartCoroutine ("Frame1");

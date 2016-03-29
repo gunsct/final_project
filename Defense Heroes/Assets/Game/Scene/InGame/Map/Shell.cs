@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Shell : MonoBehaviour, IComparable {
+public class Shell : IComparable {
 	public enum sType { NONE, PATH, BLOCK, CASTLE, SPAWN, MINITOWER, MAINTOWER, CASTLELONG, CASTLECORNER, DOOR };
 	public sType type;//셀의 타입
 
@@ -13,13 +13,6 @@ public class Shell : MonoBehaviour, IComparable {
 	public Shell parent;                 //Parent of the node in the linked list
 	public Vector3 position;            //Position of the node
 	#endregion
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
 	public Shell()
 	{

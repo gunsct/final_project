@@ -53,7 +53,7 @@ public class GridManager : MonoBehaviour
     void Awake()
     {
         //Get the list of obstacles objects tagged as "Obstacle"
-        obstacleList = GameObject.FindGameObjectsWithTag("Block");
+		obstacleList = this.GetComponent<Map>().blockArray;//GameObject.FindGameObjectsWithTag("Block");
         CalculateObstacles();
     }
 
