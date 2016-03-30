@@ -7,6 +7,7 @@ public class IngameUI : MonoBehaviour {
 	private string tScore, tPoint, tEHp;
 	public float eHp = 0.0f;
 
+	private GameObject mapManager;
 	private GameObject player;
 	private GameObject hpBar;
 	private GameObject shotBar;
@@ -27,7 +28,7 @@ public class IngameUI : MonoBehaviour {
 		point = GameObject.Find ("Point");
 		enemyHp = GameObject.Find ("EnemyHp");
 		shootPoint = GameObject.Find ("ShootPoint");
-
+		mapManager = GameObject.Find ("MapManager");
 		//해상도 고정
 		Screen.SetResolution(Screen.width, Screen.height, true);
 
@@ -64,16 +65,16 @@ public class IngameUI : MonoBehaviour {
 	IEnumerator Frame1(){//
 		sec += 0.1f;
 		shotBar.GetComponent<UISlider>().sliderValue =  player.GetComponent<Player>().mp / player.GetComponent<Player>().maxMp;
-		timeBar.GetComponent<UISlider>().sliderValue = sec / gameObject.GetComponent<Map> ().waveTime;
+		timeBar.GetComponent<UISlider>().sliderValue = sec / mapManager.GetComponent<Map> ().waveTime;
 
-		if (sec == gameObject.GetComponent<Map> ().waveTime && gameObject.GetComponent<Map> ().stageNum == 0) {
+		if (sec == mapManager.GetComponent<Map> ().waveTime && mapManager.GetComponent<Map> ().stageNum == 0) {
 			sec = 0;
-			gameObject.GetComponent<Map> ().waveTime += 30;
+			mapManager.GetComponent<Map> ().waveTime += 30;
 		}
 
-		if (sec == gameObject.GetComponent<Map> ().waveTime && gameObject.GetComponent<Map> ().stageNum == 1) {
+		if (sec == mapManager.GetComponent<Map> ().waveTime && mapManager.GetComponent<Map> ().stageNum == 1) {
 			sec = 0;
-			gameObject.GetComponent<Map> ().waveTime += 60;
+			mapManager.GetComponent<Map> ().waveTime += 60;
 		}
 
 		tScore = "SCORE : " + player.GetComponent<Player> ().score;

@@ -50,13 +50,11 @@ public class GridManager : MonoBehaviour
     }
 
     //Initialise the grid manager
-    void Awake()
-    {
-        //Get the list of obstacles objects tagged as "Obstacle"
-		obstacleList = this.GetComponent<Map>().blockArray;//GameObject.FindGameObjectsWithTag("Block");
-        CalculateObstacles();
-    }
-
+	public void Setting(GameObject[] _gobj){
+		//Get the list of obstacles objects tagged as "Obstacle"
+		obstacleList = _gobj;//GameObject.FindGameObjectsWithTag("Block");
+		CalculateObstacles();
+	}
     /// <summary>
     /// Calculate which cells in the grids are mark as obstacles
     /// </summary>

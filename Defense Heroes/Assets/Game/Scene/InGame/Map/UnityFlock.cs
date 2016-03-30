@@ -3,15 +3,15 @@ using System.Collections;
 
 public class UnityFlock : MonoBehaviour 
 {
-    public float minSpeed = 100.0f;         //movement speed of the flock
+    public float minSpeed = 1.0f;         //movement speed of the flock
     public float turnSpeed = 20.0f;         //rotation speed of the flock
-    public float randomFreq = 20.0f;        
+    public float randomFreq = 1.0f;        
 
-    public float randomForce = 20.0f;       //Force strength in the unit sphere
+    public float randomForce = 1.0f;       //Force strength in the unit sphere
     public float toOriginForce = 20.0f;     
     public float toOriginRange = 100.0f;
 
-    public float gravity = 2.0f;            //Gravity of the flock
+    public float gravity = 19.0f;            //Gravity of the flock
 
     public float avoidanceRadius = 400.0f;  //Minimum distance between flocks
     public float avoidanceForce = 20.0f;
@@ -33,7 +33,7 @@ public class UnityFlock : MonoBehaviour
         randomFreq = 1.0f / randomFreq;
 
         //Assign the parent as origin
-				GameObject parent = GameObject.Find("Start");   
+				GameObject parent = GameObject.Find("Leader");   
 				origin = parent.transform;
         
         //Flock transform           

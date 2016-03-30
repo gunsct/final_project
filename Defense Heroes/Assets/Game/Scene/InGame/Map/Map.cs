@@ -33,7 +33,7 @@ public class Map : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		blockArray = new GameObject[200];
+		blockArray = new GameObject[110];
 		ExcelLoader (stageNum);
 		MapSetting ();
 	}
@@ -187,7 +187,12 @@ public class Map : MonoBehaviour {
 				Debug.Log (i + " " + j + " " +charList[j] +" "+ map [i, j].type +" "+ map [i, j].position.x +" "+ map [i, j].position.y +" "+ map [i, j].position.z);
 			}
 		}
-			
+		//맵을 먼저 생성 후 블럭 리스트를 그리드매니저로 전달
+		this.GetComponent<GridManager> ().Setting (blockArray);
+
+		for(int b= 0;b<108;b++){
+			Debug.Log (blockArray [b].transform.position.x + " " + blockArray [b].transform.position.y + " " + blockArray [b].transform.position.z);
+				}
 	}
 }
 //맵을 미리 만들어두고 따로 벽 번호만 텍스트같은거에 두고 읽어서 지정해줘야할듯
