@@ -10,6 +10,7 @@ public class TestCode : MonoBehaviour
     public ArrayList pathArray;
 	public ArrayList pathArray2;
 	int index2 = 1;
+	int corucnt = 0;
 	bool bStart = false;
 	
     GameObject objStartCube, objEndCube;
@@ -90,12 +91,15 @@ public class TestCode : MonoBehaviour
 		if (pathArray2.Count <= index2)
 			index2 = 0;
 
-		Shell nextShell = (Shell)pathArray2[index2];
-		leader.transform.position = new Vector3(nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
-		Debug.Log (nextShell.position +" "+pathArray2.Count+ " "+ index2);
-		index2++;
-
-		yield return new WaitForSeconds (2.0f);
+		if (corucnt == 20) {
+			Shell nextShell = (Shell)pathArray2 [index2];
+			leader.transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
+			Debug.Log (nextShell.position + " " + pathArray2.Count + " " + index2);
+			index2++;
+			corucnt = 0;
+		}
+		corucnt++;
+		yield return new WaitForSeconds (0.1f);
 		StartCoroutine ("MoveLeader");
 	}
 }
