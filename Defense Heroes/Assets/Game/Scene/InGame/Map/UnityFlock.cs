@@ -3,6 +3,8 @@ using System.Collections;
 
 public class UnityFlock : MonoBehaviour 
 {
+	GameObject parent;
+
     public float minSpeed = 1.0f;         //movement speed of the flock
     public float turnSpeed = 20.0f;         //rotation speed of the flock
     public float randomFreq = 1.0f;        
@@ -33,7 +35,7 @@ public class UnityFlock : MonoBehaviour
         randomFreq = 1.0f / randomFreq;
 
         //Assign the parent as origin
-				GameObject parent = GameObject.Find("Leader");   
+				parent = GameObject.Find("Leader");   
 				origin = parent.transform;
         
         //Flock transform           

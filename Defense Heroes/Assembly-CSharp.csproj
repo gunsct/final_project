@@ -75,6 +75,7 @@
      <Compile Include="Assets\Game\Plugins\Android\Plugin_Mgr.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Dragon.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Enemy.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Charcter\LeaderCtr.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Magician.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Player.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" />

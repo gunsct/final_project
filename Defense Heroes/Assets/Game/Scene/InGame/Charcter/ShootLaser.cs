@@ -6,6 +6,7 @@ public class ShootLaser : MonoBehaviour {
 	public bool shotOn;
 	private float shotSpeed;
 
+	private GameObject obj;
 	public RaycastHit hitObj;
 	private LineRenderer laser;
 
@@ -102,11 +103,12 @@ public class ShootLaser : MonoBehaviour {
 	 * @brief 피격당한 대상이 적일때 적의 피격처리 함수 호출
 	 * @param RaycastHit $hitObj 레이저를 맞는 오브젝트
 	 ****************************************************************/
-	void ShotPocess(RaycastHit _hitObj){//
+	void ShotPocess(RaycastHit _hitObj){
 		if (_hitObj.transform.tag.Equals ("Enemy")) {
 			_hitObj.transform.SendMessage ("GetShot", 0.0f);
 		}
 	}
+
 
 	/***************************************************************
 	 * @brief 발사속도에 맞춰 이펙트 전환 및 타격대상 함수호출

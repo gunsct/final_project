@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
 	public int point;
 	public int score;
 
+	private GameObject parent;
 	private GameObject player;
 	private GameObject manager;
 	// Use this for initialization
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour {
 		point = 10;
 		score = 50;
 
+		parent = GameObject.Find ("Leader");
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 		manager = GameObject.Find ("GameManager");
 	}
@@ -39,11 +41,17 @@ public class Enemy : MonoBehaviour {
 		hp -= player.GetComponent <Player> ().dmg;
 		manager.GetComponent<IngameUI> ().eHp = hp;
 
-		if (hp <= 0) {
+		if (hp == 0) {
 			player.GetComponent <Player> ().point += point;
 			player.GetComponent <Player> ().score += score;
 
-			Destroy (this.gameObject, 0.0f);
+			//오브젝트 끄고 무리 수량 감소 트릭을 잘 생각하자 충돌없어지진 않고 체력==0하면 되려나
+			//this.gameObject.GetComponent<MeshCollider>().enabled = false;
+			this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+			this.gameObject.SetActive(false);
+			parent.GetComponent<LeaderCtr> ().flockCount--;
+			//this.GetComponentInParent<LeaderCtr> ().flockCount--;
+			//Destroy (this.gameObject, 0.0f);
 		}
 	}
 }
