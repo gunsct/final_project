@@ -35,8 +35,8 @@ public class UnityFlock : MonoBehaviour
         randomFreq = 1.0f / randomFreq;
 
         //Assign the parent as origin
-				parent = GameObject.Find("Leader");   
-				origin = parent.transform;
+		//parent = GameObject.FindWithTag("Leader");//.Find("Leader");   
+		origin = transform.parent;//parent.transform;
         
         //Flock transform           
 	    transformComponent = transform;
