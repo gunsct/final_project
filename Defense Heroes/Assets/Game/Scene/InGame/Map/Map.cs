@@ -11,8 +11,6 @@ public class Map : MonoBehaviour {
 	Shell[,] map =null;
 	public int stageNum = 0;//스테이지 번호
 	public float waveTime = 0.0f;
-	public GameObject[] blockArray;
-	private int blockCnt = 0;
 
 	//맵 오브젝트
 	public GameObject oBlock;
@@ -22,6 +20,14 @@ public class Map : MonoBehaviour {
 	public GameObject oCastleLong;
 	public GameObject oCastleCorner;
 	public GameObject oDoor;
+
+	public GameObject[] blockArray;
+	public GameObject[] spOneArray;
+	public GameObject[] spTwoArray;
+
+	private int blockCnt = 0;
+	private int spoCnt = 0;
+	private int sptCnt = 0;
 	//public GameObject oPath;
 
 	//cvs용 변수들
@@ -34,6 +40,9 @@ public class Map : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		blockArray = new GameObject[110];
+		spOneArray = new GameObject[2];
+		spTwoArray = new GameObject[2];
+
 		ExcelLoader (stageNum);
 		MapSetting ();
 	}
@@ -111,6 +120,7 @@ public class Map : MonoBehaviour {
 						map [i, j].type = Shell.sType.PATH;
 					//GameObject Path = (GameObject)Instantiate (oPath, oPos, Quaternion.identity);
 						break;
+
 					case "b":
 						map [i, j].type = Shell.sType.BLOCK;
 						GameObject Block = (GameObject)Instantiate (oBlock, oPos, Quaternion.identity);
@@ -120,11 +130,15 @@ public class Map : MonoBehaviour {
 					case "s":
 						map [i, j].type = Shell.sType.SPAWN;
 						GameObject Spawn = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
+						spOneArray [spoCnt++] = Spawn;
 						break;
+
 					case "s2":
 						map [i, j].type = Shell.sType.SPAWN;
 						GameObject Spawn2 = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
+						spTwoArray [sptCnt++] = Spawn2;
 						break;
+
 					case "s3":
 						map [i, j].type = Shell.sType.SPAWN;
 						GameObject Spawn3 = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
