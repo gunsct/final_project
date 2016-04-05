@@ -11,7 +11,8 @@ public class TestCode : MonoBehaviour
 	public ArrayList pathTwoArray;//sp2 iEnemy23
 	public ArrayList pathThrArray;//sp2 iEnemy45
 	public ArrayList pathFourArray;//sp2 iEnemy67
-	int countArr = 1;
+
+	int[] countArr;//각 iEnemy의 등장과 함께 path의 위치를 알려준다.
 	int countCort = 0;
 	bool bStart = false;
 	bool bSpawn = false;
@@ -37,6 +38,10 @@ public class TestCode : MonoBehaviour
 		oEnd = GameObject.FindGameObjectWithTag("Player");
 
 		iEnemy = new GameObject[8];
+		countArr = new int[8];
+		for (int i = 0; i < 8; i++) {
+			countArr [i] = 1;
+		}
 
         //AStar Calculated Path
 		startNode = new Shell[4];
@@ -109,11 +114,22 @@ public class TestCode : MonoBehaviour
 			iEnemy[0] = (GameObject)Instantiate (slime, oStart[0].transform.position, Quaternion.identity);
 			iEnemy[1] = (GameObject)Instantiate (slime, oStart[1].transform.position, Quaternion.identity);
 			break;
-		case 10:
+		case 30:
 			currentTime = timer;
-			iEnemy[3] = (GameObject)Instantiate (slime, oStart[0].transform.position, Quaternion.identity);
-			iEnemy[4] = (GameObject)Instantiate (slime, oStart[1].transform.position, Quaternion.identity);
+			iEnemy[4] = (GameObject)Instantiate (slime, oStart[0].transform.position, Quaternion.identity);
+			iEnemy[5] = (GameObject)Instantiate (slime, oStart[1].transform.position, Quaternion.identity);
 			break;
+		case 80:
+			currentTime = timer;
+			iEnemy[0] = (GameObject)Instantiate (slime, oStart[0].transform.position, Quaternion.identity);
+			iEnemy[1] = (GameObject)Instantiate (slime, oStart[1].transform.position, Quaternion.identity);
+			break;
+		case 100:
+			currentTime = timer;
+			iEnemy[4] = (GameObject)Instantiate (slime, oStart[0].transform.position, Quaternion.identity);
+			iEnemy[5] = (GameObject)Instantiate (slime, oStart[1].transform.position, Quaternion.identity);
+			break;
+			
 		/*case 10:
 			currentTime = timer;
 			iSlime = (GameObject)Instantiate (slime, objStartCube.transform.position, Quaternion.identity);
@@ -123,33 +139,96 @@ public class TestCode : MonoBehaviour
 
 	//찾은 루트를 따라 2초마다 선두가 이동
 	IEnumerator MoveLeader(){
-		if (pathOneArray.Count <= countArr)
-			countArr = 0;
-
 		if (countCort == 20) {//2초마다
 			//스포너마다 IEnemy 2개씩 붙여서 존재시만 이동하게 하자
 			//지금 이동은 시작과 동시니까 각 부분별로 bool 넣어서 따로 제어하자
 			if (iEnemy [0]) {//존재시만 이동
-				Shell nextShell = (Shell)pathOneArray [countArr];
+				countArr[0]++;
+				Shell nextShell = (Shell)pathOneArray [countArr[0]];
 				iEnemy [0].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
 
-				if (nextShell == (Shell)pathOneArray [pathOneArray.Count-1]) {//종점시 null로 이동불가
+				if (nextShell == (Shell)pathOneArray [pathOneArray.Count-1]) {//종점시 null로 이동불가,위치도 초기화
 					iEnemy [0] = null;
+					countArr [0] = 0;
 				}
 			}
+			if (iEnemy [4]) {
+				countArr[4]++;
+				Shell nextShell = (Shell)pathOneArray [countArr[4]];
+				iEnemy [4].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
+
+				if (nextShell == (Shell)pathOneArray [pathOneArray.Count-1]) {
+					iEnemy [4] = null;
+					countArr [4] = 0;
+				}
+			}
+
 			if (iEnemy [1]) {
-				Shell nextShell = (Shell)pathTwoArray [countArr];
+				countArr[1]++;
+				Shell nextShell = (Shell)pathTwoArray [countArr[1]];
 				iEnemy [1].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
 
-				if (nextShell == (Shell)pathOneArray [pathTwoArray.Count-1]) {
+				if (nextShell == (Shell)pathTwoArray [pathTwoArray.Count-1]) {
 					iEnemy [1] = null;
+					countArr [1] = 0;
 				}
 			}
-			countArr++;
-			countCort = 0;
-		}
-		countCort++;
+			if (iEnemy [5]) {
+				countArr[5]++;
+				Shell nextShell = (Shell)pathTwoArray [countArr[5]];
+				iEnemy [5].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
 
+				if (nextShell == (Shell)pathTwoArray [pathTwoArray.Count-1]) {
+					iEnemy [5] = null;
+					countArr [5] = 0;
+				}
+			}
+
+			if (iEnemy [2]) {
+				countArr[2]++;
+				Shell nextShell = (Shell)pathThrArray [countArr[2]];
+				iEnemy [2].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
+
+				if (nextShell == (Shell)pathThrArray [pathThrArray.Count-1]) {
+					iEnemy [2] = null;
+					countArr [2] = 0;
+				}
+			}
+			if (iEnemy [6]) {
+				countArr[6]++;
+				Shell nextShell = (Shell)pathThrArray [countArr[6]];
+				iEnemy [6].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
+
+				if (nextShell == (Shell)pathThrArray [pathThrArray.Count-1]) {
+					iEnemy [6] = null;
+					countArr [6] = 0;
+				}
+			}
+
+			if (iEnemy [3]) {
+				countArr[3]++;
+				Shell nextShell = (Shell)pathFourArray [countArr[3]];
+				iEnemy [3].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
+
+				if (nextShell == (Shell)pathFourArray [pathFourArray.Count-1]) {
+					iEnemy [3] = null;
+					countArr [3] = 0;
+				}
+			}
+			if (iEnemy [7]) {
+				countArr[7]++;
+				Shell nextShell = (Shell)pathFourArray [countArr[7]];
+				iEnemy [7].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
+
+				if (nextShell == (Shell)pathFourArray [pathFourArray.Count-1]) {
+					iEnemy [7] = null;
+					countArr [7] = 0;
+				}
+			}
+
+			countCort = 0;//시간 0초
+		}
+		countCort++;//시간 증가
 		yield return new WaitForSeconds (0.1f);
 		StartCoroutine ("MoveLeader");
 	}

@@ -85,7 +85,7 @@ public class ShootLaser : MonoBehaviour {
 	 * @param RaycastHit $hitObj 레이저를 맞는 오브젝트
 	 * ***************************************************************/
 	void Raycasting(Ray _ray){
-		if(Physics.Raycast(_ray, out hitObj, Mathf.Infinity)){
+		if(Physics.Raycast(_ray, out hitObj, Mathf.Infinity,((-1) - (1 << 8)) )){
 			laser.SetPosition(1,hitObj.point);//레이저 맞는 부분
 
 			shotedEffect.SetActive(true);

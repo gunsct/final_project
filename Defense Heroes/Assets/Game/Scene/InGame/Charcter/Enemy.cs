@@ -16,11 +16,11 @@ public class Enemy : MonoBehaviour {
 	void Start () {
 		//랜덤으로 타입 정해주고
 		dmg = 0.0f;
-		hp = 30.0f;
+		hp = 5.0f;
 		point = 10;
 		score = 50;
 
-		parent = GameObject.Find ("Leader");
+		parent = this.transform.parent.gameObject;
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 		manager = GameObject.Find ("GameManager");
 	}
@@ -28,6 +28,9 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//정해진 타입으로 수치 설정 및 이동 로직에서 길찾기 가져다 쓸것
+		if (!parent) {
+			Destroy (this.gameObject);
+		}
 	}
 
 	/***************************************************************
@@ -46,10 +49,15 @@ public class Enemy : MonoBehaviour {
 			player.GetComponent <Player> ().score += score;
 
 			//오브젝트 끄고 무리 수량 감소 트릭을 잘 생각하자 충돌없어지진 않고 체력==0하면 되려나
-			//this.gameObject.GetComponent<MeshCollider>().enabled = false;
+
+			//안보이게 한뒤 충돌 레이어 바꿈
 			this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-			this.gameObject.SetActive(false);
+			this.gameObject.layer = 8;
+
 			parent.GetComponent<LeaderCtr> ().flockCount--;
+			Debug.Log (parent.GetComponent<LeaderCtr> ().flockCount);
+
+
 			//this.GetComponentInParent<LeaderCtr> ().flockCount--;
 			//Destroy (this.gameObject, 0.0f);
 		}

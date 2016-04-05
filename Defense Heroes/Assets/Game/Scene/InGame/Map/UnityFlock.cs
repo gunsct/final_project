@@ -165,11 +165,15 @@ public class UnityFlock : MonoBehaviour
 	    wantedVel += toAvg.normalized * gravity * Time.deltaTime;
 
         //Final Velocity to rotate the flock into
-	    velocity = Vector3.RotateTowards(velocity, wantedVel, turnSpeed * Time.deltaTime, 100.00f);
+		//y축 고정해서 땅에 붙어다님
+		velocity = Vector3.RotateTowards(new Vector3(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime, velocity.z * Time.deltaTime), 
+			new Vector3(wantedVel.x * Time.deltaTime, wantedVel.y * Time.deltaTime, wantedVel.z * Time.deltaTime), turnSpeed * Time.deltaTime, 100.00f);
 	    //transformComponent.rotation = Quaternion.LookRotation(velocity);
     	
         //Move the flock based on the calculated velocity
-		transformComponent.Translate(velocity * Time.deltaTime, Space.World);
+		transformComponent.Translate(velocity, Space.World);
+		//보는 방향이 이동방향이게
+		this.transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0.0f, velocity.z));
 
         //normalise the velocity
         normalizedVelocity = velocity.normalized;
