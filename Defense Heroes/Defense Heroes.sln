@@ -9,6 +9,8 @@ Project("{FB3EA2B6-44F0-B1E1-0793-2628C96F4D32}") = "Defense Heroes", "Assembly-
 EndProject
 Project("{FB3EA2B6-44F0-B1E1-0793-2628C96F4D32}") = "Defense Heroes", "Assembly-CSharp-Editor.csproj", "{2007B820-D10A-3640-2F8C-AA8904380CD0}"
 EndProject
+Project("{FB3EA2B6-44F0-B1E1-0793-2628C96F4D32}") = "Defense Heroes", "Assembly-UnityScript.unityproj", "{8AD9B646-1ACE-2646-7914-305D87E193C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{2007B820-D10A-3640-2F8C-AA8904380CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2007B820-D10A-3640-2F8C-AA8904380CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2007B820-D10A-3640-2F8C-AA8904380CD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AD9B646-1ACE-2646-7914-305D87E193C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AD9B646-1ACE-2646-7914-305D87E193C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AD9B646-1ACE-2646-7914-305D87E193C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD9B646-1ACE-2646-7914-305D87E193C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

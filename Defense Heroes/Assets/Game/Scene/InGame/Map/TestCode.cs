@@ -19,7 +19,11 @@ public class TestCode : MonoBehaviour
 	
 	private GameObject[] oStart;
 	private GameObject oEnd;
+
 	public GameObject slime;
+	public GameObject knight;
+	public GameObject warrior;
+	public GameObject dragon;
 	private GameObject[] iEnemy;
 	
     private float elapsedTime = 0.0f;
@@ -116,18 +120,18 @@ public class TestCode : MonoBehaviour
 			break;
 		case 30:
 			currentTime = timer;
-			iEnemy[4] = (GameObject)Instantiate (slime, oStart[0].transform.position, Quaternion.identity);
-			iEnemy[5] = (GameObject)Instantiate (slime, oStart[1].transform.position, Quaternion.identity);
+			iEnemy[4] = (GameObject)Instantiate (knight, oStart[0].transform.position, Quaternion.identity);
+			iEnemy[5] = (GameObject)Instantiate (knight, oStart[1].transform.position, Quaternion.identity);
 			break;
 		case 80:
 			currentTime = timer;
-			iEnemy[0] = (GameObject)Instantiate (slime, oStart[0].transform.position, Quaternion.identity);
-			iEnemy[1] = (GameObject)Instantiate (slime, oStart[1].transform.position, Quaternion.identity);
+			iEnemy[0] = (GameObject)Instantiate (warrior, oStart[0].transform.position, Quaternion.identity);
+			iEnemy[1] = (GameObject)Instantiate (warrior, oStart[1].transform.position, Quaternion.identity);
 			break;
 		case 100:
 			currentTime = timer;
-			iEnemy[4] = (GameObject)Instantiate (slime, oStart[0].transform.position, Quaternion.identity);
-			iEnemy[5] = (GameObject)Instantiate (slime, oStart[1].transform.position, Quaternion.identity);
+			iEnemy[4] = (GameObject)Instantiate (dragon, oStart[0].transform.position, Quaternion.identity);
+			iEnemy[5] = (GameObject)Instantiate (dragon, oStart[1].transform.position, Quaternion.identity);
 			break;
 			
 		/*case 10:
