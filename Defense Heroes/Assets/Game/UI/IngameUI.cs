@@ -22,7 +22,7 @@ public class IngameUI : MonoBehaviour {
 		tScore = tPoint = "";
 		player = GameObject.Find ("Player");
 		shotBar = GameObject.Find ("Shot Bar");
-		hpBar = GameObject.Find ("Hp Bar");
+		hpBar = GameObject.Find ("HP Bar");
 		timeBar = GameObject.Find ("Time Bar");
 		score = GameObject.Find ("Score");
 		point = GameObject.Find ("Point");
@@ -64,7 +64,8 @@ public class IngameUI : MonoBehaviour {
 	***************************************************************/ 
 	IEnumerator Frame1(){//
 		sec += 0.1f;
-		shotBar.GetComponent<UISlider>().sliderValue =  player.GetComponent<Player>().mp / player.GetComponent<Player>().maxMp;
+		hpBar.GetComponent<UISlider>().sliderValue = player.GetComponent<Player>().hp / player.GetComponent<Player>().maxHp;
+		shotBar.GetComponent<UISlider>().sliderValue = player.GetComponent<Player>().mp / player.GetComponent<Player>().maxMp;
 		timeBar.GetComponent<UISlider>().sliderValue = sec / mapManager.GetComponent<Map> ().waveTime;
 
 		if (sec == mapManager.GetComponent<Map> ().waveTime && mapManager.GetComponent<Map> ().stageNum == 0) {

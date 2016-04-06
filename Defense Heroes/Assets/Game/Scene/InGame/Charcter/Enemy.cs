@@ -2,27 +2,31 @@
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
-	private int type;//1성기사,2전사,3마법사 이런식 타입에 따라 아래 수치 바뀔것
-	private float lange;
-	public float hp;
-	public float dmg;
-	public int point;
-	public int score;
+	//사운드도 추가하고 바꾸는건 상속받아 하자
+	public float lange = 6.0f;
+	public float hp = 1.0f;
+	public float dmg = 1.0f;
+	public float atkSpd = 1.0f;
+	public int point = 10;
+	public int score = 50;
+	public bool attack = false;
 
 	private GameObject parent;
 	private GameObject player;
 	private GameObject manager;
 	// Use this for initialization
 	void Start () {
-		//랜덤으로 타입 정해주고
-		dmg = 0.0f;
-		hp = 5.0f;
+		lange = 6.0f;
+		hp = 2.0f;
+		dmg = 1.0f;
+		atkSpd = 1.0f;
 		point = 10;
 		score = 50;
-
 		parent = this.transform.parent.gameObject;
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 		manager = GameObject.Find ("GameManager");
+
+		StartCoroutine ("AutoAttack");
 	}
 
 	// Update is called once per frame
@@ -39,7 +43,7 @@ public class Enemy : MonoBehaviour {
 	 * @prarm int $point 포인트
 	 * @param int $score 점수
 	***************************************************************/
-	void GetShot(){
+	public void GetShot(){
 		//맞을경우 체력 감ㅗ
 		hp -= player.GetComponent <Player> ().dmg;
 		manager.GetComponent<IngameUI> ().eHp = hp;
@@ -51,15 +55,36 @@ public class Enemy : MonoBehaviour {
 			//오브젝트 끄고 무리 수량 감소 트릭을 잘 생각하자 충돌없어지진 않고 체력==0하면 되려나
 
 			//안보이게 한뒤 충돌 레이어 바꿈
-			this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+			//this.gameObject.GetComponent<MeshRenderer>().enabled = false;
 			this.gameObject.layer = 8;
 
 			parent.GetComponent<LeaderCtr> ().flockCount--;
 			Debug.Log (parent.GetComponent<LeaderCtr> ().flockCount);
 
-
+			this.gameObject.SetActive (false);
 			//this.GetComponentInParent<LeaderCtr> ().flockCount--;
 			//Destroy (this.gameObject, 0.0f);
 		}
+	}
+
+	void OnDisable(){
+		Destroy (this.gameObject, 60.0f);
+	}
+
+	void Distance(){
+		if (Vector3.Distance (player.transform.position, this.transform.position) <= lange) {
+			attack = true;
+		} else
+			attack = false;
+	}
+
+	IEnumerator AutoAttack(){
+		Distance ();
+		if (attack) {
+			player.GetComponent <Player> ().hp -= dmg;
+		}
+
+		yield return new WaitForSeconds (atkSpd);
+		StartCoroutine ("AutoAttack");
 	}
 }

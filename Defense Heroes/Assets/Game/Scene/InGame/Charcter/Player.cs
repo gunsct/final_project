@@ -17,7 +17,8 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		hp = 100.0f;
+		maxHp = 100.0f;
+		hp = maxHp;
 		mp = 0.0f;
 		maxMp = 100.0f;
 		reMp = 1.0f;

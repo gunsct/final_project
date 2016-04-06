@@ -24,6 +24,7 @@ public class TestCode : MonoBehaviour
 	public GameObject knight;
 	public GameObject warrior;
 	public GameObject dragon;
+	public GameObject Leader;
 	private GameObject[] iEnemy;
 	
     private float elapsedTime = 0.0f;
@@ -113,30 +114,72 @@ public class TestCode : MonoBehaviour
 	void SpawnEnemy(){
 		if(timer >= currentTime+1)//중복 복사 제어
 			switch(timer){
-		case 2:
-			currentTime = timer;
-			iEnemy[0] = (GameObject)Instantiate (slime, oStart[0].transform.position, Quaternion.identity);
-			iEnemy[1] = (GameObject)Instantiate (slime, oStart[1].transform.position, Quaternion.identity);
-			break;
-		case 30:
-			currentTime = timer;
-			iEnemy[4] = (GameObject)Instantiate (knight, oStart[0].transform.position, Quaternion.identity);
-			iEnemy[5] = (GameObject)Instantiate (knight, oStart[1].transform.position, Quaternion.identity);
-			break;
-		case 80:
-			currentTime = timer;
-			iEnemy[0] = (GameObject)Instantiate (warrior, oStart[0].transform.position, Quaternion.identity);
-			iEnemy[1] = (GameObject)Instantiate (warrior, oStart[1].transform.position, Quaternion.identity);
-			break;
-		case 100:
-			currentTime = timer;
-			iEnemy[4] = (GameObject)Instantiate (dragon, oStart[0].transform.position, Quaternion.identity);
-			iEnemy[5] = (GameObject)Instantiate (dragon, oStart[1].transform.position, Quaternion.identity);
-			break;
+			case 2:
+				currentTime = timer;
+
+				iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				for (int i = 0; i < 5; i++) {
+				GameObject goTemp = Instantiate (knight, new Vector3(iEnemy [0].transform.position.x - i/2,iEnemy [0].transform.position.y, iEnemy [0].transform.position.z), Quaternion.identity) as GameObject;
+					goTemp.transform.parent = iEnemy [0].transform; 
+				}
+
+				iEnemy[1] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				for (int i = 0; i < 5; i++) {
+				GameObject goTemp = Instantiate (knight, new Vector3(iEnemy [1].transform.position.x + i/2,iEnemy [1].transform.position.y, iEnemy [1].transform.position.z), Quaternion.identity) as GameObject;
+					goTemp.transform.parent = iEnemy [1].transform; 
+				}
+				break;
+
+			case 30:
+				currentTime = timer;
+
+				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				for (int i = 0; i < 7; i++) {
+					GameObject goTemp = Instantiate (warrior, new Vector3(iEnemy [4].transform.position.x - i/2,iEnemy [4].transform.position.y, iEnemy [4].transform.position.z), Quaternion.identity) as GameObject;
+					goTemp.transform.parent = iEnemy [4].transform; 
+				}
+
+				iEnemy[5] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				for (int i = 0; i < 7; i++) {
+					GameObject goTemp = Instantiate (warrior, new Vector3(iEnemy [5].transform.position.x + i/2,iEnemy [5].transform.position.y, iEnemy [5].transform.position.z), Quaternion.identity) as GameObject;
+					goTemp.transform.parent = iEnemy [5].transform; 
+				}
+				break;
+
+			case 80:
+				currentTime = timer;
+
+				iEnemy[0] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				for (int i = 0; i < 4; i++) {
+					GameObject goTemp = Instantiate (slime, new Vector3(iEnemy [0].transform.position.x - i/2,iEnemy [0].transform.position.y, iEnemy [0].transform.position.z), Quaternion.identity) as GameObject;
+					goTemp.transform.parent = iEnemy [0].transform; 
+				}
+
+				iEnemy[1] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				for (int i = 0; i < 4; i++) {
+					GameObject goTemp = Instantiate (slime, new Vector3(iEnemy [1].transform.position.x + i/2,iEnemy [1].transform.position.y, iEnemy [1].transform.position.z), Quaternion.identity) as GameObject;
+					goTemp.transform.parent = iEnemy [1].transform; 
+				}
+				break;
+
+			case 100:
+				currentTime = timer;
+
+				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				for (int i = 0; i < 2; i++) {
+					GameObject goTemp = Instantiate (dragon, new Vector3(iEnemy [4].transform.position.x - i/2,iEnemy [4].transform.position.y, iEnemy [4].transform.position.z), Quaternion.identity) as GameObject;
+					goTemp.transform.parent = iEnemy [4].transform; 
+				}
+
+				iEnemy[5] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				for (int i = 0; i < 2; i++) {
+					GameObject goTemp = Instantiate (dragon, new Vector3(iEnemy [5].transform.position.x + i/2,iEnemy [5].transform.position.y, iEnemy [5].transform.position.z), Quaternion.identity) as GameObject;
+					goTemp.transform.parent = iEnemy [5].transform; 
+				}
+				break;
 			
 		/*case 10:
 			currentTime = timer;
-			iSlime = (GameObject)Instantiate (slime, objStartCube.transform.position, Quaternion.identity);
 			break;*/
 		}
 	}

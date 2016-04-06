@@ -171,9 +171,11 @@ public class UnityFlock : MonoBehaviour
 	    //transformComponent.rotation = Quaternion.LookRotation(velocity);
     	
         //Move the flock based on the calculated velocity
-		transformComponent.Translate(velocity, Space.World);
-		//보는 방향이 이동방향이게
-		this.transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0.0f, velocity.z));
+		if (this.GetComponent<Enemy> ().attack == false) {//공격모드 이전에는 이동
+			transformComponent.Translate (velocity, Space.World);
+			//보는 방향이 이동방향이게
+			this.transform.rotation = Quaternion.LookRotation (new Vector3 (velocity.x, 0.0f, velocity.z));
+		}
 
         //normalise the velocity
         normalizedVelocity = velocity.normalized;
