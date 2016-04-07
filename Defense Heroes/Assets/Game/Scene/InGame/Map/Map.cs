@@ -66,7 +66,7 @@ public class Map : MonoBehaviour {
 		switch (_stageNum) {
 			case 0:
 				csvFile = (TextAsset)Resources.Load ("stage1") as TextAsset;
-				waveTime = 90.0f;
+				waveTime = 300.0f;
 				break;
 			case 1:
 				csvFile = (TextAsset)Resources.Load ("stage2") as TextAsset;

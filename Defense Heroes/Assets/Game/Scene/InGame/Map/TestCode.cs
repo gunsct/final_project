@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class TestCode : MonoBehaviour 
 {
     public Shell[] startNode { get; set; }
@@ -32,6 +33,12 @@ public class TestCode : MonoBehaviour
 	private int timer;
 	private int currentTime = 0;
 
+	public GameObject oLight;
+	private bool bLignt;
+	private float lightTime = 0.0f;
+
+	public AudioClip aWave, aSpawn;
+	AudioSource audio;
 	//class
 	private Map map;
 	// Use this for initialization
@@ -42,10 +49,11 @@ public class TestCode : MonoBehaviour
 		oStart = new GameObject[4];
 		oEnd = GameObject.FindGameObjectWithTag("Player");
 
-		iEnemy = new GameObject[8];
-		countArr = new int[8];
-		for (int i = 0; i < 8; i++) {
+		iEnemy = new GameObject[12];
+		countArr = new int[12];
+		for (int i = 0; i < 12; i++) {
 			countArr [i] = 1;
+			iEnemy [i] = null;
 		}
 
         //AStar Calculated Path
@@ -55,6 +63,9 @@ public class TestCode : MonoBehaviour
 		pathTwoArray = new ArrayList ();
 		pathThrArray = new ArrayList ();
 		pathFourArray = new ArrayList ();
+
+		audio = GetComponent<AudioSource>();
+		bLignt = false;
         //FindPath();
 	}
 	
@@ -71,6 +82,17 @@ public class TestCode : MonoBehaviour
 			InitSpawn();
            
         }
+
+		if (bLignt == true) {
+			lightTime += Time.deltaTime;
+			oLight.GetComponent<Light> ().color = new Color (1.0f, 0.0f, 0.0f, 1.0f);
+			if (lightTime >= 2.5f) {
+				lightTime = 0.0f;
+				bLignt = false;
+
+				oLight.GetComponent<Light> ().color = new Color (1.0f, 1.0f, 1.0f,1.0f);
+			}
+		}
 
 		SpawnEnemy ();
 	}
@@ -116,66 +138,181 @@ public class TestCode : MonoBehaviour
 			switch(timer){
 			case 2:
 				currentTime = timer;
-
-				iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-				for (int i = 0; i < 5; i++) {
-				GameObject goTemp = Instantiate (knight, new Vector3(iEnemy [0].transform.position.x - i/2,iEnemy [0].transform.position.y, iEnemy [0].transform.position.z), Quaternion.identity) as GameObject;
-					goTemp.transform.parent = iEnemy [0].transform; 
-				}
-
-				iEnemy[1] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
-				for (int i = 0; i < 5; i++) {
-				GameObject goTemp = Instantiate (knight, new Vector3(iEnemy [1].transform.position.x + i/2,iEnemy [1].transform.position.y, iEnemy [1].transform.position.z), Quaternion.identity) as GameObject;
-					goTemp.transform.parent = iEnemy [1].transform; 
-				}
+				AlarmWave();
 				break;
 
-			case 30:
+			case 5:
 				currentTime = timer;
-
-				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				for (int i = 0; i < 7; i++) {
-					GameObject goTemp = Instantiate (warrior, new Vector3(iEnemy [4].transform.position.x - i/2,iEnemy [4].transform.position.y, iEnemy [4].transform.position.z), Quaternion.identity) as GameObject;
-					goTemp.transform.parent = iEnemy [4].transform; 
-				}
-
-				iEnemy[5] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
-				for (int i = 0; i < 7; i++) {
-					GameObject goTemp = Instantiate (warrior, new Vector3(iEnemy [5].transform.position.x + i/2,iEnemy [5].transform.position.y, iEnemy [5].transform.position.z), Quaternion.identity) as GameObject;
-					goTemp.transform.parent = iEnemy [5].transform; 
-				}
-				break;
-
-			case 80:
-				currentTime = timer;
+				AlarmSpawn ();
 
 				iEnemy[0] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				for (int i = 0; i < 4; i++) {
-					GameObject goTemp = Instantiate (slime, new Vector3(iEnemy [0].transform.position.x - i/2,iEnemy [0].transform.position.y, iEnemy [0].transform.position.z), Quaternion.identity) as GameObject;
-					goTemp.transform.parent = iEnemy [0].transform; 
-				}
+				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
 
-				iEnemy[1] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
-				for (int i = 0; i < 4; i++) {
-					GameObject goTemp = Instantiate (slime, new Vector3(iEnemy [1].transform.position.x + i/2,iEnemy [1].transform.position.y, iEnemy [1].transform.position.z), Quaternion.identity) as GameObject;
-					goTemp.transform.parent = iEnemy [1].transform; 
-				}
+				InstanceEnemy (0, 0, warrior, 5);
+
+				InstanceEnemy (1, 4, warrior, 5);
 				break;
 
-			case 100:
+			case 25:
 				currentTime = timer;
+				AlarmSpawn ();
+				
+				iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
-				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				for (int i = 0; i < 2; i++) {
-					GameObject goTemp = Instantiate (dragon, new Vector3(iEnemy [4].transform.position.x - i/2,iEnemy [4].transform.position.y, iEnemy [4].transform.position.z), Quaternion.identity) as GameObject;
-					goTemp.transform.parent = iEnemy [4].transform; 
-				}
+				InstanceEnemy (0, 1, warrior, 2);
+				InstanceEnemy (0, 1, knight, 3);
 
-				iEnemy[5] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
-				for (int i = 0; i < 2; i++) {
-					GameObject goTemp = Instantiate (dragon, new Vector3(iEnemy [5].transform.position.x + i/2,iEnemy [5].transform.position.y, iEnemy [5].transform.position.z), Quaternion.identity) as GameObject;
-					goTemp.transform.parent = iEnemy [5].transform; 
-				}
+				InstanceEnemy (1, 5, warrior, 2);
+				InstanceEnemy (1, 5, knight, 3);
+				break;
+
+			case 35:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy[2] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				iEnemy[6] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 2, slime, 2);
+				InstanceEnemy (0, 2, knight, 3);
+
+				InstanceEnemy (1, 6, slime, 2);
+				InstanceEnemy (1, 6, knight, 3);
+				break;
+
+			case 45:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy[3] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				iEnemy[7] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 3, slime, 1);
+				InstanceEnemy (0, 3, warrior, 4);
+
+				InstanceEnemy (1, 7, slime, 1);
+				InstanceEnemy (1, 7, warrior, 4);
+				break;
+
+
+			case 90:
+				currentTime = timer;
+				AlarmWave();
+				break;
+
+			case 95:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy[0] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 0, knight, 4);
+				InstanceEnemy (0, 0, slime, 1);
+
+				InstanceEnemy (1, 4, knight, 4);
+				InstanceEnemy (1, 4, slime, 1);
+				break;
+
+			case 115:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 1, warrior, 3);
+				InstanceEnemy (0, 1, knight, 2);
+
+				InstanceEnemy (1, 5, warrior, 3);
+				InstanceEnemy (1, 5, knight, 2);
+				break;
+
+			case 135:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy[2] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				iEnemy[6] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 2, slime, 2);
+				InstanceEnemy (0, 2, knight, 3);
+
+				InstanceEnemy (1, 6, slime, 2);
+				InstanceEnemy (1, 6, knight, 3);
+				break;
+
+			case 170:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy[3] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				iEnemy[7] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 3, dragon, 2);
+
+				InstanceEnemy (1, 7, dragon, 2);
+				break;
+
+
+			case 210:
+				currentTime = timer;
+				AlarmWave ();
+				break;
+
+			case 215:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy[0] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 0, warrior, 3);
+				InstanceEnemy (0, 0, slime, 2);
+
+				InstanceEnemy (1, 4, warrior, 3);
+				InstanceEnemy (1, 4, slime, 2);
+				break;
+
+			case 225:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 1, knight, 5);
+
+				InstanceEnemy (1, 5, knight, 5);
+				break;
+
+			case 235:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy[2] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				iEnemy[6] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 2, warrior, 3);
+				InstanceEnemy (0, 2, knight, 2);
+
+				InstanceEnemy (1, 6, warrior, 3);
+				InstanceEnemy (1, 6, knight, 2);
+				break;
+
+			case 255:
+				currentTime = timer;
+				AlarmSpawn ();
+
+				iEnemy[3] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
+				iEnemy[7] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+
+				InstanceEnemy (0, 3, dragon, 3);
+				InstanceEnemy (0, 3, slime, 2);
+
+				InstanceEnemy (1, 7, dragon, 3);
+				InstanceEnemy (1, 7, slime, 2);
 				break;
 			
 		/*case 10:
@@ -183,95 +320,53 @@ public class TestCode : MonoBehaviour
 			break;*/
 		}
 	}
+		
+	void InstanceEnemy(int _start, int _inum, GameObject _oenemy, int _count){
+		int enemyCnt = 0;
+		float dst = 0.0f;
 
+		if (_start == 0) dst = -enemyCnt / 3;
+		if (_start == 1) dst = enemyCnt / 3;
+
+		for (enemyCnt = 0; enemyCnt < _count; enemyCnt++) {
+			GameObject goTemp = Instantiate (_oenemy, new Vector3(iEnemy [_inum].transform.position.x + dst, iEnemy [_inum].transform.position.y, iEnemy [_inum].transform.position.z), Quaternion.identity) as GameObject;
+			goTemp.transform.parent = iEnemy [_inum].transform; 
+		}
+	}
+
+	void MovingLeader(ArrayList _path ,int _startnum, int _endnum){
+		for (int i = _startnum; i < _endnum; i++) {
+			if (iEnemy [i]) {
+				countArr [i]++;
+				Shell nextShell = (Shell)_path [countArr [i]];
+				iEnemy [i].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
+
+				if (nextShell == (Shell)_path [_path.Count - 1]) {
+					iEnemy [i] = null;
+					countArr [i] = 0;
+				}
+			}
+		}
+	}
+
+	void AlarmWave(){
+		audio.PlayOneShot (aWave, 1.0f);
+		bLignt = true;
+	}
+
+	void AlarmSpawn(){
+		audio.PlayOneShot (aSpawn, 1.0f);
+		bLignt = true;
+	}
 	//찾은 루트를 따라 2초마다 선두가 이동
 	IEnumerator MoveLeader(){
 		if (countCort == 20) {//2초마다
 			//스포너마다 IEnemy 2개씩 붙여서 존재시만 이동하게 하자
 			//지금 이동은 시작과 동시니까 각 부분별로 bool 넣어서 따로 제어하자
-			if (iEnemy [0]) {//존재시만 이동
-				countArr[0]++;
-				Shell nextShell = (Shell)pathOneArray [countArr[0]];
-				iEnemy [0].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
-
-				if (nextShell == (Shell)pathOneArray [pathOneArray.Count-1]) {//종점시 null로 이동불가,위치도 초기화
-					iEnemy [0] = null;
-					countArr [0] = 0;
-				}
-			}
-			if (iEnemy [4]) {
-				countArr[4]++;
-				Shell nextShell = (Shell)pathOneArray [countArr[4]];
-				iEnemy [4].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
-
-				if (nextShell == (Shell)pathOneArray [pathOneArray.Count-1]) {
-					iEnemy [4] = null;
-					countArr [4] = 0;
-				}
-			}
-
-			if (iEnemy [1]) {
-				countArr[1]++;
-				Shell nextShell = (Shell)pathTwoArray [countArr[1]];
-				iEnemy [1].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
-
-				if (nextShell == (Shell)pathTwoArray [pathTwoArray.Count-1]) {
-					iEnemy [1] = null;
-					countArr [1] = 0;
-				}
-			}
-			if (iEnemy [5]) {
-				countArr[5]++;
-				Shell nextShell = (Shell)pathTwoArray [countArr[5]];
-				iEnemy [5].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
-
-				if (nextShell == (Shell)pathTwoArray [pathTwoArray.Count-1]) {
-					iEnemy [5] = null;
-					countArr [5] = 0;
-				}
-			}
-
-			if (iEnemy [2]) {
-				countArr[2]++;
-				Shell nextShell = (Shell)pathThrArray [countArr[2]];
-				iEnemy [2].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
-
-				if (nextShell == (Shell)pathThrArray [pathThrArray.Count-1]) {
-					iEnemy [2] = null;
-					countArr [2] = 0;
-				}
-			}
-			if (iEnemy [6]) {
-				countArr[6]++;
-				Shell nextShell = (Shell)pathThrArray [countArr[6]];
-				iEnemy [6].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
-
-				if (nextShell == (Shell)pathThrArray [pathThrArray.Count-1]) {
-					iEnemy [6] = null;
-					countArr [6] = 0;
-				}
-			}
-
-			if (iEnemy [3]) {
-				countArr[3]++;
-				Shell nextShell = (Shell)pathFourArray [countArr[3]];
-				iEnemy [3].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
-
-				if (nextShell == (Shell)pathFourArray [pathFourArray.Count-1]) {
-					iEnemy [3] = null;
-					countArr [3] = 0;
-				}
-			}
-			if (iEnemy [7]) {
-				countArr[7]++;
-				Shell nextShell = (Shell)pathFourArray [countArr[7]];
-				iEnemy [7].transform.position = new Vector3 (nextShell.position.x - 1f, 1.0f, nextShell.position.z - 1f);
-
-				if (nextShell == (Shell)pathFourArray [pathFourArray.Count-1]) {
-					iEnemy [7] = null;
-					countArr [7] = 0;
-				}
-			}
+			MovingLeader(pathOneArray, 0, 4);
+			MovingLeader(pathTwoArray, 4, 8);
+			MovingLeader(pathThrArray, 8, 10);
+			MovingLeader(pathFourArray, 10, 12);
 
 			countCort = 0;//시간 0초
 		}

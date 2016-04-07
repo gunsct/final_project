@@ -4,11 +4,11 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 	//사운드도 추가하고 바꾸는건 상속받아 하자
 	public float lange = 6.0f;
-	public float hp = 1.0f;
-	public float dmg = 1.0f;
-	public float atkSpd = 1.0f;
-	public int point = 10;
-	public int score = 50;
+	public float hp;
+	public float dmg;
+	public float atkSpd;
+	public int point;
+	public int score;
 	public bool attack = false;
 
 	private GameObject parent;
@@ -17,11 +17,6 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lange = 6.0f;
-		hp = 2.0f;
-		dmg = 1.0f;
-		atkSpd = 1.0f;
-		point = 10;
-		score = 50;
 		parent = this.transform.parent.gameObject;
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 		manager = GameObject.Find ("GameManager");

@@ -47,7 +47,7 @@ public class IngameUI : MonoBehaviour {
 		}
 
 	}
-
+		
 	/***************************************************************
 	 * @brief 0.1초 간격으로 플레이중에 나오는 UI들을 관리, 랜더링해줌
 	 * @param Gameobject $shotBar 마나 게이지
@@ -93,7 +93,6 @@ public class IngameUI : MonoBehaviour {
 			enemyHp.SetActive (false);
 
 		//Debug.Log (sec +" "+ gameObject.GetComponent<Map> ().waveTime);
-
 		yield return new WaitForSeconds (0.1f);//
 		StartCoroutine ("Frame1");
 	}

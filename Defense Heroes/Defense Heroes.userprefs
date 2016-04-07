@@ -1,14 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Map\TestCode.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Charcter\Enemy.cs">
     <Files>
-      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="128" Column="44" />
-      <File FileName="Assets\Game\Scene\InGame\Charcter\Enemy.cs" Line="19" Column="12" />
-      <File FileName="Assets\Game\Scene\InGame\Charcter\LeaderCtr.cs" Line="14" Column="25" />
-      <File FileName="Assets\Game\Scene\InGame\Charcter\Warrior.cs" Line="8" Column="47" />
-      <File FileName="Assets\Game\Scene\InGame\Map\UnityFlock.cs" Line="174" Column="67" />
-      <File FileName="Assets\Game\UI\IngameUI.cs" Line="67" Column="48" />
-      <File FileName="Assets\Game\Scene\InGame\Charcter\Player.cs" Line="21" Column="13" />
+      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="370" Column="4" />
+      <File FileName="Assets\Game\Scene\InGame\Charcter\Enemy.cs" Line="78" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
