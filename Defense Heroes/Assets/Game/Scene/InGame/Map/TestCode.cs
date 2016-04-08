@@ -355,7 +355,7 @@ public class TestCode : MonoBehaviour
 	}
 
 	void AlarmSpawn(){
-		audio.PlayOneShot (aSpawn, 1.0f);
+		audio.PlayOneShot (aSpawn, 0.2f);
 		bLignt = true;
 	}
 	//찾은 루트를 따라 2초마다 선두가 이동

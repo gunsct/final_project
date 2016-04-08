@@ -12,6 +12,8 @@ public class Player : MonoBehaviour {
 	public int point;
 	public int score;
 
+	public GameObject head;
+	public bool bShake;
 	public GameObject shootButton;//버튼 변수 가져오려고
 
 
@@ -29,8 +31,10 @@ public class Player : MonoBehaviour {
 		splash = 0.0f;
 		point = score = 0;
 
+		bShake = false;
 		shootButton = GameObject.Find ("Button");
 		StartCoroutine ("ManageMp");
+		StartCoroutine ("ShakeHead");
 	}
 	
 	// Update is called once per frame
@@ -63,7 +67,7 @@ public class Player : MonoBehaviour {
 
 	void HpState(){
 		}
-
+		
 	/***************************************************************
 	 * @brief 정해진 간격에 따라 MpState() 처리
 	***************************************************************/
@@ -72,4 +76,17 @@ public class Player : MonoBehaviour {
 		yield return new WaitForSeconds (interval);//
 		StartCoroutine ("ManageMp");
 	}
+	
+	IEnumerator ShakeHead(){
+		if (bShake) {
+			head.transform.position = new Vector3 (this.transform.position.x + Random.Range (-0.05f, 0.05f), this.transform.position.y + Random.Range (0.35f, 0.45f),
+				this.transform.position.z + Random.Range (-0.05f, 0.05f));
+		} else {
+			head.transform.position = new Vector3 (this.transform.position.x + 0.0f, this.transform.position.y + 0.4f, this.transform.position.z + 0.0f);
+		}
+		bShake = false;
+		yield return new WaitForSeconds (0.1f);//
+		StartCoroutine ("ShakeHead");
+	}
+			
 }

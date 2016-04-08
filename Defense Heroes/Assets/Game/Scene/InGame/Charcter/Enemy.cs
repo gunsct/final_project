@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class Enemy : MonoBehaviour {
 	//사운드도 추가하고 바꾸는건 상속받아 하자
 	public float lange = 6.0f;
@@ -14,12 +15,22 @@ public class Enemy : MonoBehaviour {
 	private GameObject parent;
 	private GameObject player;
 	private GameObject manager;
+
+	public GameObject particle;
+
+	public AudioClip aAttack, aDie, aCry;
+	AudioSource audio;
+	private int cryTimer = 0;
+
 	// Use this for initialization
 	void Start () {
 		lange = 6.0f;
 		parent = this.transform.parent.gameObject;
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 		manager = GameObject.Find ("GameManager");
+
+		//particle = GameObject.Find ("Explosion");
+		audio = GetComponent<AudioSource>();
 
 		StartCoroutine ("AutoAttack");
 	}
@@ -56,6 +67,11 @@ public class Enemy : MonoBehaviour {
 			parent.GetComponent<LeaderCtr> ().flockCount--;
 			Debug.Log (parent.GetComponent<LeaderCtr> ().flockCount);
 
+			Instantiate (particle, this.transform.position, Quaternion.identity);
+			//particle.transform.position = this.transform.position;
+			//particle.gameObject.SetActive (true);
+
+			audio.PlayOneShot (aDie, 0.1f);
 			this.gameObject.SetActive (false);
 			//this.GetComponentInParent<LeaderCtr> ().flockCount--;
 			//Destroy (this.gameObject, 0.0f);
@@ -74,9 +90,18 @@ public class Enemy : MonoBehaviour {
 	}
 
 	IEnumerator AutoAttack(){
+		cryTimer++;
 		Distance ();
 		if (attack) {
 			player.GetComponent <Player> ().hp -= dmg;
+			player.GetComponent <Player> ().bShake = true;
+			audio.PlayOneShot (aAttack, 0.1f);
+			yield return new WaitForSeconds (atkSpd);
+		}
+
+		if (!attack && cryTimer == Random.Range (3, 8)) {
+			audio.PlayOneShot (aCry, 0.1f);
+			cryTimer = 0;
 		}
 
 		yield return new WaitForSeconds (atkSpd);

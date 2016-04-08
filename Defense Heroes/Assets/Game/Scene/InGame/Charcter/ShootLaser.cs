@@ -63,7 +63,7 @@ public class ShootLaser : MonoBehaviour {
 			Ray aim = aimCamera.ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0f));//카메라 정면으로
 
 			Raycasting (aim);//레이 날림
-			audio.PlayOneShot(audioClip, 0.3f);
+			audio.PlayOneShot(audioClip, 0.05f);
 			audio.loop = true;
 
 			shootEffect.SetActive (true);

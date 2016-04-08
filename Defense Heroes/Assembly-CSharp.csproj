@@ -77,6 +77,7 @@
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Enemy.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\LeaderCtr.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Magician.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Charcter\Particle.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Player.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Warrior.cs" />
