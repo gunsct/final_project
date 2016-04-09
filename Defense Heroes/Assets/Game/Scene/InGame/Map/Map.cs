@@ -39,6 +39,7 @@ public class Map : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		stageNum = PlayerInfo.getInstance.LoadStage ();
 		blockArray = new GameObject[110];
 		spOneArray = new GameObject[2];
 		spTwoArray = new GameObject[2];

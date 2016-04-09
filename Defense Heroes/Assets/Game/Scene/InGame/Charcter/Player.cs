@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour {
 	public float hp, maxHp;
 	public float mp, maxMp, reMp;
@@ -11,34 +12,46 @@ public class Player : MonoBehaviour {
 	public float splash;
 	public int point;
 	public int score;
+	public bool die;
 
 	public GameObject head;
 	public bool bShake;
 	public GameObject shootButton;//버튼 변수 가져오려고
 
+	public AudioClip Lose;
+	AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
-		maxHp = 100.0f;
+		maxHp = PlayerInfo.getInstance.LoadMaxHp ();
 		hp = maxHp;
 		mp = 0.0f;
-		maxMp = 100.0f;
-		reMp = 1.0f;
+		maxMp = PlayerInfo.getInstance.LoadMaxMp ();
+		reMp = PlayerInfo.getInstance.LoadReMp ();
 		interval = 0.01f;
-		speed = 0.1f;
-		dmg = 1.0f;
-		fullDmg = 0.0f;
-		splash = 0.0f;
-		point = score = 0;
+		speed = PlayerInfo.getInstance.LoadSpeed ();
+		dmg = PlayerInfo.getInstance.LoadDMG ();
+		fullDmg = PlayerInfo.getInstance.LoadFullDMG ();
+		splash = PlayerInfo.getInstance.LoadSplash ();
+		point = PlayerInfo.getInstance.LoadPoint ();
+		score = 0;//playerpref으 교체
+		die = false;
 
 		bShake = false;
 		shootButton = GameObject.Find ("Button");
+
+		audio = GetComponent<AudioSource>();
+
 		StartCoroutine ("ManageMp");
 		StartCoroutine ("ShakeHead");
 	}
 	
 	// Update is called once per frame
 	void Update () {
+	}
+
+	void InitInfo(){
+		
 	}
 
 	/***************************************************************
@@ -81,12 +94,23 @@ public class Player : MonoBehaviour {
 		if (bShake) {
 			head.transform.position = new Vector3 (this.transform.position.x + Random.Range (-0.05f, 0.05f), this.transform.position.y + Random.Range (0.35f, 0.45f),
 				this.transform.position.z + Random.Range (-0.05f, 0.05f));
+
+			if(hp <= 0.0f && hp >= -0.1f){
+				audio.PlayOneShot (Lose, 1.0f);
+				SaveScPt ();
+				die = true;
+				//Application.LoadLevel (2);
+			}
 		} else {
 			head.transform.position = new Vector3 (this.transform.position.x + 0.0f, this.transform.position.y + 0.4f, this.transform.position.z + 0.0f);
 		}
 		bShake = false;
 		yield return new WaitForSeconds (0.1f);//
 		StartCoroutine ("ShakeHead");
+	}
+
+	public void SaveScPt(){
+		PlayerInfo.getInstance.SaveScorePoint (score, point);
 	}
 			
 }

@@ -24,7 +24,7 @@ public class MainButton : MonoBehaviour {
 	 * @brief 게임 시작을 위해 게임씬으로 전환
 	***************************************************************/
 	public void PlayButton(){
-		Application.LoadLevel(1);
+		Application.LoadLevel(3);
 	}
 
 	/***************************************************************

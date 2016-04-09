@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class IngameUI : MonoBehaviour {
 	public float sec = 0.0f;
 	private int waveTime;
 	private string tScore, tPoint, tEHp;
 	public float eHp = 0.0f;
+	private int sceneTime;
 
 	private GameObject mapManager;
 	private GameObject player;
@@ -16,6 +18,9 @@ public class IngameUI : MonoBehaviour {
 	private GameObject point;
 	private GameObject enemyHp;
 	private GameObject shootPoint;
+
+	public AudioClip Win;
+	AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
@@ -29,8 +34,11 @@ public class IngameUI : MonoBehaviour {
 		enemyHp = GameObject.Find ("EnemyHp");
 		shootPoint = GameObject.Find ("ShootPoint");
 		mapManager = GameObject.Find ("MapManager");
+		sceneTime = 0;
 		//해상도 고정
 		Screen.SetResolution(Screen.width, Screen.height, true);
+
+		audio = GetComponent<AudioSource>();
 
 		StartCoroutine ("Frame1");
 	}
@@ -42,7 +50,7 @@ public class IngameUI : MonoBehaviour {
 		{
 			if( Input.GetKeyDown( KeyCode.Escape ))
 			{ 
-				Application.LoadLevel(0);
+				Application.LoadLevel (0);
 			}
 		}
 
@@ -92,6 +100,20 @@ public class IngameUI : MonoBehaviour {
 		else 
 			enemyHp.SetActive (false);
 
+		if (player.GetComponent<Player> ().hp <= 0.0f) {
+			sceneTime++;
+		}
+
+		if(sec >= 330.0f){
+			sceneTime++;
+			if (sec <= 330.2f) {
+				audio.PlayOneShot (Win, 1.0f);
+				player.GetComponent<Player> ().SaveScPt ();
+			}
+		}
+		if (sceneTime == 30) {
+			Application.LoadLevel (2);
+		}
 		//Debug.Log (sec +" "+ gameObject.GetComponent<Map> ().waveTime);
 		yield return new WaitForSeconds (0.1f);//
 		StartCoroutine ("Frame1");

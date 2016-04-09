@@ -71,6 +71,7 @@
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
      <Compile Include="Assets\Game\DB\Mysql.cs" />
+     <Compile Include="Assets\Game\DB\PlayerInfo.cs" />
      <Compile Include="Assets\Game\NetWork\Client.cs" />
      <Compile Include="Assets\Game\Plugins\Android\Plugin_Mgr.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Dragon.cs" />
@@ -97,6 +98,9 @@
      <Compile Include="Assets\Game\UI\IngameUI.cs" />
      <Compile Include="Assets\Game\UI\MainButton.cs" />
      <Compile Include="Assets\Game\UI\MainUI.cs" />
+     <Compile Include="Assets\Game\UI\ResultButton.cs" />
+     <Compile Include="Assets\Game\UI\ResultUI.cs" />
+     <Compile Include="Assets\Game\UI\StageButton.cs" />
      <None Include="Assets\Plugins\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
@@ -139,6 +143,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
+     <None Include="Assets\Resources\image\font info.txt" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
      <None Include="Assets\UnityAssetStore\Cha_Data\Shader\WrapLambert.shader" />
      <None Include="Assets\Plugins\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />

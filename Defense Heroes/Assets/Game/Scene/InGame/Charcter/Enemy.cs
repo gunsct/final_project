@@ -85,6 +85,10 @@ public class Enemy : MonoBehaviour {
 	void Distance(){
 		if (Vector3.Distance (player.transform.position, this.transform.position) <= lange) {
 			attack = true;
+			Vector3 lookPlayer = Quaternion.LookRotation(player.transform.position-this.transform.position).eulerAngles;
+			lookPlayer.x = 0;
+			lookPlayer.z = 0;
+			this.transform.rotation = Quaternion.Euler (lookPlayer);
 		} else
 			attack = false;
 	}

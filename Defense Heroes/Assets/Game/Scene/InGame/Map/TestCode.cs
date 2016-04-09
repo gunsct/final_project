@@ -135,18 +135,19 @@ public class TestCode : MonoBehaviour
 
 	void SpawnEnemy(){
 		if(timer >= currentTime+1)//중복 복사 제어
-			switch(timer){
+		if (map.stageNum == 0) {
+			switch (timer) {
 			case 2:
 				currentTime = timer;
-				AlarmWave();
+				AlarmWave ();
 				break;
 
 			case 5:
 				currentTime = timer;
 				AlarmSpawn ();
 
-				iEnemy[0] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 				InstanceEnemy (0, 0, warrior, 5);
 
@@ -171,8 +172,8 @@ public class TestCode : MonoBehaviour
 				currentTime = timer;
 				AlarmSpawn ();
 
-				iEnemy[2] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				iEnemy[6] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 				InstanceEnemy (0, 2, slime, 2);
 				InstanceEnemy (0, 2, knight, 3);
@@ -185,8 +186,8 @@ public class TestCode : MonoBehaviour
 				currentTime = timer;
 				AlarmSpawn ();
 
-				iEnemy[3] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				iEnemy[7] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				iEnemy [3] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 				InstanceEnemy (0, 3, slime, 1);
 				InstanceEnemy (0, 3, warrior, 4);
@@ -198,15 +199,15 @@ public class TestCode : MonoBehaviour
 
 			case 90:
 				currentTime = timer;
-				AlarmWave();
+				AlarmWave ();
 				break;
 
 			case 95:
 				currentTime = timer;
 				AlarmSpawn ();
 
-				iEnemy[0] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 				InstanceEnemy (0, 0, knight, 4);
 				InstanceEnemy (0, 0, slime, 1);
@@ -233,8 +234,8 @@ public class TestCode : MonoBehaviour
 				currentTime = timer;
 				AlarmSpawn ();
 
-				iEnemy[2] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				iEnemy[6] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 				InstanceEnemy (0, 2, slime, 2);
 				InstanceEnemy (0, 2, knight, 3);
@@ -247,8 +248,8 @@ public class TestCode : MonoBehaviour
 				currentTime = timer;
 				AlarmSpawn ();
 
-				iEnemy[3] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				iEnemy[7] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				iEnemy [3] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 				InstanceEnemy (0, 3, dragon, 2);
 
@@ -265,8 +266,8 @@ public class TestCode : MonoBehaviour
 				currentTime = timer;
 				AlarmSpawn ();
 
-				iEnemy[0] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				iEnemy[4] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 				InstanceEnemy (0, 0, warrior, 3);
 				InstanceEnemy (0, 0, slime, 2);
@@ -291,8 +292,8 @@ public class TestCode : MonoBehaviour
 				currentTime = timer;
 				AlarmSpawn ();
 
-				iEnemy[2] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				iEnemy[6] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 				InstanceEnemy (0, 2, warrior, 3);
 				InstanceEnemy (0, 2, knight, 2);
@@ -305,8 +306,8 @@ public class TestCode : MonoBehaviour
 				currentTime = timer;
 				AlarmSpawn ();
 
-				iEnemy[3] = (GameObject)Instantiate (Leader, oStart[0].transform.position, Quaternion.identity);
-				iEnemy[7] = (GameObject)Instantiate (Leader, oStart[1].transform.position, Quaternion.identity);
+				iEnemy [3] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
+				iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 				InstanceEnemy (0, 3, dragon, 3);
 				InstanceEnemy (0, 3, slime, 2);
@@ -314,6 +315,7 @@ public class TestCode : MonoBehaviour
 				InstanceEnemy (1, 7, dragon, 3);
 				InstanceEnemy (1, 7, slime, 2);
 				break;
+			}
 			
 		/*case 10:
 			currentTime = timer;

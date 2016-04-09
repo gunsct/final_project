@@ -3,9 +3,10 @@ using System.Collections;
 
 public class IngameButton : MonoBehaviour {
 	public bool bShoot;
-
+	private GameObject player;
 	// Use this for initialization
 	void Start () {
+		player = GameObject.Find ("Player");
 		bShoot = false;
 	}
 	
@@ -28,6 +29,7 @@ public class IngameButton : MonoBehaviour {
 	 * @param bool $bShoot 버튼 상태
 	*********************************************/
 	void ShootButtonOn(){//버튼누르고있으면 발사
+		if(player.GetComponent<Player>().die == false)
 		bShoot = true;
 
 	}
