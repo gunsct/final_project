@@ -19,6 +19,8 @@ public class IngameUI : MonoBehaviour {
 	private GameObject enemyHp;
 	private GameObject shootPoint;
 
+	private int corucnt;
+
 	public AudioClip Win;
 	AudioSource audio;
 
@@ -35,6 +37,8 @@ public class IngameUI : MonoBehaviour {
 		shootPoint = GameObject.Find ("ShootPoint");
 		mapManager = GameObject.Find ("MapManager");
 		sceneTime = 0;
+
+		corucnt = 0;
 		//해상도 고정
 		Screen.SetResolution(Screen.width, Screen.height, true);
 
@@ -106,10 +110,11 @@ public class IngameUI : MonoBehaviour {
 
 		if(sec >= 330.0f){
 			sceneTime++;
-			if (sec <= 330.2f) {
+			if (corucnt == 0) {
 				audio.PlayOneShot (Win, 1.0f);
-				player.GetComponent<Player> ().SaveScPt ();
+				PlayerInfo.getInstance.SaveScorePoint (player.GetComponent<Player> ().score, player.GetComponent<Player> ().point);
 			}
+			corucnt++;
 		}
 		if (sceneTime == 30) {
 			Application.LoadLevel (2);

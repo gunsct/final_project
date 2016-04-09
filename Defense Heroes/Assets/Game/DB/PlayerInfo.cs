@@ -61,7 +61,7 @@ public class PlayerInfo : MonoBehaviour {
 		return PlayerPrefs.GetFloat ("Speed",0.1f);
 	}
 	public float LoadDMG(){
-		return PlayerPrefs.GetFloat ("DMG",1.0f);
+		return PlayerPrefs.GetFloat ("DMG",1.5f);
 	}
 	public float LoadFullDMG(){
 		return PlayerPrefs.GetFloat ("FullDMG",0.0f);

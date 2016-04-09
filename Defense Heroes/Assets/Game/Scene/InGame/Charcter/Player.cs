@@ -12,6 +12,8 @@ public class Player : MonoBehaviour {
 	public float splash;
 	public int point;
 	public int score;
+
+	public int corucnt;
 	public bool die;
 
 	public GameObject head;
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour {
 		splash = PlayerInfo.getInstance.LoadSplash ();
 		point = PlayerInfo.getInstance.LoadPoint ();
 		score = 0;//playerpref으 교체
+
+		corucnt = 0;
 		die = false;
 
 		bShake = false;
@@ -95,10 +99,13 @@ public class Player : MonoBehaviour {
 			head.transform.position = new Vector3 (this.transform.position.x + Random.Range (-0.05f, 0.05f), this.transform.position.y + Random.Range (0.35f, 0.45f),
 				this.transform.position.z + Random.Range (-0.05f, 0.05f));
 
-			if(hp <= 0.0f && hp >= -0.1f){
-				audio.PlayOneShot (Lose, 1.0f);
-				SaveScPt ();
-				die = true;
+			if(hp <= 0.0f){
+				if (corucnt == 0) {
+					audio.PlayOneShot (Lose, 1.0f);
+					PlayerInfo.getInstance.SaveScorePoint (score, point);
+					die = true;
+				}
+				corucnt++;
 				//Application.LoadLevel (2);
 			}
 		} else {
@@ -107,10 +114,6 @@ public class Player : MonoBehaviour {
 		bShake = false;
 		yield return new WaitForSeconds (0.1f);//
 		StartCoroutine ("ShakeHead");
-	}
-
-	public void SaveScPt(){
-		PlayerInfo.getInstance.SaveScorePoint (score, point);
 	}
 			
 }

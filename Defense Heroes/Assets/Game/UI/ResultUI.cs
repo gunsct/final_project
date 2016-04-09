@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(AudioSource))]
 public class ResultUI : MonoBehaviour {
 	private int score, point;
 	private string tScore, tPoint;
 
 	private GameObject oScore;
 	private GameObject oPoint;
-
-	public AudioClip Ling;
-	AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
