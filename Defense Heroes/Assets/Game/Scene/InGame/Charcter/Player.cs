@@ -3,13 +3,22 @@ using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour {
+	public enum sType{POWER, METEOR, LIGHTNING};
+
 	public float hp, maxHp;
 	public float mp, maxMp, reMp;
 	public float interval, refillTime;
 	public float speed;
 	public float dmg;
+
+	public float maxFull, maxMeteor, maxLightning;
+	public float coolFull, coolMeteor, coolLightning;
 	public float fullDmg;
+	public int fullCnt;
 	public float splash;
+	public float meteorDmg;
+	public float durationDmg;
+	public float lightingDmg;
 	public int point;
 	public int score;
 
@@ -33,7 +42,18 @@ public class Player : MonoBehaviour {
 		interval = 0.01f;
 		speed = PlayerInfo.getInstance.LoadSpeed ();
 		dmg = PlayerInfo.getInstance.LoadDMG ();
+
+		maxFull = 5.0f;
+		maxMeteor = 40.0f;
+		maxLightning= 20.0f;
+		coolFull = coolMeteor = coolLightning = 0.0f;
+		fullCnt = 0;
+
 		fullDmg = PlayerInfo.getInstance.LoadFullDMG ();
+		meteorDmg = PlayerInfo.getInstance.LoadMeteorDmg ();
+		lightingDmg = PlayerInfo.getInstance.LoadLightingDmg ();
+		durationDmg = PlayerInfo.getInstance.LoadDurationDmg ();
+
 		splash = PlayerInfo.getInstance.LoadSplash ();
 		point = PlayerInfo.getInstance.LoadPoint ();
 		score = 0;//playerpref으 교체
@@ -47,6 +67,7 @@ public class Player : MonoBehaviour {
 		audio = GetComponent<AudioSource>();
 
 		StartCoroutine ("ManageMp");
+		StartCoroutine ("ManageCoolTime");
 		StartCoroutine ("ShakeHead");
 	}
 	
@@ -84,7 +105,19 @@ public class Player : MonoBehaviour {
 
 	void HpState(){
 		}
-		
+
+	void CoolTimeState(){
+		if(coolFull < maxFull)
+			coolFull += 0.1f;
+		if (coolFull >= maxFull && fullCnt < 3) {
+			fullCnt++;
+			coolFull = 0.0f;
+		}
+		if(coolMeteor < maxMeteor)
+			coolMeteor += 0.1f;
+		if(coolLightning < maxLightning)
+			coolLightning += 0.1f;
+	}
 	/***************************************************************
 	 * @brief 정해진 간격에 따라 MpState() 처리
 	***************************************************************/
@@ -92,6 +125,12 @@ public class Player : MonoBehaviour {
 		MpState ();//타격받은 대상 처리
 		yield return new WaitForSeconds (interval);//
 		StartCoroutine ("ManageMp");
+	}
+
+	IEnumerator ManageCoolTime(){
+		CoolTimeState();
+		yield return new WaitForSeconds (0.1f);//
+		StartCoroutine ("ManageCoolTime");
 	}
 	
 	IEnumerator ShakeHead(){

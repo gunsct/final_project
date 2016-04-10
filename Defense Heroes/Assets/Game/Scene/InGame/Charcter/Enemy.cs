@@ -12,11 +12,14 @@ public class Enemy : MonoBehaviour {
 	public int score;
 	public bool attack = false;
 
+	public bool bDuration = false;
+	private int durationCnt = 0;
+
 	private GameObject parent;
 	private GameObject player;
 	private GameObject manager;
 
-	public GameObject particle;
+	public GameObject particle, particleBurn;
 
 	public AudioClip aAttack, aDie, aCry;
 	AudioSource audio;
@@ -28,11 +31,11 @@ public class Enemy : MonoBehaviour {
 		parent = this.transform.parent.gameObject;
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 		manager = GameObject.Find ("GameManager");
-
 		//particle = GameObject.Find ("Explosion");
 		audio = GetComponent<AudioSource>();
 
 		StartCoroutine ("AutoAttack");
+		StartCoroutine ("DurationDmg");
 	}
 
 	// Update is called once per frame
@@ -41,20 +44,15 @@ public class Enemy : MonoBehaviour {
 		if (!parent) {
 			Destroy (this.gameObject);
 		}
-	}
 
-	/***************************************************************
-	 * @brief 피격시 체력, 점수, 포인트 관리 해당 클래스들에게 값 전달
-	 * @param int $hp 체력
-	 * @prarm int $point 포인트
-	 * @param int $score 점수
-	***************************************************************/
-	public void GetShot(){
-		//맞을경우 체력 감ㅗ
-		hp -= player.GetComponent <Player> ().dmg;
-		manager.GetComponent<IngameUI> ().eHp = hp;
+		if (bDuration == true) {
+			particleBurn.SetActive (true);
+		}
+		if (bDuration == false) {
+			particleBurn.SetActive (false);
+		}
 
-		if (hp == 0) {
+		if (hp <= 0) {
 			player.GetComponent <Player> ().point += point;
 			player.GetComponent <Player> ().score += score;
 
@@ -71,11 +69,23 @@ public class Enemy : MonoBehaviour {
 			//particle.transform.position = this.transform.position;
 			//particle.gameObject.SetActive (true);
 
-			audio.PlayOneShot (aDie, 0.1f);
+			audio.PlayOneShot (aDie, 0.5f);
 			this.gameObject.SetActive (false);
 			//this.GetComponentInParent<LeaderCtr> ().flockCount--;
 			//Destroy (this.gameObject, 0.0f);
 		}
+	}
+
+	/***************************************************************
+	 * @brief 피격시 체력, 점수, 포인트 관리 해당 클래스들에게 값 전달
+	 * @param int $hp 체력
+	 * @prarm int $point 포인트
+	 * @param int $score 점수
+	***************************************************************/
+	public void GetShot(float _dmg){
+		//맞을경우 체력 감ㅗ
+		hp -= _dmg;
+		manager.GetComponent<IngameUI> ().eHp = hp;
 	}
 
 	void OnDisable(){
@@ -110,5 +120,19 @@ public class Enemy : MonoBehaviour {
 
 		yield return new WaitForSeconds (atkSpd);
 		StartCoroutine ("AutoAttack");
+	}
+
+	IEnumerator DurationDmg(){
+		if (bDuration == true) {
+			hp -= player.GetComponent<Player> ().durationDmg;
+			if (durationCnt >= 10) {
+				durationCnt = 0;
+				bDuration = false;
+			}
+		
+			durationCnt++;
+		}
+		yield return new WaitForSeconds (1.0f);
+		StartCoroutine ("DurationDmg");
 	}
 }

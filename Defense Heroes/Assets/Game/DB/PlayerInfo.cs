@@ -27,7 +27,7 @@ public class PlayerInfo : MonoBehaviour {
 		PlayerPrefs.SetInt ("Stage", _stage);
 		PlayerPrefs.Save ();
 	}
-	public void SavePlayerInfo(int _point, float _maxHp, int _maxMp, float _reMp, float _speed, float _dmg, float _fullDmg, float _splash){
+	public void SavePlayerInfo(int _point, float _maxHp, int _maxMp, float _reMp, float _speed, float _dmg, float _fullDmg, float _splash, float _meteorDmg, float _durationDmg, float _lightingDmg){
 		PlayerPrefs.SetInt ("Point", _point);
 		PlayerPrefs.SetFloat ("MaxHp", _maxHp);
 		PlayerPrefs.SetFloat ("MaxMp", _maxMp);
@@ -36,6 +36,9 @@ public class PlayerInfo : MonoBehaviour {
 		PlayerPrefs.SetFloat ("DMG", _dmg);
 		PlayerPrefs.SetFloat ("FullDMG", _fullDmg);
 		PlayerPrefs.SetFloat ("Splash", _splash);
+		PlayerPrefs.SetFloat ("MeteorDmg", _meteorDmg);
+		PlayerPrefs.SetFloat ("DurationDmg", _durationDmg);
+		PlayerPrefs.SetFloat ("LightingDmg", _lightingDmg);
 		PlayerPrefs.Save ();
 	}
 
@@ -64,11 +67,20 @@ public class PlayerInfo : MonoBehaviour {
 		return PlayerPrefs.GetFloat ("DMG",1.5f);
 	}
 	public float LoadFullDMG(){
-		return PlayerPrefs.GetFloat ("FullDMG",0.0f);
+		return PlayerPrefs.GetFloat ("FullDMG",10.0f);
 	}
 	public float LoadSplash(){
 		return PlayerPrefs.GetFloat ("Splash",0.0f);
 	}
-		
+	public float LoadMeteorDmg(){
+		return PlayerPrefs.GetFloat ("MeteorDmg",40.0f);
+	}
+	public float LoadDurationDmg(){
+		return PlayerPrefs.GetFloat ("DurationDmg",1.0f);
+	}
+	public float LoadLightingDmg(){
+		return PlayerPrefs.GetFloat ("LightingDmg",15.0f);
+	}
+
 	public int m_data{ set; get; }
 }

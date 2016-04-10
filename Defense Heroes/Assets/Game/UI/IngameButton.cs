@@ -4,9 +4,12 @@ using System.Collections;
 public class IngameButton : MonoBehaviour {
 	public bool bShoot;
 	private GameObject player;
+	private GameObject shotPoint;
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find ("Player");
+		shotPoint = GameObject.Find ("ShootPoint");
 		bShoot = false;
 	}
 	
@@ -36,5 +39,20 @@ public class IngameButton : MonoBehaviour {
 
 	void ShootButtonOff(){//버튼떼면 중지
 		bShoot = false;
+	}
+
+	void PowerShot(){
+		if (player.GetComponent<Player> ().die == false)
+			shotPoint.SendMessage ("PowerShot");
+	}
+
+	void Meteor(){
+		if(player.GetComponent<Player>().die == false)
+			shotPoint.SendMessage ("Meteor");
+	}
+
+	void Lightning(){
+		if(player.GetComponent<Player>().die == false)
+			shotPoint.SendMessage ("Lightning");
 	}
 }

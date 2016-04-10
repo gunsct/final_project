@@ -5,18 +5,25 @@ using System.Collections;
 public class IngameUI : MonoBehaviour {
 	public float sec = 0.0f;
 	private int waveTime;
-	private string tScore, tPoint, tEHp;
+	private string tScore, tPoint, tEHp, tBallCnt;
 	public float eHp = 0.0f;
 	private int sceneTime;
 
 	private GameObject mapManager;
 	private GameObject player;
+
 	private GameObject hpBar;
 	private GameObject shotBar;
 	private GameObject timeBar;
+	private GameObject fullBar;
+	private GameObject meteorBar;
+	private GameObject lightningBar;
+
 	private GameObject score;
 	private GameObject point;
+	private GameObject ballCnt;
 	private GameObject enemyHp;
+
 	private GameObject shootPoint;
 
 	private int corucnt;
@@ -31,9 +38,16 @@ public class IngameUI : MonoBehaviour {
 		shotBar = GameObject.Find ("Shot Bar");
 		hpBar = GameObject.Find ("HP Bar");
 		timeBar = GameObject.Find ("Time Bar");
+		fullBar = GameObject.Find ("Full Bar");
+		meteorBar = GameObject.Find("Meteor Bar");
+		lightningBar = GameObject.Find("Lightning Bar");
+
 		score = GameObject.Find ("Score");
 		point = GameObject.Find ("Point");
+		ballCnt = GameObject.Find ("FullBallCnt");
 		enemyHp = GameObject.Find ("EnemyHp");
+
+
 		shootPoint = GameObject.Find ("ShootPoint");
 		mapManager = GameObject.Find ("MapManager");
 		sceneTime = 0;
@@ -79,6 +93,10 @@ public class IngameUI : MonoBehaviour {
 		hpBar.GetComponent<UISlider>().sliderValue = player.GetComponent<Player>().hp / player.GetComponent<Player>().maxHp;
 		shotBar.GetComponent<UISlider>().sliderValue = player.GetComponent<Player>().mp / player.GetComponent<Player>().maxMp;
 		timeBar.GetComponent<UISlider>().sliderValue = sec / mapManager.GetComponent<Map> ().waveTime;
+		fullBar.GetComponent<UISlider> ().sliderValue = player.GetComponent<Player> ().coolFull / player.GetComponent<Player> ().maxFull;
+		meteorBar.GetComponent<UISlider> ().sliderValue = player.GetComponent<Player> ().coolMeteor / player.GetComponent<Player> ().maxMeteor;
+		lightningBar.GetComponent<UISlider> ().sliderValue = player.GetComponent<Player> ().coolLightning / player.GetComponent<Player> ().maxLightning;
+
 
 		if (sec == mapManager.GetComponent<Map> ().waveTime && mapManager.GetComponent<Map> ().stageNum == 0) {
 			sec = 0;
@@ -93,9 +111,11 @@ public class IngameUI : MonoBehaviour {
 		tScore = "SCORE : " + player.GetComponent<Player> ().score;
 		tPoint = "POINT   : " + player.GetComponent<Player> ().point;
 		tEHp = "HP:" + eHp;
+		tBallCnt = "" + player.GetComponent<Player>().fullCnt;
 
 		score.GetComponent<UILabel> ().text = tScore;
 		point.GetComponent<UILabel> ().text = tPoint;
+		ballCnt.GetComponent<UILabel> ().text = tBallCnt;
 
 		if (shootPoint.GetComponent<ShootLaser> ().shotOn == true) {
 			enemyHp.SetActive (true);
