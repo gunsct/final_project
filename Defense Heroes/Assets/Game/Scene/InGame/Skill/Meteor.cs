@@ -48,8 +48,8 @@ public class Meteor : MonoBehaviour {
 
 	//on Trigger
 	void OnTriggerEnter(Collider col){
-		if(col.tag.Equals ("Block") || bExplosion == false){
-			iParticle = (GameObject)Instantiate (particle, new Vector3(this.transform.position.x,this.transform.position.y + 1.0f, this.transform.position.z) , Quaternion.identity);
+		if(col.tag.Equals ("Block") && bExplosion == false){
+			iParticle = (GameObject)Instantiate (particle, new Vector3(this.transform.position.x,this.transform.position.y, this.transform.position.z) , Quaternion.identity);
 			audio.PlayOneShot (aBoom, 0.2f);
 			bExplosion = true;
 		}

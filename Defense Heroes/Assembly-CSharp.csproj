@@ -97,8 +97,10 @@
      <Compile Include="Assets\Game\Sound\Sound.cs" />
      <Compile Include="Assets\Game\UI\IngameButton.cs" />
      <Compile Include="Assets\Game\UI\IngameUI.cs" />
+     <Compile Include="Assets\Game\UI\InputBox.cs" />
      <Compile Include="Assets\Game\UI\MainButton.cs" />
      <Compile Include="Assets\Game\UI\MainUI.cs" />
+     <Compile Include="Assets\Game\UI\RankUI.cs" />
      <Compile Include="Assets\Game\UI\ResultButton.cs" />
      <Compile Include="Assets\Game\UI\ResultUI.cs" />
      <Compile Include="Assets\Game\UI\StageButton.cs" />
@@ -249,6 +251,9 @@
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="LitJson">
+ <HintPath>C:/Users/gunsct/Desktop/project/unity/final_project/Defense Heroes/Assets/Game/NetWork/LitJson.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

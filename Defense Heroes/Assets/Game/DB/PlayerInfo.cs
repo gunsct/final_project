@@ -5,7 +5,7 @@ public class PlayerInfo : MonoBehaviour {
 	private static PlayerInfo instance;
 
 	void Awake(){
-		DontDestroyOnLoad (this.gameObject);
+		//DontDestroyOnLoad (this.gameObject);
 	}
 
 	public static PlayerInfo getInstance
@@ -17,7 +17,16 @@ public class PlayerInfo : MonoBehaviour {
 			return instance;
 		}
 	}
-
+	public void SaveBLog(int _blog){
+		PlayerPrefs.SetInt ("BLog", _blog);
+	}
+	public void SavePacketType(string _type){
+		PlayerPrefs.SetString ("Type", _type);
+	}
+	public void SaveLogInfo(string _id, string _password){
+		PlayerPrefs.SetString ("Id", _id);
+		PlayerPrefs.SetString ("Password", _password);
+	}
 	public void SaveScorePoint(int _score, int _point){
 		PlayerPrefs.SetInt ("Score", _score);
 		PlayerPrefs.SetInt ("Point", _point);
@@ -42,6 +51,19 @@ public class PlayerInfo : MonoBehaviour {
 		PlayerPrefs.Save ();
 	}
 
+
+	public int LoadBLog(){
+		return PlayerPrefs.GetInt ("BLog", 0);
+	}
+	public string LoadPacketType(){
+		return PlayerPrefs.GetString ("Type", "");
+	}
+	public string LoadId(){
+		return PlayerPrefs.GetString ("Id", "id");
+	}
+	public string LoadPassword(){
+		return PlayerPrefs.GetString ("Password", "****");
+	}
 	public int LoadStage(){
 		return PlayerPrefs.GetInt ("Stage", 0);
 	}

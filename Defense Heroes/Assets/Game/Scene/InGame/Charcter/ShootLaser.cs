@@ -23,6 +23,7 @@ public class ShootLaser : MonoBehaviour {
 
 	public AudioClip audioClip;
 	AudioSource audio;
+	private int soundCnt = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -73,7 +74,7 @@ public class ShootLaser : MonoBehaviour {
 			Ray aim = aimCamera.ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0f));//카메라 정면으로
 
 			Raycasting (aim);//레이 날림
-			audio.PlayOneShot(audioClip, 0.05f);
+			//
 			//audio.loop = true;
 
 			shootEffect.SetActive (true);
@@ -132,11 +133,17 @@ public class ShootLaser : MonoBehaviour {
 			laser.SetColors (new Color (Random.value, Random.value, Random.value, 1.0f), 
 				new Color (Random.value, Random.value, Random.value, 1.0f));
 			laser.SetWidth (Random.Range(0.2f,0.8f), Random.Range(0.2f,0.8f));
+
+			if (soundCnt >= 10) {
+				audio.PlayOneShot (audioClip, 0.05f);
+				soundCnt = 0;
+			}
 		}
 
 		if(shotOn == true)
 			ShotPocess (hitObj);//타격받은 대상 처리
 		
+		soundCnt++;
 		yield return new WaitForSeconds (shotSpeed);//
 		StartCoroutine ("ShootSpeed");
 	}
