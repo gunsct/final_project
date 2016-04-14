@@ -85,8 +85,7 @@ public class Client : MonoBehaviour {
 
 	// INSERT(HTTP)
 	IEnumerator DatabaseInsert(){
-		// URL//http://localhost/Rank.php//ftp://ybh:7894521653@gunsct.iptime.org:21/server/www/Rank.php
-		string url = "http://localhost/Rank.php";
+		string url = "http://gunsct.cafe24.com/Rank.php";
 		// FORM 객체 생성- POST
 		WWWForm sendData = new WWWForm ();
 		// POST 파라미터 설정
