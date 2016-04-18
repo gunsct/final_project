@@ -14,9 +14,14 @@ public class StageButton : MonoBehaviour {
 	}
 
 	void GoStage1(){
+		PlayerInfo.getInstance.SaveStage (0);
 		Application.LoadLevel (1);
 	}
 
+	void GoStage2(){
+		PlayerInfo.getInstance.SaveStage (1);
+		Application.LoadLevel (1);
+	}
 	void Back(){
 		Application.LoadLevel (0);
 	}

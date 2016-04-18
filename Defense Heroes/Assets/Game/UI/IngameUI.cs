@@ -98,7 +98,7 @@ public class IngameUI : MonoBehaviour {
 		lightningBar.GetComponent<UISlider> ().sliderValue = player.GetComponent<Player> ().coolLightning / player.GetComponent<Player> ().maxLightning;
 
 
-		if (sec == mapManager.GetComponent<Map> ().waveTime && mapManager.GetComponent<Map> ().stageNum == 0) {
+		/*if (sec == mapManager.GetComponent<Map> ().waveTime && mapManager.GetComponent<Map> ().stageNum == 0) {
 			sec = 0;
 			mapManager.GetComponent<Map> ().waveTime += 30;
 		}
@@ -106,7 +106,7 @@ public class IngameUI : MonoBehaviour {
 		if (sec == mapManager.GetComponent<Map> ().waveTime && mapManager.GetComponent<Map> ().stageNum == 1) {
 			sec = 0;
 			mapManager.GetComponent<Map> ().waveTime += 60;
-		}
+		}*/
 
 		tScore = "SCORE : " + player.GetComponent<Player> ().score;
 		tPoint = "POINT   : " + player.GetComponent<Player> ().point;
@@ -132,6 +132,8 @@ public class IngameUI : MonoBehaviour {
 			sceneTime++;
 			if (corucnt == 0) {
 				audio.PlayOneShot (Win, 1.0f);
+				if(PlayerInfo.getInstance.LoadCLEStage() < PlayerInfo.getInstance.LoadStage())
+					PlayerInfo.getInstance.SaveClearStage (PlayerInfo.getInstance.LoadCLEStage ());
 				PlayerInfo.getInstance.SaveScorePoint (player.GetComponent<Player> ().score, player.GetComponent<Player> ().point);
 			}
 			corucnt++;

@@ -39,7 +39,7 @@ public class GridManager : MonoBehaviour
     public bool showObstacleBlocks = true;
 
     private Vector3 origin = new Vector3();
-    private GameObject[] obstacleList;
+	private ArrayList obstacleList;
     public Shell[,] nodes { get; set; }
     #endregion
 
@@ -50,7 +50,7 @@ public class GridManager : MonoBehaviour
     }
 
     //Initialise the grid manager
-	public void Setting(GameObject[] _gobj){
+	public void Setting(ArrayList _gobj){
 		//Get the list of obstacles objects tagged as "Obstacle"
 		obstacleList = _gobj;//GameObject.FindGameObjectsWithTag("Block");
 		CalculateObstacles();
@@ -77,7 +77,7 @@ public class GridManager : MonoBehaviour
         }
 
         //Run through the bObstacle list and set the bObstacle position
-        if (obstacleList != null && obstacleList.Length > 0)
+        if (obstacleList != null && obstacleList.Count > 0)
         {
             foreach (GameObject data in obstacleList)
             {
@@ -239,7 +239,7 @@ public class GridManager : MonoBehaviour
         {
             Vector3 cellSize = new Vector3(gridCellSize, 1.0f, gridCellSize);
 
-            if (obstacleList != null && obstacleList.Length > 0)
+			if (obstacleList != null && obstacleList.Count > 0)
             {
                 foreach (GameObject data in obstacleList)
                 {

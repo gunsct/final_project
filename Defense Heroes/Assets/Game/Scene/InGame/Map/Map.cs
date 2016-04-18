@@ -9,7 +9,7 @@ public class Map : MonoBehaviour {
 	//맵용 변수들
 	public float shellSize = 2.0f;//셀간격, 좌표에 사용될것 
 	Shell[,] map =null;
-	public int stageNum = 0;//스테이지 번호
+	public int stageNum;//스테이지 번호
 	public float waveTime = 0.0f;
 
 	//맵 오브젝트
@@ -21,9 +21,10 @@ public class Map : MonoBehaviour {
 	public GameObject oCastleCorner;
 	public GameObject oDoor;
 
-	public GameObject[] blockArray;
-	public GameObject[] spOneArray;
-	public GameObject[] spTwoArray;
+	public ArrayList blockArray;
+	public ArrayList spOneArray;
+	public ArrayList spTwoArray;
+	public ArrayList spThrArray;
 
 	private int blockCnt = 0;
 	private int spoCnt = 0;
@@ -40,9 +41,11 @@ public class Map : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		stageNum = PlayerInfo.getInstance.LoadStage ();
-		blockArray = new GameObject[110];
-		spOneArray = new GameObject[2];
-		spTwoArray = new GameObject[2];
+		Debug.Log (stageNum);
+		blockArray = new ArrayList ();
+		spOneArray = new ArrayList ();
+		spTwoArray = new ArrayList ();
+		spThrArray = new ArrayList ();
 
 		ExcelLoader (stageNum);
 		MapSetting ();
@@ -71,7 +74,7 @@ public class Map : MonoBehaviour {
 				break;
 			case 1:
 				csvFile = (TextAsset)Resources.Load ("stage2") as TextAsset;
-				waveTime = 120.0f;
+				waveTime = 300.0f;
 				break;
 		}
 
@@ -125,24 +128,25 @@ public class Map : MonoBehaviour {
 					case "b":
 						map [i, j].type = Shell.sType.BLOCK;
 						GameObject Block = (GameObject)Instantiate (oBlock, oPos, Quaternion.identity);
-						blockArray [blockCnt++] = Block;
+						blockArray.Add (Block);
 						break;
 
 					case "s":
 						map [i, j].type = Shell.sType.SPAWN;
 						GameObject Spawn = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
-						spOneArray [spoCnt++] = Spawn;
+						spOneArray.Add(Spawn);
 						break;
 
 					case "s2":
 						map [i, j].type = Shell.sType.SPAWN;
 						GameObject Spawn2 = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
-						spTwoArray [sptCnt++] = Spawn2;
+						spTwoArray.Add(Spawn2);
 						break;
 
 					case "s3":
 						map [i, j].type = Shell.sType.SPAWN;
 						GameObject Spawn3 = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
+						spThrArray.Add (Spawn3);
 						break;
 
 					case "mn":
@@ -204,10 +208,6 @@ public class Map : MonoBehaviour {
 		}
 		//맵을 먼저 생성 후 블럭 리스트를 그리드매니저로 전달
 		this.GetComponent<GridManager> ().Setting (blockArray);
-
-		for(int b= 0;b<108;b++){
-			Debug.Log (blockArray [b].transform.position.x + " " + blockArray [b].transform.position.y + " " + blockArray [b].transform.position.z);
-				}
 	}
 }
 //맵을 미리 만들어두고 따로 벽 번호만 텍스트같은거에 두고 읽어서 지정해줘야할듯
