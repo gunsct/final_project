@@ -7,11 +7,13 @@ public class ShootLaser : MonoBehaviour {
 	private float shotSpeed;
 
 	private GameObject obj;
-	public RaycastHit hitObj;
+	public RaycastHit hitObj,aimObj,targetObj;
 	private LineRenderer laser;
-	public Vector3 hitPos;
+	public Vector3 hitPos,aimPos;
 
-	public Camera aimCamera;
+	public Camera mainAimCamera;
+	public Camera subAimCamere;
+	public GameObject hitAim;
 	public GameObject shootButton;
 	private GameObject player;
 	public GameObject shootEffect;
@@ -61,19 +63,25 @@ public class ShootLaser : MonoBehaviour {
 	 * @param bool $shotOn 피격 여부 제어
 	***************************************************************/
 	void LaserRender(){
-		Ray skillAim = aimCamera.ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0f));//카메라 정면으로
-		if (Physics.Raycast (skillAim, out hitObj, Mathf.Infinity, ((-1) - (1 << 8)))) {
-			hitPos = hitObj.point;
+		//폰화면 정중앙으로 레이
+		Ray mainAim = mainAimCamera.ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0f));//카메라 정면으로
+		if (Physics.Raycast (mainAim, out aimObj, Mathf.Infinity, ((-1) - (1 << 8)))) {
+			aimPos = aimObj.point;
 		}
+		//에임을 실제 조준하는 쪽으로 레이 및 에임 이동
+		if (Physics.Raycast (this.transform.position, this.transform.forward, out targetObj, Mathf.Infinity, ((-1) - (1 << 8)))) {
+			Vector3 position = mainAimCamera.WorldToViewportPoint(targetObj.point);
+			hitAim.transform.position = new Vector3(subAimCamere.ViewportToWorldPoint(position).x, subAimCamere.ViewportToWorldPoint(position).y, 0.0f);
+		}	
 
 		if (shootButton.GetComponent<IngameButton> ().bShoot == true && player.GetComponent<Player>().mp > 0.0f) {//mp가 있고 버튼 누르면 발사
 			laser.enabled = true;//레이저 보이게
 
 			//라인 렌더러 시작,끝
 			laser.SetPosition (0, transform.position);//레이저 시작점
-			Ray aim = aimCamera.ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0f));//카메라 정면으로
+			//Ray aim; //aimCamera.ViewportPointToRay (new Vector3 (0.5f, 0.5f, 0f));//카메라 정면으로
 
-			Raycasting (aim);//레이 날림
+			Raycasting();//레이 날림
 			//
 			//audio.loop = true;
 
@@ -95,8 +103,8 @@ public class ShootLaser : MonoBehaviour {
 	 * 가지고 있고 이펙트와 피격 상태를 제어함.
 	 * @param RaycastHit $hitObj 레이저를 맞는 오브젝트
 	 * ***************************************************************/
-	void Raycasting(Ray _ray){
-		if(Physics.Raycast(_ray, out hitObj, Mathf.Infinity,((-1) - (1 << 8)) )){
+	void Raycasting(){
+		if(Physics.Raycast(this.transform.position, this.transform.forward, out hitObj, Mathf.Infinity,((-1) - (1 << 8)) )){
 			hitPos = hitObj.point;
 			laser.SetPosition(1,hitPos);//레이저 맞는 부분
 

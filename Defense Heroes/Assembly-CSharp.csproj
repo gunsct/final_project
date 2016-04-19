@@ -94,6 +94,8 @@
      <Compile Include="Assets\Game\Scene\InGame\Skill\Meteor.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Skill\PowerBall.cs" />
      <Compile Include="Assets\Game\Scene\SceneManager.cs" />
+     <Compile Include="Assets\Game\Scene\test\rotate.cs" />
+     <Compile Include="Assets\Game\Scene\test\rotateecal.cs" />
      <Compile Include="Assets\Game\Sound\Sound.cs" />
      <Compile Include="Assets\Game\UI\IngameButton.cs" />
      <Compile Include="Assets\Game\UI\IngameUI.cs" />
