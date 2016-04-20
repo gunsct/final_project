@@ -120,9 +120,10 @@ public class IngameUI : MonoBehaviour {
 		if (shootPoint.GetComponent<ShootLaser> ().shotOn == true) {
 			enemyHp.SetActive (true);
 			enemyHp.GetComponent<UILabel> ().text = tEHp;
-		}
-		else 
+		} else {
 			enemyHp.SetActive (false);
+			enemyHp.GetComponent<UILabel> ().text = "";
+		}
 
 		if (player.GetComponent<Player> ().hp <= 0.0f) {
 			sceneTime++;

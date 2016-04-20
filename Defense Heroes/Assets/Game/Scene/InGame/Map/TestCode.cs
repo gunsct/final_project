@@ -26,6 +26,9 @@ public class TestCode : MonoBehaviour
 	public GameObject warrior;
 	public GameObject dragon;
 	public GameObject Leader;
+	public GameObject griffon;
+	private Path[] airPath;
+
 	private GameObject[] iEnemy;
 	
     private float elapsedTime = 0.0f;
@@ -63,6 +66,10 @@ public class TestCode : MonoBehaviour
 		pathTwoArray = new ArrayList ();
 		pathThrArray = new ArrayList ();
 		pathFourArray = new ArrayList ();
+
+		airPath = new Path[2];
+		airPath[0] = GameObject.Find ("AirPath1").GetComponent<Path>();
+		airPath[1] = GameObject.Find ("AirPath2").GetComponent<Path>();
 
 		audio = GetComponent<AudioSource>();
 		bLignt = false;
@@ -136,6 +143,7 @@ public class TestCode : MonoBehaviour
 				case 2:
 					currentTime = timer;
 					AlarmWave ();
+
 					break;
 
 				case 5:
@@ -145,9 +153,11 @@ public class TestCode : MonoBehaviour
 					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
 					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
-					InstanceEnemy (0, 0, warrior, 5);
+					InstanceEnemy (0, 0, warrior, 4);
 
-					InstanceEnemy (1, 4, warrior, 5);
+					InstanceEnemy (1, 4, warrior, 4);
+
+
 					break;
 
 				case 25:
@@ -157,11 +167,19 @@ public class TestCode : MonoBehaviour
 					iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
 					iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
-					InstanceEnemy (0, 1, warrior, 2);
-					InstanceEnemy (0, 1, knight, 3);
+					InstanceEnemy (0, 1, warrior, 3);
+					InstanceEnemy (0, 1, knight, 1);
 
-					InstanceEnemy (1, 5, warrior, 2);
-					InstanceEnemy (1, 5, knight, 3);
+					InstanceEnemy (1, 5, warrior, 3);
+					InstanceEnemy (1, 5, knight, 1);
+					break;
+
+				case 30:
+					currentTime = timer;
+					AlarmSpawn ();
+
+					InstanceFlyEnemy (2,1, griffon, 1);
+					InstanceFlyEnemy (3,0, griffon, 1);
 					break;
 
 				case 35:
@@ -171,10 +189,10 @@ public class TestCode : MonoBehaviour
 					iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
 					iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
-					InstanceEnemy (0, 2, slime, 2);
+					InstanceEnemy (0, 2, slime, 1);
 					InstanceEnemy (0, 2, knight, 3);
 
-					InstanceEnemy (1, 6, slime, 2);
+					InstanceEnemy (1, 6, slime, 1);
 					InstanceEnemy (1, 6, knight, 3);
 					break;
 
@@ -186,16 +204,26 @@ public class TestCode : MonoBehaviour
 					iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 					InstanceEnemy (0, 3, slime, 1);
-					InstanceEnemy (0, 3, warrior, 4);
+					InstanceEnemy (0, 3, warrior, 3);
 
 					InstanceEnemy (1, 7, slime, 1);
-					InstanceEnemy (1, 7, warrior, 4);
+					InstanceEnemy (1, 7, warrior, 3);
 					break;
 
+				case 60:
+					currentTime = timer;
+					AlarmSpawn ();
+
+					InstanceFlyEnemy (2,1, griffon, 1);
+					InstanceFlyEnemy (3,0, griffon, 1);
+					break;
 
 				case 90:
 					currentTime = timer;
-					AlarmWave ();
+					AlarmSpawn ();
+
+					InstanceFlyEnemy (2,1, griffon, 1);
+					InstanceFlyEnemy (3,0, griffon, 1);
 					break;
 
 				case 95:
@@ -205,10 +233,10 @@ public class TestCode : MonoBehaviour
 					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
 					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
-					InstanceEnemy (0, 0, knight, 4);
+					InstanceEnemy (0, 0, knight, 3);
 					InstanceEnemy (0, 0, slime, 1);
 
-					InstanceEnemy (1, 4, knight, 4);
+					InstanceEnemy (1, 4, knight, 3);
 					InstanceEnemy (1, 4, slime, 1);
 					break;
 
@@ -220,10 +248,18 @@ public class TestCode : MonoBehaviour
 					iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 					InstanceEnemy (0, 1, warrior, 3);
-					InstanceEnemy (0, 1, knight, 2);
+					InstanceEnemy (0, 1, knight, 1);
 
 					InstanceEnemy (1, 5, warrior, 3);
-					InstanceEnemy (1, 5, knight, 2);
+					InstanceEnemy (1, 5, knight, 1);
+					break;
+
+				case 120:
+					currentTime = timer;
+					AlarmSpawn ();
+
+					InstanceFlyEnemy (2,1, griffon, 1);
+					InstanceFlyEnemy (3,0, griffon, 1);
 					break;
 
 				case 135:
@@ -234,10 +270,18 @@ public class TestCode : MonoBehaviour
 					iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
 					InstanceEnemy (0, 2, slime, 2);
-					InstanceEnemy (0, 2, knight, 3);
+					InstanceEnemy (0, 2, knight, 2);
 
 					InstanceEnemy (1, 6, slime, 2);
-					InstanceEnemy (1, 6, knight, 3);
+					InstanceEnemy (1, 6, knight, 2);
+					break;
+
+				case 150:
+					currentTime = timer;
+					AlarmSpawn ();
+
+					InstanceFlyEnemy (2,1, griffon, 1);
+					InstanceFlyEnemy (3,0, griffon, 1);
 					break;
 
 				case 170:
@@ -252,10 +296,20 @@ public class TestCode : MonoBehaviour
 					InstanceEnemy (1, 7, dragon, 2);
 					break;
 
+				case 180:
+					currentTime = timer;
+					AlarmSpawn ();
+
+					InstanceFlyEnemy (2,1, griffon, 1);
+					InstanceFlyEnemy (3,0, griffon, 1);
+					break;
 
 				case 210:
 					currentTime = timer;
-					AlarmWave ();
+					AlarmSpawn ();
+
+					InstanceFlyEnemy (2,1, griffon, 1);
+					InstanceFlyEnemy (3,0, griffon, 1);
 					break;
 
 				case 215:
@@ -265,11 +319,11 @@ public class TestCode : MonoBehaviour
 					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
 					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
-					InstanceEnemy (0, 0, warrior, 3);
-					InstanceEnemy (0, 0, slime, 2);
+					InstanceEnemy (0, 0, warrior, 1);
+					InstanceEnemy (0, 0, slime, 3);
 
-					InstanceEnemy (1, 4, warrior, 3);
-					InstanceEnemy (1, 4, slime, 2);
+					InstanceEnemy (1, 4, warrior, 1);
+					InstanceEnemy (1, 4, slime, 3);
 					break;
 
 				case 225:
@@ -279,9 +333,9 @@ public class TestCode : MonoBehaviour
 					iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
 					iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
-					InstanceEnemy (0, 1, knight, 5);
+					InstanceEnemy (0, 1, knight, 4);
 
-					InstanceEnemy (1, 5, knight, 5);
+					InstanceEnemy (1, 5, knight, 4);
 					break;
 
 				case 235:
@@ -291,11 +345,19 @@ public class TestCode : MonoBehaviour
 					iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
 					iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
 
-					InstanceEnemy (0, 2, warrior, 3);
-					InstanceEnemy (0, 2, knight, 2);
+					InstanceEnemy (0, 2, warrior, 1);
+					InstanceEnemy (0, 2, knight, 3);
 
-					InstanceEnemy (1, 6, warrior, 3);
-					InstanceEnemy (1, 6, knight, 2);
+					InstanceEnemy (1, 6, warrior, 1);
+					InstanceEnemy (1, 6, knight, 3);
+					break;
+
+				case 240:
+					currentTime = timer;
+					AlarmSpawn ();
+
+					InstanceFlyEnemy (2,1, griffon, 1);
+					InstanceFlyEnemy (3,0, griffon, 1);
 					break;
 
 				case 255:
@@ -310,6 +372,14 @@ public class TestCode : MonoBehaviour
 
 					InstanceEnemy (1, 7, dragon, 3);
 					InstanceEnemy (1, 7, slime, 2);
+					break;
+
+				case 270 : 
+					currentTime = timer;
+					AlarmSpawn ();
+
+					InstanceFlyEnemy (2,1, griffon, 1);
+					InstanceFlyEnemy (3,0, griffon, 1);
 					break;
 				}
 			}
@@ -507,18 +577,25 @@ public class TestCode : MonoBehaviour
 
 		if (map.stageNum == 0) {//젠 간격
 			if (_start == 0)
-				dst = -enemyCnt / 2;
+				dst = -_count / 4;
 			if (_start == 1)
-				dst = enemyCnt / 2;
+				dst = _count / 4;
 		}
 
 		if (map.stageNum == 1) {
-			dst = -enemyCnt / 2;
+			dst = -_count / 4;
 		}
 
 		for (enemyCnt = 0; enemyCnt < _count; enemyCnt++) {
 			GameObject goTemp = Instantiate (_oenemy, new Vector3(iEnemy [_inum].transform.position.x + dst, iEnemy [_inum].transform.position.y, iEnemy [_inum].transform.position.z), Quaternion.identity) as GameObject;
 			goTemp.transform.parent = iEnemy [_inum].transform; 
+		}
+	}
+
+	void InstanceFlyEnemy(int _inum, int _path, GameObject _oenemy, int _count){
+		for (int enemyCnt = 0; enemyCnt < _count; enemyCnt++) {
+			GameObject grif =  Instantiate (_oenemy, new Vector3(oStart[_inum].transform.position.x, oStart[_inum].transform.position.y, oStart[_inum].transform.position.z), Quaternion.identity) as GameObject;
+			grif.GetComponent<VehicleFollowing> ().path = airPath [_path];
 		}
 	}
 

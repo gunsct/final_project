@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour {
 			yield return new WaitForSeconds (atkSpd);
 		}
 
-		if (!attack && cryTimer == Random.Range (3, 8)) {
+		if (!attack && cryTimer == Random.Range (3, 5)) {
 			audio.PlayOneShot (aCry, 0.1f);
 			cryTimer = 0;
 		}

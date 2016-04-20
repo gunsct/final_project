@@ -108,9 +108,11 @@ public class ShootLaser : MonoBehaviour {
 			hitPos = hitObj.point;
 			laser.SetPosition(1,hitPos);//레이저 맞는 부분
 
-			shotedEffect.SetActive(true);
-			shotedEffect.transform.position = hitObj.point;
-			shotOn = true;
+			if (hitObj.transform.tag.Equals ("Enemy") || hitObj.transform.tag.Equals ("FlyEnemy")) {
+				shotedEffect.SetActive (true);
+				shotedEffect.transform.position = hitObj.point;
+				shotOn = true;
+			}
 
 		}
 
@@ -174,7 +176,7 @@ public class ShootLaser : MonoBehaviour {
 		if (player.GetComponent<Player> ().coolMeteor >= player.GetComponent<Player> ().maxMeteor) {
 			GameObject iMeteor = (GameObject)Instantiate (meteor, new Vector3 (player.transform.position.x, player.transform.position.y + 10.0f, player.transform.position.z), Quaternion.identity);
 			iMeteor.GetComponent<Meteor> ().startPos = iMeteor.transform.position;
-			iMeteor.GetComponent<Meteor> ().endPos = aimObj.point;
+			iMeteor.GetComponent<Meteor> ().endPos = aimPos;
 			//해당 스크립트 hitPos전달
 			player.GetComponent<Player> ().coolMeteor = 0.0f;
 		}
@@ -182,7 +184,7 @@ public class ShootLaser : MonoBehaviour {
 
 	public void Lightning(){
 		if (player.GetComponent<Player> ().coolLightning >= player.GetComponent<Player> ().maxLightning) {
-			GameObject iLightning = (GameObject)Instantiate (lightning, hitPos, Quaternion.identity);
+			GameObject iLightning = (GameObject)Instantiate (lightning, aimPos, Quaternion.identity);
 
 			//해당 스크립트 hitPos전달
 			player.GetComponent<Player> ().coolLightning = 0.0f;

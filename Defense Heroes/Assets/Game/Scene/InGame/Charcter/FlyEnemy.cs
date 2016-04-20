@@ -25,6 +25,8 @@ public class FlyEnemy : MonoBehaviour {
 		manager = GameObject.Find ("GameManager");
 		//particle = GameObject.Find ("Explosion");
 		audio = GetComponent<AudioSource>();
+
+		StartCoroutine ("Cry");
 	}
 	
 	// Update is called once per frame
@@ -51,7 +53,7 @@ public class FlyEnemy : MonoBehaviour {
 		if (col.tag.Equals ("Player")) {
 			player.GetComponent <Player> ().hp -= dmg;
 			player.GetComponent <Player> ().bShake = true;
-			audio.PlayOneShot (aAttack, 0.1f);
+			audio.PlayOneShot (aAttack, 0.4f);
 		}
 	}
 
@@ -60,5 +62,12 @@ public class FlyEnemy : MonoBehaviour {
 			this.GetComponent<VehicleFollowing> ().speed = 15.0f;
 		} else
 			this.GetComponent<VehicleFollowing> ().speed = 5.0f;
+	}
+
+	IEnumerator Cry(){
+		audio.PlayOneShot (aCry, 0.1f);
+
+		yield return new WaitForSeconds (8.0f);
+		StartCoroutine ("Cry");
 	}
 }
