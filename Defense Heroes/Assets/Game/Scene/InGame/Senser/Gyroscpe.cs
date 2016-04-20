@@ -39,7 +39,7 @@ public class Gyroscpe : MonoBehaviour {
 		if (90.0f > transform.localEulerAngles.x && transform.localEulerAngles.x > 80.0f)
 			transform.eulerAngles = new Vector3 (80.0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
-		if (270.0f > transform.localEulerAngles.x && transform.localEulerAngles.x > 240.0f)
-			transform.eulerAngles = new Vector3 (240.0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
+		if (270.0f < transform.localEulerAngles.x && transform.localEulerAngles.x < 320.0f)
+			transform.eulerAngles = new Vector3 (320.0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
 	}
 }

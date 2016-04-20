@@ -1,15 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Senser\Gyroscpe.cs">
     <Files>
-      <File FileName="Assets\Game\Scene\InGame\Charcter\FlyEnemy.cs" Line="70" Column="37" />
-      <File FileName="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" Line="183" Column="3" />
+      <File FileName="Assets\Game\Scene\InGame\Senser\rotate.cs" Line="5" Column="25" />
+      <File FileName="Assets\Game\Scene\InGame\Charcter\FlyEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" Line="1" Column="1" />
       <File FileName="Assets\Game\DB\PlayerInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\Game\Scene\InGame\Charcter\Player.cs" Line="1" Column="1" />
       <File FileName="Assets\Game\Scene\InGame\Map\Map.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="373" Column="36" />
-      <File FileName="Assets\Game\Scene\InGame\Senser\rotate.cs" Line="18" Column="28" />
+      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="1" Column="1" />
       <File FileName="Assets\Game\Scene\InGame\Skill\Lightning.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Scene\InGame\Senser\Gyroscpe.cs" Line="43" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
