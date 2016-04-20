@@ -127,7 +127,9 @@ public class ShootLaser : MonoBehaviour {
 	void ShotPocess(RaycastHit _hitObj){
 		if (_hitObj.transform.tag.Equals ("Enemy")) {
 			_hitObj.transform.GetComponent<Enemy> ().GetShot (player.GetComponent <Player> ().dmg);
-			//_hitObj.transform.SendMessage ("GetShot", 0.0f);
+		}
+		if (_hitObj.transform.tag.Equals ("FlyEnemy")) {
+			_hitObj.transform.GetComponent<FlyEnemy> ().GetShot (player.GetComponent <Player> ().dmg);
 		}
 	}
 
@@ -161,7 +163,7 @@ public class ShootLaser : MonoBehaviour {
 		if (player.GetComponent<Player> ().fullCnt > 0) {
 			GameObject iFull = (GameObject)Instantiate (powerBall, this.transform.position, Quaternion.identity);
 			iFull.GetComponent<PowerBall> ().startPos = iFull.transform.position;
-			iFull.GetComponent<PowerBall> ().endPos = hitPos;
+			iFull.GetComponent<PowerBall> ().endPos = aimObj.point;
 
 			player.GetComponent<Player> ().coolFull = 0.0f;
 			player.GetComponent<Player> ().fullCnt--;
@@ -172,7 +174,7 @@ public class ShootLaser : MonoBehaviour {
 		if (player.GetComponent<Player> ().coolMeteor >= player.GetComponent<Player> ().maxMeteor) {
 			GameObject iMeteor = (GameObject)Instantiate (meteor, new Vector3 (player.transform.position.x, player.transform.position.y + 10.0f, player.transform.position.z), Quaternion.identity);
 			iMeteor.GetComponent<Meteor> ().startPos = iMeteor.transform.position;
-			iMeteor.GetComponent<Meteor> ().endPos = hitPos;
+			iMeteor.GetComponent<Meteor> ().endPos = aimObj.point;
 			//해당 스크립트 hitPos전달
 			player.GetComponent<Player> ().coolMeteor = 0.0f;
 		}

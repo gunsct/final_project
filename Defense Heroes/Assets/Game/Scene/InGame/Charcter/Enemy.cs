@@ -5,6 +5,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 	//사운드도 추가하고 바꾸는건 상속받아 하자
 	public float lange = 6.0f;
+	private float maxHp;
 	public float hp;
 	public float dmg;
 	public float atkSpd;
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lange = 6.0f;
+		maxHp = 50;
 		parent = this.transform.parent.gameObject;
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 		manager = GameObject.Find ("GameManager");

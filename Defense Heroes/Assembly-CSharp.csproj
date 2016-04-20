@@ -76,6 +76,7 @@
      <Compile Include="Assets\Game\Plugins\Android\Plugin_Mgr.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Dragon.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Enemy.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Charcter\FlyEnemy.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\LeaderCtr.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Magician.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Particle.cs" />
@@ -85,16 +86,18 @@
      <Compile Include="Assets\Game\Scene\InGame\Map\AStar.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\GridManager.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\Map.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\Path.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\PriorityQueue.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\Shell.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\TestCode.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\UnityFlock.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\VehicleFollowing.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Senser\Gyroscpe.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Senser\rotate.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Skill\Lightning.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Skill\Meteor.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Skill\PowerBall.cs" />
      <Compile Include="Assets\Game\Scene\SceneManager.cs" />
-     <Compile Include="Assets\Game\Scene\test\rotate.cs" />
      <Compile Include="Assets\Game\Scene\test\rotateecal.cs" />
      <Compile Include="Assets\Game\Sound\Sound.cs" />
      <Compile Include="Assets\Game\UI\IngameButton.cs" />
