@@ -105,6 +105,7 @@
      <Compile Include="Assets\Game\UI\InputBox.cs" />
      <Compile Include="Assets\Game\UI\MainButton.cs" />
      <Compile Include="Assets\Game\UI\MainUI.cs" />
+     <Compile Include="Assets\Game\UI\MoveWarning.cs" />
      <Compile Include="Assets\Game\UI\RankUI.cs" />
      <Compile Include="Assets\Game\UI\ResultButton.cs" />
      <Compile Include="Assets\Game\UI\ResultUI.cs" />

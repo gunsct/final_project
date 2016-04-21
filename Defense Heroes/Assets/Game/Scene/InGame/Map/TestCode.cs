@@ -4,6 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class TestCode : MonoBehaviour 
 {
+	public GameObject gameManager;
     public Shell[] startNode { get; set; }
 	public Shell goalNode { get; set; }
 
@@ -149,6 +150,9 @@ public class TestCode : MonoBehaviour
 				case 5:
 					currentTime = timer;
 					AlarmSpawn ();
+
+					gameManager.GetComponent<IngameUI> ().PointSpawn (oStart [0]);
+					gameManager.GetComponent<IngameUI> ().PointSpawn (oStart [1]);
 
 					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
 					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);

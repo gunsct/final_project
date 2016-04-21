@@ -26,6 +26,11 @@ public class IngameUI : MonoBehaviour {
 
 	private GameObject shootPoint;
 
+	public Camera mainAimCamera;
+	public Camera subAimCamere;
+	public GameObject pointSpawn;
+	public GameObject spriteParent;
+
 	private int corucnt;
 
 	public AudioClip Win;
@@ -145,5 +150,11 @@ public class IngameUI : MonoBehaviour {
 		//Debug.Log (sec +" "+ gameObject.GetComponent<Map> ().waveTime);
 		yield return new WaitForSeconds (0.1f);//
 		StartCoroutine ("Frame1");
+	}
+
+	public void PointSpawn(GameObject _spawn){
+		GameObject iPointSpawn = (GameObject)Instantiate (pointSpawn, new Vector3 (1.0f, 1.0f, 0.0f), Quaternion.identity) as GameObject;
+		iPointSpawn.GetComponent<MoveWarning> ().init (_spawn, mainAimCamera, subAimCamere);
+		iPointSpawn.transform.parent = spriteParent.transform;
 	}
 }
