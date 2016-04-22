@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MoveWarning : MonoBehaviour {
-	private Vector3 position;
+	private Vector3 pos;
 
 	private GameObject target;
 	private Camera mainAimCamera;
@@ -20,10 +20,10 @@ public class MoveWarning : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 
-		//if (timer >= 0.2f) {//8방향,정중앙일때 위치
-			position = mainAimCamera.WorldToViewportPoint (target.transform.position);
-			x = subAimCamere.ViewportToWorldPoint (position).x;
-			y = subAimCamere.ViewportToWorldPoint (position).y;
+		if (timer >= 0.1f) {//8방향,정중앙일때 위치
+			pos = mainAimCamera.WorldToViewportPoint (target.transform.position);
+			x = subAimCamere.ViewportToWorldPoint (pos).x;
+			y = subAimCamere.ViewportToWorldPoint (pos).y;
 			Debug.Log(x+" "+y);
 			if (x > 1.9f && y > 0.0f) {
 				x = 1.9f;
@@ -50,10 +50,8 @@ public class MoveWarning : MonoBehaviour {
 			else if (y >= -1.7f && y <= 0.0f && x < -1.0f)
 				x = -1.0f;
 
-			Debug.Log(x+" "+y);
-			this.transform.position = new Vector3 (x, y, 0.0f);
-			Debug.Log(x+" "+y);
-		//}
+			this.transform.position = new Vector3 (x - 0.4f, y + 0.8f, 0.0f);//좌표 오차가 x : -0.4 , y = +0.8이다
+		}
 
 		if (timer >= 3.0f)
 			Destroy (this.gameObject);

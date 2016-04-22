@@ -91,6 +91,7 @@ public class TestCode : MonoBehaviour
            
         }
 
+		//웨이브나 유닛 등장시 조명 색을 일정시간 바꿔줌
 		if (bLignt == true) {
 			lightTime += Time.deltaTime;
 			oLight.GetComponent<Light> ().color = new Color (1.0f, 0.0f, 0.0f, 1.0f);
@@ -101,7 +102,7 @@ public class TestCode : MonoBehaviour
 				oLight.GetComponent<Light> ().color = new Color (1.0f, 1.0f, 1.0f,1.0f);
 			}
 		}
-
+		//적소환하는거 프레임마다 돌림
 		SpawnEnemy ();
 	}
 
@@ -117,7 +118,7 @@ public class TestCode : MonoBehaviour
 		FindPath();
 	}
 
-    void FindPath()//스테이지별로 스위치로 바꾸자
+    void FindPath()//시작하면 스포너별 길찾기
     {
         //Assign StartNode and Goal Node
 		for (int i = 0; i < 4; i++) {
@@ -137,254 +138,163 @@ public class TestCode : MonoBehaviour
 		bStart = true;
     }
 
-	void SpawnEnemy(){
+	void SpawnEnemy(){//유닛 생성
 		if(timer >= currentTime+1){//중복 복사 제어
 			if (map.stageNum == 0) {
 				switch (timer) {
-				case 2:
-					currentTime = timer;
-					AlarmWave ();
+					case 2:
+						currentTime = timer;
+						AlarmWave ();
+						break;
 
-					break;
+					case 5:
+						SpawnSetGround (0, 1, 0, 4);
 
-				case 5:
-					currentTime = timer;
-					AlarmSpawn ();
+						InstanceEnemy (0, 0, warrior, 4);
+						InstanceEnemy (1, 4, warrior, 4);
+						break;
 
-					gameManager.GetComponent<IngameUI> ().PointSpawn (oStart [0]);
-					gameManager.GetComponent<IngameUI> ().PointSpawn (oStart [1]);
+					case 25:
+						SpawnSetGround (0, 1, 1, 5);
 
-					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+						InstanceEnemy (0, 1, warrior, 3);
+						InstanceEnemy (0, 1, knight, 1);
 
-					InstanceEnemy (0, 0, warrior, 4);
+						InstanceEnemy (1, 5, warrior, 3);
+						InstanceEnemy (1, 5, knight, 1);
+						break;
 
-					InstanceEnemy (1, 4, warrior, 4);
+					case 30:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
+					case 35:
+						SpawnSetGround (0, 1, 2, 6);
 
-					break;
+						InstanceEnemy (0, 2, slime, 1);
+						InstanceEnemy (0, 2, knight, 3);
 
-				case 25:
-					currentTime = timer;
-					AlarmSpawn ();
-				
-					iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+						InstanceEnemy (1, 6, slime, 1);
+						InstanceEnemy (1, 6, knight, 3);
+						break;
 
-					InstanceEnemy (0, 1, warrior, 3);
-					InstanceEnemy (0, 1, knight, 1);
+					case 45:
+						SpawnSetGround (0, 1, 3, 7);
 
-					InstanceEnemy (1, 5, warrior, 3);
-					InstanceEnemy (1, 5, knight, 1);
-					break;
+						InstanceEnemy (0, 3, slime, 1);
+						InstanceEnemy (0, 3, warrior, 3);
 
-				case 30:
-					currentTime = timer;
-					AlarmSpawn ();
+						InstanceEnemy (1, 7, slime, 1);
+						InstanceEnemy (1, 7, warrior, 3);
+						break;
 
-					InstanceFlyEnemy (2,1, griffon, 1);
-					InstanceFlyEnemy (3,0, griffon, 1);
-					break;
+					case 70:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-				case 35:
-					currentTime = timer;
-					AlarmSpawn ();
+					case 100:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-					iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+					case 105:
+						SpawnSetGround (0, 1, 0, 4);
 
-					InstanceEnemy (0, 2, slime, 1);
-					InstanceEnemy (0, 2, knight, 3);
+						InstanceEnemy (0, 0, knight, 3);
+						InstanceEnemy (0, 0, slime, 1);
 
-					InstanceEnemy (1, 6, slime, 1);
-					InstanceEnemy (1, 6, knight, 3);
-					break;
+						InstanceEnemy (1, 4, knight, 3);
+						InstanceEnemy (1, 4, slime, 1);
+						break;
 
-				case 45:
-					currentTime = timer;
-					AlarmSpawn ();
+					case 120:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-					iEnemy [3] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+					case 125:
+						SpawnSetGround (0, 1, 1, 5);
 
-					InstanceEnemy (0, 3, slime, 1);
-					InstanceEnemy (0, 3, warrior, 3);
+						InstanceEnemy (0, 1, warrior, 3);
+						InstanceEnemy (0, 1, knight, 1);
 
-					InstanceEnemy (1, 7, slime, 1);
-					InstanceEnemy (1, 7, warrior, 3);
-					break;
+						InstanceEnemy (1, 5, warrior, 3);
+						InstanceEnemy (1, 5, knight, 1);
+						break;
 
-				case 60:
-					currentTime = timer;
-					AlarmSpawn ();
+					case 145:
+						SpawnSetGround (0, 1, 2, 6);
 
-					InstanceFlyEnemy (2,1, griffon, 1);
-					InstanceFlyEnemy (3,0, griffon, 1);
-					break;
+						InstanceEnemy (0, 2, slime, 2);
+						InstanceEnemy (0, 2, knight, 2);
 
-				case 90:
-					currentTime = timer;
-					AlarmSpawn ();
+						InstanceEnemy (1, 6, slime, 2);
+						InstanceEnemy (1, 6, knight, 2);
+						break;
 
-					InstanceFlyEnemy (2,1, griffon, 1);
-					InstanceFlyEnemy (3,0, griffon, 1);
-					break;
+					case 150:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-				case 95:
-					currentTime = timer;
-					AlarmSpawn ();
+					case 180:
+						SpawnSetGround (0, 1, 3, 7);
 
-					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+						InstanceEnemy (0, 3, dragon, 2);
 
-					InstanceEnemy (0, 0, knight, 3);
-					InstanceEnemy (0, 0, slime, 1);
+						InstanceEnemy (1, 7, dragon, 2);
+						break;
 
-					InstanceEnemy (1, 4, knight, 3);
-					InstanceEnemy (1, 4, slime, 1);
-					break;
+					case 190:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-				case 115:
-					currentTime = timer;
-					AlarmSpawn ();
+					case 220:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-					iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+					case 225:
+						SpawnSetGround (0, 1, 0, 4);
 
-					InstanceEnemy (0, 1, warrior, 3);
-					InstanceEnemy (0, 1, knight, 1);
+						InstanceEnemy (0, 0, warrior, 1);
+						InstanceEnemy (0, 0, slime, 3);
 
-					InstanceEnemy (1, 5, warrior, 3);
-					InstanceEnemy (1, 5, knight, 1);
-					break;
+						InstanceEnemy (1, 4, warrior, 1);
+						InstanceEnemy (1, 4, slime, 3);
+						break;
 
-				case 120:
-					currentTime = timer;
-					AlarmSpawn ();
+					case 235:
+						SpawnSetGround (0, 1, 1, 5);
 
-					InstanceFlyEnemy (2,1, griffon, 1);
-					InstanceFlyEnemy (3,0, griffon, 1);
-					break;
+						InstanceEnemy (0, 1, knight, 4);
 
-				case 135:
-					currentTime = timer;
-					AlarmSpawn ();
+						InstanceEnemy (1, 5, knight, 4);
+						break;
 
-					iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+					case 240:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-					InstanceEnemy (0, 2, slime, 2);
-					InstanceEnemy (0, 2, knight, 2);
+					case 245:
+						SpawnSetGround (0, 1, 2, 6);
 
-					InstanceEnemy (1, 6, slime, 2);
-					InstanceEnemy (1, 6, knight, 2);
-					break;
+						InstanceEnemy (0, 2, warrior, 1);
+						InstanceEnemy (0, 2, knight, 3);
 
-				case 150:
-					currentTime = timer;
-					AlarmSpawn ();
+						InstanceEnemy (1, 6, warrior, 1);
+						InstanceEnemy (1, 6, knight, 3);
+						break;
 
-					InstanceFlyEnemy (2,1, griffon, 1);
-					InstanceFlyEnemy (3,0, griffon, 1);
-					break;
+					case 265:
+						SpawnSetGround (0, 1, 3, 7);
 
-				case 170:
-					currentTime = timer;
-					AlarmSpawn ();
+						InstanceEnemy (0, 3, dragon, 3);
+						InstanceEnemy (0, 3, slime, 2);
 
-					iEnemy [3] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+						InstanceEnemy (1, 7, dragon, 3);
+						InstanceEnemy (1, 7, slime, 2);
+						break;
 
-					InstanceEnemy (0, 3, dragon, 2);
-
-					InstanceEnemy (1, 7, dragon, 2);
-					break;
-
-				case 180:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					InstanceFlyEnemy (2,1, griffon, 1);
-					InstanceFlyEnemy (3,0, griffon, 1);
-					break;
-
-				case 210:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					InstanceFlyEnemy (2,1, griffon, 1);
-					InstanceFlyEnemy (3,0, griffon, 1);
-					break;
-
-				case 215:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 0, warrior, 1);
-					InstanceEnemy (0, 0, slime, 3);
-
-					InstanceEnemy (1, 4, warrior, 1);
-					InstanceEnemy (1, 4, slime, 3);
-					break;
-
-				case 225:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 1, knight, 4);
-
-					InstanceEnemy (1, 5, knight, 4);
-					break;
-
-				case 235:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 2, warrior, 1);
-					InstanceEnemy (0, 2, knight, 3);
-
-					InstanceEnemy (1, 6, warrior, 1);
-					InstanceEnemy (1, 6, knight, 3);
-					break;
-
-				case 240:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					InstanceFlyEnemy (2,1, griffon, 1);
-					InstanceFlyEnemy (3,0, griffon, 1);
-					break;
-
-				case 255:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [3] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 3, dragon, 3);
-					InstanceEnemy (0, 3, slime, 2);
-
-					InstanceEnemy (1, 7, dragon, 3);
-					InstanceEnemy (1, 7, slime, 2);
-					break;
-
-				case 270 : 
-					currentTime = timer;
-					AlarmSpawn ();
-
-					InstanceFlyEnemy (2,1, griffon, 1);
-					InstanceFlyEnemy (3,0, griffon, 1);
-					break;
+					case 270 : 
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 				}
 			}
 
@@ -397,171 +307,142 @@ public class TestCode : MonoBehaviour
 					break;
 
 				case 5:
-					currentTime = timer;
-					AlarmSpawn ();
+					SpawnSetGround (0, 1, 0, 4);
 
-					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 0, warrior, 5);
-
-					InstanceEnemy (1, 4, warrior, 5);
+					InstanceEnemy (0, 0, warrior, 4);
+					InstanceEnemy (1, 4, warrior, 4);
 					break;
 
 				case 25:
-					currentTime = timer;
-					AlarmSpawn ();
+					SpawnSetGround (0, 1, 1, 5);
 
-					iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+					InstanceEnemy (0, 1, warrior, 3);
+					InstanceEnemy (0, 1, knight, 1);
 
-					InstanceEnemy (0, 1, warrior, 2);
-					InstanceEnemy (0, 1, knight, 3);
-
-					InstanceEnemy (1, 5, warrior, 2);
-					InstanceEnemy (1, 5, knight, 3);
+					InstanceEnemy (1, 5, warrior, 3);
+					InstanceEnemy (1, 5, knight, 1);
 					break;
 
-				case 35:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 2, slime, 2);
-					InstanceEnemy (0, 2, knight, 3);
-
-					InstanceEnemy (1, 6, slime, 2);
-					InstanceEnemy (1, 6, knight, 3);
+				case 30:
+					SpawnSetFly (2, 3, griffon, 1);
 					break;
 
 				case 45:
-					currentTime = timer;
-					AlarmSpawn ();
+					SpawnSetGround (0, 1, 2, 6);
 
-					iEnemy [3] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 3, slime, 1);
-					InstanceEnemy (0, 3, warrior, 4);
-
-					InstanceEnemy (1, 7, slime, 1);
-					InstanceEnemy (1, 7, warrior, 4);
-					break;
-
-
-				case 90:
-					currentTime = timer;
-					AlarmWave ();
-					break;
-
-				case 95:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 0, knight, 4);
-					InstanceEnemy (0, 0, slime, 1);
-
-					InstanceEnemy (1, 4, knight, 4);
-					InstanceEnemy (1, 4, slime, 1);
-					break;
-
-				case 115:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 1, warrior, 3);
-					InstanceEnemy (0, 1, knight, 2);
-
-					InstanceEnemy (1, 5, warrior, 3);
-					InstanceEnemy (1, 5, knight, 2);
-					break;
-
-				case 135:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 2, slime, 2);
+					InstanceEnemy (0, 2, slime, 1);
 					InstanceEnemy (0, 2, knight, 3);
 
-					InstanceEnemy (1, 6, slime, 2);
+					InstanceEnemy (1, 6, slime, 1);
 					InstanceEnemy (1, 6, knight, 3);
 					break;
 
-				case 170:
-					currentTime = timer;
-					AlarmSpawn ();
+				case 65:
+					SpawnSetGround (0, 1, 3, 7);
 
-					iEnemy [3] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+					InstanceEnemy (0, 3, slime, 1);
+					InstanceEnemy (0, 3, warrior, 3);
+
+					InstanceEnemy (1, 7, slime, 1);
+					InstanceEnemy (1, 7, warrior, 3);
+					break;
+
+				case 60:
+					SpawnSetFly (2, 3, griffon, 1);
+					break;
+
+				case 90:
+					SpawnSetFly (2, 3, griffon, 1);
+					break;
+
+				case 115:
+					SpawnSetGround (0, 1, 0, 4);
+
+					InstanceEnemy (0, 0, knight, 3);
+					InstanceEnemy (0, 0, slime, 1);
+
+					InstanceEnemy (1, 4, knight, 3);
+					InstanceEnemy (1, 4, slime, 1);
+					break;
+
+				case 120:
+					SpawnSetFly (2, 3, griffon, 1);
+					break;
+
+				case 135:
+					SpawnSetGround (0, 1, 1, 5);
+
+					InstanceEnemy (0, 1, warrior, 3);
+					InstanceEnemy (0, 1, knight, 1);
+
+					InstanceEnemy (1, 5, warrior, 3);
+					InstanceEnemy (1, 5, knight, 1);
+					break;
+
+				case 150:
+					SpawnSetFly (2, 3, griffon, 1);
+					break;
+
+				case 155:
+					SpawnSetGround (0, 1, 2, 6);
+
+					InstanceEnemy (0, 2, slime, 2);
+					InstanceEnemy (0, 2, knight, 2);
+
+					InstanceEnemy (1, 6, slime, 2);
+					InstanceEnemy (1, 6, knight, 2);
+					break;
+
+				case 180:
+					SpawnSetFly (2, 3, griffon, 1);
+					break;
+
+				case 190:
+					SpawnSetGround (0, 1, 3, 7);
 
 					InstanceEnemy (0, 3, dragon, 2);
 
 					InstanceEnemy (1, 7, dragon, 2);
 					break;
 
-
 				case 210:
-					currentTime = timer;
-					AlarmWave ();
-					break;
-
-				case 215:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [0] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [4] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 0, warrior, 3);
-					InstanceEnemy (0, 0, slime, 2);
-
-					InstanceEnemy (1, 4, warrior, 3);
-					InstanceEnemy (1, 4, slime, 2);
-					break;
-
-				case 225:
-					currentTime = timer;
-					AlarmSpawn ();
-
-					iEnemy [1] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [5] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
-
-					InstanceEnemy (0, 1, knight, 5);
-
-					InstanceEnemy (1, 5, knight, 5);
+					SpawnSetFly (2, 3, griffon, 1);
 					break;
 
 				case 235:
-					currentTime = timer;
-					AlarmSpawn ();
+					SpawnSetGround (0, 1, 0, 4);
 
-					iEnemy [2] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [6] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+					InstanceEnemy (0, 0, warrior, 1);
+					InstanceEnemy (0, 0, slime, 3);
 
-					InstanceEnemy (0, 2, warrior, 3);
-					InstanceEnemy (0, 2, knight, 2);
+					InstanceEnemy (1, 4, warrior, 1);
+					InstanceEnemy (1, 4, slime, 3);
+					break;
 
-					InstanceEnemy (1, 6, warrior, 3);
-					InstanceEnemy (1, 6, knight, 2);
+				case 245:
+					SpawnSetGround (0, 1, 1, 5);
+
+					InstanceEnemy (0, 1, knight, 4);
+
+					InstanceEnemy (1, 5, knight, 4);
+					break;
+
+				case 240:
+					SpawnSetFly (2, 3, griffon, 1);
 					break;
 
 				case 255:
-					currentTime = timer;
-					AlarmSpawn ();
+					SpawnSetGround (0, 1, 2, 6);
 
-					iEnemy [3] = (GameObject)Instantiate (Leader, oStart [0].transform.position, Quaternion.identity);
-					iEnemy [7] = (GameObject)Instantiate (Leader, oStart [1].transform.position, Quaternion.identity);
+					InstanceEnemy (0, 2, warrior, 1);
+					InstanceEnemy (0, 2, knight, 3);
+
+					InstanceEnemy (1, 6, warrior, 1);
+					InstanceEnemy (1, 6, knight, 3);
+					break;
+
+				case 275:
+					SpawnSetGround (0, 1, 3, 7);
 
 					InstanceEnemy (0, 3, dragon, 3);
 					InstanceEnemy (0, 3, slime, 2);
@@ -569,12 +450,16 @@ public class TestCode : MonoBehaviour
 					InstanceEnemy (1, 7, dragon, 3);
 					InstanceEnemy (1, 7, slime, 2);
 					break;
-				}
 
+				case 270 : 
+					SpawnSetFly (2, 3, griffon, 1);
+					break;
+				}
 			}
 		}
 	}
 		
+	//지상유닛 생성
 	void InstanceEnemy(int _start, int _inum, GameObject _oenemy, int _count){
 		int enemyCnt = 0;
 		float dst = 0.0f;
@@ -596,6 +481,7 @@ public class TestCode : MonoBehaviour
 		}
 	}
 
+	//공중유닛 생성
 	void InstanceFlyEnemy(int _inum, int _path, GameObject _oenemy, int _count){
 		for (int enemyCnt = 0; enemyCnt < _count; enemyCnt++) {
 			GameObject grif =  Instantiate (_oenemy, new Vector3(oStart[_inum].transform.position.x, oStart[_inum].transform.position.y, oStart[_inum].transform.position.z), Quaternion.identity) as GameObject;
@@ -603,6 +489,33 @@ public class TestCode : MonoBehaviour
 		}
 	}
 
+	//지상유닛 리더, 위험표시 셋팅
+	void SpawnSetGround(int _sp1, int _sp2, int _ie1, int _ie2){
+		//스포너1, 스포너2, 리더1, 리더2, 히어로1, 히어로1 수, 히어로2, 히어로2 수
+		currentTime = timer;
+		AlarmSpawn ();
+
+		gameManager.GetComponent<IngameUI> ().PointSpawn (oStart [_sp1]);
+		gameManager.GetComponent<IngameUI> ().PointSpawn (oStart [_sp2]);
+
+		iEnemy [_ie1] = (GameObject)Instantiate (Leader, oStart [_sp1].transform.position, Quaternion.identity);
+		iEnemy [_ie2] = (GameObject)Instantiate (Leader, oStart [_sp2].transform.position, Quaternion.identity);
+	}
+
+	//공중유닛 생성 및 위험표시 셋팅
+	void SpawnSetFly(int _sp1, int _sp2, GameObject _oie, int _coie){
+		//스포너1, 스포너2, 리더1, 리더2, 히어로1, 히어로1 수, 히어로2, 히어로2 수
+		currentTime = timer;
+		AlarmSpawn ();
+
+		gameManager.GetComponent<IngameUI> ().PointSpawn (oStart [_sp1]);
+		gameManager.GetComponent<IngameUI> ().PointSpawn (oStart [_sp2]);
+
+		InstanceFlyEnemy (_sp1,1, _oie, _coie);
+		InstanceFlyEnemy (_sp2,0, _oie, _coie);
+	}
+
+	//a*로 리더 움직임
 	void MovingLeader(ArrayList _path ,int _startnum, int _endnum){
 		for (int i = _startnum; i < _endnum; i++) {
 			if (iEnemy [i]) {
@@ -618,16 +531,17 @@ public class TestCode : MonoBehaviour
 		}
 	}
 
-	void AlarmWave(){
+	void AlarmWave(){//웨이브 시작 알림음
 		audio.PlayOneShot (aWave, 1.0f);
 		bLignt = true;
 	}
 
-	void AlarmSpawn(){
+	void AlarmSpawn(){//유닛스폰 시작 알림음
 		audio.PlayOneShot (aSpawn, 0.2f);
 		bLignt = true;
 	}
-	//찾은 루트를 따라 2초마다 선두가 이동
+
+	//찾은 루트를 따라 2초마다 선두가 이동하게 하는 프레임
 	IEnumerator MoveLeader(){
 		if (countCort == 20) {//2초마다
 			//스포너마다 IEnemy 2개씩 붙여서 존재시만 이동하게 하자
@@ -644,6 +558,7 @@ public class TestCode : MonoBehaviour
 		StartCoroutine ("MoveLeader");
 	}
 
+	//라인 디버깅
 	void OnDrawGizmos()
 	{
 		if (pathArray == null)

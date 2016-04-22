@@ -3,8 +3,8 @@ using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class FlyEnemy : MonoBehaviour {
-	private float maxHp;
-	public float hp;
+	public float maxHp = 20.0f;
+	private float hp;
 	public float dmg;
 	public int point;
 	public int score;
@@ -19,7 +19,7 @@ public class FlyEnemy : MonoBehaviour {
 	AudioSource audio;
 	// Use this for initialization
 	void Start () {
-		maxHp = 50;
+		hp = maxHp;
 		//mainTower = GameObject.Find ("MainTower(Clone)");
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 		manager = GameObject.Find ("GameManager");
@@ -59,7 +59,7 @@ public class FlyEnemy : MonoBehaviour {
 
 	void DistanceSpeed(){
 		if (Vector3.Distance (mainTower.transform.position, this.transform.position) <= 14.0f) {
-			this.GetComponent<VehicleFollowing> ().speed = 15.0f;
+			this.GetComponent<VehicleFollowing> ().speed = 10.0f;
 		} else
 			this.GetComponent<VehicleFollowing> ().speed = 5.0f;
 	}

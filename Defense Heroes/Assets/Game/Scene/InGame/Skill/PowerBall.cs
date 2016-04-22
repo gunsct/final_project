@@ -8,6 +8,11 @@ public class PowerBall : MonoBehaviour {
 	public Vector3 startPos;
 	public Vector3 endPos;
 
+	private float timer;
+	private float speed;
+	private float vY;
+	private float distanceY;
+
 	private GameObject player;
 	public GameObject particle;
 	private GameObject iParticle;
@@ -21,9 +26,14 @@ public class PowerBall : MonoBehaviour {
 		player = GameObject.Find ("Player");
 
 		dieTimer = 0.0f;
+		timer = 0.0f;
+		speed = 100.0f;
+		vY = (startPos - endPos).y *(100 / speed);
+		distanceY = (startPos - endPos).y;
 
 		audio = GetComponent<AudioSource>();
 		audio.PlayOneShot (aFly, 0.3f);
+
 
 		StartCoroutine ("Move2");
 	}
@@ -40,7 +50,13 @@ public class PowerBall : MonoBehaviour {
 	}
 
 	IEnumerator Move2(){
-		this.transform.Translate ((endPos - startPos) / 50.0f);
+		timer += 0.01f;
+		float ratio = timer / (distanceY / vY);
+		float dh = (0.4f * ratio * (1.0f - ratio));
+		if (timer >= (distanceY / vY) / 2.0f)
+			dh = -dh;
+		this.transform.Translate ((endPos - startPos).x / speed,(endPos - startPos).y / speed, (endPos - startPos).z / speed);
+		this.transform.position = new Vector3(transform.position.x, transform.position.y + dh, transform.position.z);
 		yield return new WaitForSeconds (0.01f);
 		StartCoroutine ("Move2");
 	}

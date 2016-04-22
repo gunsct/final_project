@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour {
 	public bool bDuration = false;
 	private int durationCnt = 0;
 
+	private float dieTimer = 0.0f;
 	private GameObject parent;
 	private GameObject player;
 	private GameObject manager;
@@ -42,8 +43,12 @@ public class Enemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		dieTimer += Time.deltaTime;
 		//정해진 타입으로 수치 설정 및 이동 로직에서 길찾기 가져다 쓸것
-		if (!parent) {
+		if(dieTimer < 75 && !parent){//60초(도착) 이전에 리더 없어지면 다사라짐  
+			Destroy (this.gameObject);
+		}
+		if (dieTimer > 79 && hp <= 0) {
 			Destroy (this.gameObject);
 		}
 
