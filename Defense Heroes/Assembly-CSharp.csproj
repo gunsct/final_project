@@ -74,6 +74,7 @@
      <Compile Include="Assets\Game\DB\PlayerInfo.cs" />
      <Compile Include="Assets\Game\NetWork\Client.cs" />
      <Compile Include="Assets\Game\Plugins\Android\Plugin_Mgr.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Charcter\Cannon.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Dragon.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Enemy.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\FlyEnemy.cs" />
@@ -82,6 +83,7 @@
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Particle.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Player.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Charcter\Stone.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Charcter\Warrior.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\AStar.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\GridManager.cs" />

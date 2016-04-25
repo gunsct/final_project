@@ -28,6 +28,7 @@ public class TestCode : MonoBehaviour
 	public GameObject dragon;
 	public GameObject Leader;
 	public GameObject griffon;
+	public GameObject cannon;
 	private Path[] airPath;
 
 	private GameObject[] iEnemy;
@@ -324,7 +325,7 @@ public class TestCode : MonoBehaviour
 					break;
 
 				case 30:
-					SpawnSetFly (2, 3, griffon, 1);
+					SpawnSetFly (2, 3, cannon, 1);
 					break;
 
 				case 45:
@@ -348,11 +349,11 @@ public class TestCode : MonoBehaviour
 					break;
 
 				case 60:
-					SpawnSetFly (2, 3, griffon, 1);
+					SpawnSetFly (2, 3, cannon, 1);
 					break;
 
 				case 90:
-					SpawnSetFly (2, 3, griffon, 1);
+					SpawnSetFly (2, 3, cannon, 1);
 					break;
 
 				case 115:
@@ -366,7 +367,7 @@ public class TestCode : MonoBehaviour
 					break;
 
 				case 120:
-					SpawnSetFly (2, 3, griffon, 1);
+					SpawnSetFly (2, 3, cannon, 1);
 					break;
 
 				case 135:
@@ -380,7 +381,7 @@ public class TestCode : MonoBehaviour
 					break;
 
 				case 150:
-					SpawnSetFly (2, 3, griffon, 1);
+					SpawnSetFly (2, 3, cannon, 1);
 					break;
 
 				case 155:
@@ -394,7 +395,7 @@ public class TestCode : MonoBehaviour
 					break;
 
 				case 180:
-					SpawnSetFly (2, 3, griffon, 1);
+					SpawnSetFly (2, 3, cannon, 1);
 					break;
 
 				case 190:
@@ -406,7 +407,7 @@ public class TestCode : MonoBehaviour
 					break;
 
 				case 210:
-					SpawnSetFly (2, 3, griffon, 1);
+					SpawnSetFly (2, 3, cannon, 1);
 					break;
 
 				case 235:
@@ -428,7 +429,7 @@ public class TestCode : MonoBehaviour
 					break;
 
 				case 240:
-					SpawnSetFly (2, 3, griffon, 1);
+					SpawnSetFly (2, 3, cannon, 1);
 					break;
 
 				case 255:
@@ -452,7 +453,7 @@ public class TestCode : MonoBehaviour
 					break;
 
 				case 270 : 
-					SpawnSetFly (2, 3, griffon, 1);
+					SpawnSetFly (2, 3, cannon, 1);
 					break;
 				}
 			}

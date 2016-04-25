@@ -14,6 +14,7 @@ public class Map : MonoBehaviour {
 
 	//맵 오브젝트
 	public GameObject oBlock;
+	public GameObject oBlockTree;
 	public GameObject oSpawn;
 	public GameObject oMiniTower;
 	public GameObject oMainTower;
@@ -126,8 +127,14 @@ public class Map : MonoBehaviour {
 						break;
 
 					case "b":
+						GameObject Block = null;
 						map [i, j].type = Shell.sType.BLOCK;
-						GameObject Block = (GameObject)Instantiate (oBlock, oPos, Quaternion.identity);
+						if (stageNum == 0) {
+							Block = (GameObject)Instantiate (oBlock, oPos, Quaternion.identity);
+						}
+						if(stageNum == 1){
+							Block = (GameObject)Instantiate (oBlockTree, oPos, Quaternion.identity);
+						}
 						blockArray.Add (Block);
 						break;
 

@@ -1,18 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Charcter\Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Charcter\Stone.cs">
     <Files>
-      <File FileName="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" Line="68" Column="82" />
+      <File FileName="Assets\Game\Scene\InGame\Map\Map.cs" Line="135" Column="23" />
+      <File FileName="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" Line="139" Column="57" />
       <File FileName="Assets\Game\DB\PlayerInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\Game\Scene\InGame\Charcter\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="340" Column="11" />
-      <File FileName="Assets\Game\Scene\InGame\Skill\Lightning.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game\UI\MoveWarning.cs" Line="56" Column="17" />
-      <File FileName="Assets\Game\Scene\InGame\Skill\PowerBall.cs" Line="48" Column="4" />
-      <File FileName="Assets\Game\Scene\InGame\Skill\Meteor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game\Scene\InGame\Charcter\FlyEnemy.cs" Line="21" Column="17" />
-      <File FileName="Assets\Game\Scene\InGame\Charcter\LeaderCtr.cs" Line="17" Column="30" />
-      <File FileName="Assets\Game\Scene\InGame\Charcter\Enemy.cs" Line="51" Column="17" />
+      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="456" Column="31" />
+      <File FileName="Assets\Game\Scene\InGame\Charcter\Cannon.cs" Line="38" Column="34" />
+      <File FileName="Assets\Game\Scene\InGame\Charcter\Stone.cs" Line="58" Column="50" />
+      <File FileName="Assets\Game\Scene\InGame\Skill\PowerBall.cs" Line="32" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

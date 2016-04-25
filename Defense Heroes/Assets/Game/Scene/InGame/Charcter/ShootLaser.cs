@@ -128,10 +128,19 @@ public class ShootLaser : MonoBehaviour {
 	 ****************************************************************/
 	void ShotPocess(RaycastHit _hitObj){
 		if (_hitObj.transform.tag.Equals ("Enemy")) {
+			if(_hitObj.transform.name.Equals("CannonE(Clone)")){
+				_hitObj.transform.GetComponent<Cannon> ().GetShot (player.GetComponent <Player> ().dmg);
+			}
+			else{
 			_hitObj.transform.GetComponent<Enemy> ().GetShot (player.GetComponent <Player> ().dmg);
+			}
 		}
 		if (_hitObj.transform.tag.Equals ("FlyEnemy")) {
-			_hitObj.transform.GetComponent<FlyEnemy> ().GetShot (player.GetComponent <Player> ().dmg);
+			if (_hitObj.transform.name.Equals ("Stone(Clone)")) {
+				_hitObj.transform.GetComponent<Stone> ().GetShot (player.GetComponent <Player> ().dmg);
+			} else {
+				_hitObj.transform.GetComponent<FlyEnemy> ().GetShot (player.GetComponent <Player> ().dmg);
+			}
 		}
 	}
 
