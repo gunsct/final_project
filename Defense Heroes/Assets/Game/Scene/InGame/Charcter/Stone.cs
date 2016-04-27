@@ -30,16 +30,25 @@ public class Stone : MonoBehaviour {
 		hp = 10.0f;
 		dmg = 10.0f;
 		timer = 0.0f;
-		speed = 300.0f;
+		speed = 400.0f;
 		vY = (startPos - endPos).y *(100.0f / speed);
 		distanceY = (startPos - endPos).y;
 
 		audio = GetComponent<AudioSource>();
-		StartCoroutine ("Move");
+		//StartCoroutine ("Move");
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		timer += 0.01f;
+		float ratio = timer / (distanceY / vY);
+		float dh = (0.1f * ratio * (1.0f - ratio));
+
+		if (timer >= (distanceY / vY) / 2.0f)
+			dh = -dh;
+
+		this.transform.Translate ((endPos - startPos).x / speed,(endPos - startPos).y / speed, (endPos - startPos).z / speed);
+		this.transform.position = new Vector3(transform.position.x, transform.position.y + dh, transform.position.z);
 		if (hp <= 0.0f) {
 			audio.PlayOneShot (aAttack, 0.5f);
 			Instantiate (particle, this.transform.position, Quaternion.identity);
@@ -65,7 +74,7 @@ public class Stone : MonoBehaviour {
 	IEnumerator Move(){
 		timer += 0.01f;
 		float ratio = timer / (distanceY / vY);
-		float dh = (0.4f * ratio * (1.0f - ratio));
+		float dh = (0.1f * ratio * (1.0f - ratio));
 
 		if (timer >= (distanceY / vY) / 2.0f)
 			dh = -dh;

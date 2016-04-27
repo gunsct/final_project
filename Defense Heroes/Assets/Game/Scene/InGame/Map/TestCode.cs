@@ -108,7 +108,7 @@ public class TestCode : MonoBehaviour
 	}
 
 	void InitSpawn(){//스테이지별 시작점 지정
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {//스테이지 단위로 바꿔서 개수 조절하면 맵 생성시 문제 안생김
 			if (i < 2) {
 				oStart [i] = (GameObject)map.spOneArray [i];//GameObject.FindGameObjectWithTag("Start");
 			} else {
@@ -305,6 +305,8 @@ public class TestCode : MonoBehaviour
 				case 2:
 					currentTime = timer;
 					AlarmWave ();
+					SpawnSetFly (2, 3, cannon, 1);
+
 					break;
 
 				case 5:

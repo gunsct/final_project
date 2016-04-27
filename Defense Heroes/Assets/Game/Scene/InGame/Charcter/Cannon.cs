@@ -13,6 +13,8 @@ public class Cannon : MonoBehaviour {
 	AudioSource audio;
 	// Use this for initialization
 	void Start () {
+		this.transform.LookAt(GameObject.Find("MainTower(Clone)").transform.position);
+
 		atkspd = 10.0f;
 		hp = 60.0f;
 		audio = GetComponent<AudioSource>();
@@ -36,7 +38,7 @@ public class Cannon : MonoBehaviour {
 
 	IEnumerator AutoAttack(){
 		audio.PlayOneShot (aAttack, 0.2f);
-		Instantiate (stone, new Vector3(this.transform.position.x + 3.0f, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+		Instantiate (stone, new Vector3(this.transform.position.x, this.transform.position.y+2.0f, this.transform.position.z - 1.0f), Quaternion.identity);
 
 		yield return new WaitForSeconds (atkspd);
 		StartCoroutine ("AutoAttack");

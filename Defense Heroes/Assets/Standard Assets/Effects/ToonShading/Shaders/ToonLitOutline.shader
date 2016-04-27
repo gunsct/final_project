@@ -1,4 +1,4 @@
-Shader "Toon/Lighted Outline" {
+Shader "Toon/Lit Outline" {
 	Properties {
 		_Color ("Main Color", Color) = (0.5,0.5,0.5,1)
 		_OutlineColor ("Outline Color", Color) = (0,0,0,1)
@@ -9,9 +9,9 @@ Shader "Toon/Lighted Outline" {
 
 	SubShader {
 		Tags { "RenderType"="Opaque" }
-		UsePass "Toon/Lighted/FORWARD"
+		UsePass "Toon/Lit/FORWARD"
 		UsePass "Toon/Basic Outline/OUTLINE"
 	} 
 	
-	Fallback "Toon/Lighted"
+	Fallback "Toon/Lit"
 }
