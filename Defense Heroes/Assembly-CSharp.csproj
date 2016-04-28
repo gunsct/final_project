@@ -45,6 +45,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BLINDED_AM_ME package\OtherResources\MiniJSON.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\OtherResources\OpenPath.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\ExampleUseof_SavedData.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\LightningPath.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\LightningStrike.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\Math_Functions.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\MeshCut.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\Parallax2D.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\ParticlePathFlow.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\PortalView.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\SaveData.cs" />
+     <Compile Include="Assets\BLINDED_AM_ME package\Scripts\ToolUser.cs" />
      <Compile Include="Assets\Cardboard\DemoScene\FPS.cs" />
      <Compile Include="Assets\Cardboard\DemoScene\Teleport.cs" />
      <Compile Include="Assets\Cardboard\Legacy\DemoScene\TeleportLegacyUI.cs" />
@@ -94,7 +106,9 @@
      <Compile Include="Assets\Game\Scene\InGame\Map\TestCode.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\UnityFlock.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\VehicleFollowing.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Senser\CutTool.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Senser\Gyroscpe.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Senser\MeshCutter.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Senser\rotate.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Skill\Lightning.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Skill\Meteor.cs" />
@@ -141,6 +155,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\MotionBlur.shader" />
      <None Include="Assets\Plugins\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (AlphaClip) .shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
+     <None Include="Assets\BLINDED_AM_ME package\Shaders\Clip_Plane.shader" />
      <None Include="Assets\Cardboard\Resources\UnlitTexture.shader" />
      <None Include="Assets\Resources\prefabs\Warrior\sources\Toon Shading\Toony Gooch RimOutline Hard.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
@@ -151,6 +166,7 @@
      <None Include="Assets\Plugins\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (AlphaClip).shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
+     <None Include="Assets\BLINDED_AM_ME package\Shaders\burnThrough.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
@@ -175,6 +191,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
      <None Include="Assets\Resources\출처.txt" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
+     <None Include="Assets\BLINDED_AM_ME package\Shaders\Portal.shader" />
      <None Include="Assets\Plugins\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (SoftClip).shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Standard Assets\Fonts\OpenSans\License!.txt" />
@@ -194,6 +211,7 @@
      <None Include="Assets\Plugins\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
+     <None Include="Assets\BLINDED_AM_ME package\Shaders\Clip_Radius.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
      <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />

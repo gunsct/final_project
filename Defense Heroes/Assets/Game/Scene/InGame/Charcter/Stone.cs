@@ -5,6 +5,8 @@ using System.Collections;
 public class Stone : MonoBehaviour {
 	public float hp;
 	public float dmg;
+	public int cutCnt;
+	private bool die = false;
 
 	private Vector3 startPos;
 	private Vector3 endPos;
@@ -13,11 +15,12 @@ public class Stone : MonoBehaviour {
 	private float speed;
 	private float vY;
 	private float distanceY;
-
-	public GameObject particle;
+	private float angle;
+	public float mAngle;
+	public GameObject particle = null;
 	private GameObject player;
 
-	public AudioClip aAttack;
+	public AudioClip aAttack = null;
 	AudioSource audio;
 	// Use this for initialization
 	void Start () {
@@ -33,6 +36,7 @@ public class Stone : MonoBehaviour {
 		speed = 400.0f;
 		vY = (startPos - endPos).y *(100.0f / speed);
 		distanceY = (startPos - endPos).y;
+		angle = Random.Range (20, 30);
 
 		audio = GetComponent<AudioSource>();
 		//StartCoroutine ("Move");
@@ -42,23 +46,28 @@ public class Stone : MonoBehaviour {
 	void Update () {
 		timer += 0.01f;
 		float ratio = timer / (distanceY / vY);
-		float dh = (0.1f * ratio * (1.0f - ratio));
+		float dh = (mAngle * ratio * (1.0f - ratio));
 
 		if (timer >= (distanceY / vY) / 2.0f)
 			dh = -dh;
-
+		//캐논->타워 포물선 이동 및 자동 회전
 		this.transform.Translate ((endPos - startPos).x / speed,(endPos - startPos).y / speed, (endPos - startPos).z / speed);
 		this.transform.position = new Vector3(transform.position.x, transform.position.y + dh, transform.position.z);
-		if (hp <= 0.0f) {
+		//this.transform.Rotate (new Vector3 (0.0f, 0.0f, az) * Time.deltaTime);
+		this.transform.FindChild("rock").Rotate (new Vector3 (angle, angle, angle) * Time.deltaTime);
+
+		if (hp <= 0.0f && die == false) {
+			die = true;
 			audio.PlayOneShot (aAttack, 0.5f);
 			Instantiate (particle, this.transform.position, Quaternion.identity);
-			Destroy (this.gameObject);
 		}
+
 	}
 
 	public void GetShot(float _dmg){
 		//맞을경우 체력 감ㅗ
 		hp -= _dmg;
+		GameObject.Find("GameManager").GetComponent<IngameUI> ().eHp = hp;
 	}
 
 	void OnTriggerEnter(Collider col){
@@ -66,22 +75,27 @@ public class Stone : MonoBehaviour {
 			player.GetComponent <Player> ().hp -= dmg;
 			player.GetComponent <Player> ().bShake = true;
 
-			hp = 0.0f;
+			Destroy (this.gameObject);
 		}
 			
 	}
 
 	IEnumerator Move(){
-		timer += 0.01f;
-		float ratio = timer / (distanceY / vY);
-		float dh = (0.1f * ratio * (1.0f - ratio));
+		if (cutCnt == 0) {
+			timer += 0.01f;
+			float ratio = timer / (distanceY / vY);
+			float dh = (0.1f * ratio * (1.0f - ratio));
 
-		if (timer >= (distanceY / vY) / 2.0f)
-			dh = -dh;
+			if (timer >= (distanceY / vY) / 2.0f)
+				dh = -dh;
 		
-		this.transform.Translate ((endPos - startPos).x / speed,(endPos - startPos).y / speed, (endPos - startPos).z / speed);
-		this.transform.position = new Vector3(transform.position.x, transform.position.y + dh, transform.position.z);
-		yield return new WaitForSeconds (0.01f);
-		StartCoroutine ("Move");
+			this.transform.Translate ((endPos - startPos).x / speed, (endPos - startPos).y / speed, (endPos - startPos).z / speed);
+			this.transform.position = new Vector3 (transform.position.x, transform.position.y + dh, transform.position.z);
+			yield return new WaitForSeconds (0.01f);
+			StartCoroutine ("Move");
+		} else {
+			this.transform.Translate (new Vector3 (0.0f, 0.0f, 0.0f));
+		}
+			
 	}
 }

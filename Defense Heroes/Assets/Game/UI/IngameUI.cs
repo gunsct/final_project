@@ -73,7 +73,7 @@ public class IngameUI : MonoBehaviour {
 		{
 			if( Input.GetKeyDown( KeyCode.Escape ))
 			{ 
-				Application.LoadLevel (0);
+				Application.LoadLevel ("Stage");
 			}
 		}
 

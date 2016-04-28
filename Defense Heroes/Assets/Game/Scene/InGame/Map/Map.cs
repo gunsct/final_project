@@ -21,6 +21,8 @@ public class Map : MonoBehaviour {
 	public GameObject oCastleLong;
 	public GameObject oCastleCorner;
 	public GameObject oDoor;
+	public GameObject oPlane;
+	public GameObject oRock;
 
 	public ArrayList blockArray;
 	public ArrayList spOneArray;
@@ -43,6 +45,7 @@ public class Map : MonoBehaviour {
 	void Start () {
 		stageNum = PlayerInfo.getInstance.LoadStage ();
 		Debug.Log (stageNum);
+
 		blockArray = new ArrayList ();
 		spOneArray = new ArrayList ();
 		spTwoArray = new ArrayList ();
@@ -69,14 +72,37 @@ public class Map : MonoBehaviour {
 	***************************************************************/
 	void ExcelLoader(int _stageNum){
 		switch (_stageNum) {
-			case 0:
-				csvFile = (TextAsset)Resources.Load ("stage1") as TextAsset;
-				waveTime = 300.0f;
+		case 0:
+			csvFile = (TextAsset)Resources.Load ("stage1") as TextAsset;
+			//메테리얼 교체 및 메테리얼 이미션 색 교체
+			oPlane.GetComponent<Renderer> ().material = (Material)Resources.Load ("StoneField") as Material;
+			foreach (Transform child in oRock.transform) {
+				child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+				child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.0f,0.0f,0.0f));
+			}
+			
+				waveTime = 120.0f;
 				break;
 			case 1:
-				csvFile = (TextAsset)Resources.Load ("stage3") as TextAsset;
-				waveTime = 300.0f;
+				csvFile = (TextAsset)Resources.Load ("stage2") as TextAsset;
+
+			oPlane.GetComponent<Renderer> ().material = (Material) Resources.Load ("ForestField") as Material;
+				foreach (Transform child in oRock.transform) {
+					child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+					child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.2f,0.2f,0.2f));
+				}
+				waveTime = 120.0f;
 				break;
+			case 2:
+				csvFile = (TextAsset)Resources.Load ("stage3") as TextAsset;
+
+				oPlane.GetComponent<Renderer> ().material = (Material) Resources.Load ("SnowField") as Material;
+				foreach (Transform child in oRock.transform) {
+					child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+					child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.3f,0.5f,0.5f));
+				}
+				waveTime = 150.0f;
+			break;
 		}
 
 		fileFullStr = csvFile.text;

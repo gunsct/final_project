@@ -19,3 +19,4 @@ C:\Users\gunsct\Desktop\project\unity\final_project\Defense Heroes\Temp\bin\Debu
 C:\Users\gunsct\Desktop\project\unity\final_project\Defense Heroes\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
 C:\Users\gunsct\Desktop\project\unity\final_project\Defense Heroes\obj\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\gunsct\Desktop\project\unity\final_project\Defense Heroes\obj\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\gunsct\Desktop\project\unity\final_project\Defense Heroes\Temp\bin\Debug\LitJson.dll

@@ -34,6 +34,7 @@ public class Cannon : MonoBehaviour {
 	public void GetShot(float _dmg){
 		//맞을경우 체력 감ㅗ
 		hp -= _dmg;
+		GameObject.Find("GameManager").GetComponent<IngameUI> ().eHp = hp;
 	}
 
 	IEnumerator AutoAttack(){
