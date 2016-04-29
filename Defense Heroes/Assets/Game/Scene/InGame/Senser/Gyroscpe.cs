@@ -36,8 +36,8 @@ public class Gyroscpe : MonoBehaviour {
 		transform.rotation = Quaternion.Euler (90, 0, 0) * transquat;
 
 		//각도제한 그런데 자이로가 90-360-270-360 구조로 되어있음
-		if (10.0f > transform.localEulerAngles.x && transform.localEulerAngles.x > 0.0f)
-			transform.eulerAngles = new Vector3 (10.0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
+		if (90.0f > transform.localEulerAngles.x && transform.localEulerAngles.x > 80.0f)
+			transform.eulerAngles = new Vector3 (80.0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
 		if (270.0f < transform.localEulerAngles.x && transform.localEulerAngles.x < 320.0f)
 			transform.eulerAngles = new Vector3 (320.0f, transform.localEulerAngles.y, transform.localEulerAngles.z);

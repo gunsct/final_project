@@ -16,7 +16,7 @@ public class LeaderCtr : MonoBehaviour {
 		if (flockCount == 0) {
 			Destroy (this.gameObject);
 		}
-		if(dieTimer >= 79.0f){
+		if(dieTimer >= 149.0f){
 			Destroy (this.gameObject);
 		}
 	}

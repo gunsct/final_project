@@ -13,8 +13,9 @@ public class Map : MonoBehaviour {
 	public float waveTime = 0.0f;
 
 	//맵 오브젝트
-	public GameObject oBlock;
+	public GameObject oBlockRock;
 	public GameObject oBlockTree;
+	public GameObject oBlockIce;
 	public GameObject oSpawn;
 	public GameObject oMiniTower;
 	public GameObject oMainTower;
@@ -73,35 +74,38 @@ public class Map : MonoBehaviour {
 	void ExcelLoader(int _stageNum){
 		switch (_stageNum) {
 		case 0:
-			csvFile = (TextAsset)Resources.Load ("stage1") as TextAsset;
-			//메테리얼 교체 및 메테리얼 이미션 색 교체
-			oPlane.GetComponent<Renderer> ().material = (Material)Resources.Load ("StoneField") as Material;
-			foreach (Transform child in oRock.transform) {
-				child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
-				child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.0f,0.0f,0.0f));
-			}
-			
-				waveTime = 120.0f;
-				break;
-			case 1:
-				csvFile = (TextAsset)Resources.Load ("stage2") as TextAsset;
-
-			oPlane.GetComponent<Renderer> ().material = (Material) Resources.Load ("ForestField") as Material;
-				foreach (Transform child in oRock.transform) {
-					child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
-					child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.2f,0.2f,0.2f));
-				}
-				waveTime = 120.0f;
-				break;
-			case 2:
-				csvFile = (TextAsset)Resources.Load ("stage3") as TextAsset;
+				csvFile = (TextAsset)Resources.Load ("stage1") as TextAsset;
 
 				oPlane.GetComponent<Renderer> ().material = (Material) Resources.Load ("SnowField") as Material;
 				foreach (Transform child in oRock.transform) {
 					child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
 					child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.3f,0.5f,0.5f));
 				}
-				waveTime = 150.0f;
+			
+				waveTime = 240.0f;
+				break;
+
+			case 1:
+				csvFile = (TextAsset)Resources.Load ("stage2") as TextAsset;
+
+				oPlane.GetComponent<Renderer> ().material = (Material) Resources.Load ("ForestField") as Material;
+				foreach (Transform child in oRock.transform) {
+					child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+					child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.2f,0.2f,0.2f));
+				}
+				waveTime = 180.0f;
+				break;
+
+			case 2:
+				csvFile = (TextAsset)Resources.Load ("stage3") as TextAsset;
+				//메테리얼 교체 및 메테리얼 이미션 색 교체
+				oPlane.GetComponent<Renderer> ().material = (Material)Resources.Load ("StoneField") as Material;
+				foreach (Transform child in oRock.transform) {
+					child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+					child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.0f,0.0f,0.0f));
+				}
+				
+				waveTime = 180.0f;
 			break;
 		}
 
@@ -156,11 +160,15 @@ public class Map : MonoBehaviour {
 						GameObject Block = null;
 						map [i, j].type = Shell.sType.BLOCK;
 						if (stageNum == 0) {
-							Block = (GameObject)Instantiate (oBlock, oPos, Quaternion.identity);
+						Block = (GameObject)Instantiate (oBlockIce, oPos, Quaternion.identity);
 						}
 						if(stageNum == 1){
-							Block = (GameObject)Instantiate (oBlockTree, oPos, Quaternion.identity);
+						Block = (GameObject)Instantiate (oBlockTree, oPos, Quaternion.identity);
 						}
+						if(stageNum == 2){
+						Block = (GameObject)Instantiate (oBlockRock, oPos, Quaternion.identity);
+						}
+						
 						blockArray.Add (Block);
 						break;
 

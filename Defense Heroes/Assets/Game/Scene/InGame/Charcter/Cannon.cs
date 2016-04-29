@@ -15,7 +15,7 @@ public class Cannon : MonoBehaviour {
 	void Start () {
 		this.transform.LookAt(GameObject.Find("MainTower(Clone)").transform.position);
 
-		atkspd = 10.0f;
+		atkspd = 15.0f;
 		hp = 60.0f;
 		audio = GetComponent<AudioSource>();
 

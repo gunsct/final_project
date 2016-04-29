@@ -54,9 +54,9 @@ public class TestCode : MonoBehaviour
 		oStart = new GameObject[4];
 		oEnd = GameObject.FindGameObjectWithTag("Player");
 
-		iEnemy = new GameObject[12];
-		countArr = new int[12];
-		for (int i = 0; i < 12; i++) {
+		iEnemy = new GameObject[16];
+		countArr = new int[16];
+		for (int i = 0; i < 16; i++) {
 			countArr [i] = 1;
 			iEnemy [i] = null;
 		}
@@ -143,320 +143,1061 @@ public class TestCode : MonoBehaviour
 		if(timer >= currentTime+1){//중복 복사 제어
 			if (map.stageNum == 0) {
 				switch (timer) {
-					case 2:
+					case 1:
 						currentTime = timer;
 						AlarmWave ();
 						break;
 
 					case 5:
-						SpawnSetGround (0, 1, 0, 4);
+						SpawnSetGround (0, 1, 0, 8);
 
-						InstanceEnemy (0, 0, warrior, 4);
-						InstanceEnemy (1, 4, warrior, 4);
+						InstanceEnemy (0, 0, warrior, 2);
+						InstanceEnemy (0, 0, slime, 2);
+
+						InstanceEnemy (1, 8, warrior, 2);
+						InstanceEnemy (1, 8, slime, 2);
 						break;
 
-					case 25:
-						SpawnSetGround (0, 1, 1, 5);
+					case 15:
+						SpawnSetGround (0, 1, 1, 9);
 
-						InstanceEnemy (0, 1, warrior, 3);
-						InstanceEnemy (0, 1, knight, 1);
+						InstanceEnemy (0, 1, knight, 2);
+						InstanceEnemy (0, 1, warrior, 2);
 
-						InstanceEnemy (1, 5, warrior, 3);
-						InstanceEnemy (1, 5, knight, 1);
+						InstanceEnemy (1, 9, knight, 2);
+						InstanceEnemy (1, 9, warrior, 2);
 						break;
 
 					case 30:
-						SpawnSetFly (2, 3, griffon, 1);
+						currentTime = timer;
+						AlarmWave ();
 						break;
 
 					case 35:
-						SpawnSetGround (0, 1, 2, 6);
+						SpawnSetGround (0, 1, 2, 10);
 
-						InstanceEnemy (0, 2, slime, 1);
-						InstanceEnemy (0, 2, knight, 3);
+						InstanceEnemy (0, 2, slime, 2);
+						InstanceEnemy (0, 2, knight, 1);
+						InstanceEnemy (0, 2, dragon, 1);
 
-						InstanceEnemy (1, 6, slime, 1);
-						InstanceEnemy (1, 6, knight, 3);
+						InstanceEnemy (1, 10, slime, 2);
+						InstanceEnemy (1, 10, knight, 1);
+						InstanceEnemy (1, 10, dragon, 1);
 						break;
 
 					case 45:
-						SpawnSetGround (0, 1, 3, 7);
+						SpawnSetGround (0, 1, 3, 11);
 
+						InstanceEnemy (0, 3, slime, 2);
+						InstanceEnemy (0, 3, warrior, 1);
+						InstanceEnemy (0, 3, dragon, 1);
+
+						InstanceEnemy (1, 11, slime, 2);
+						InstanceEnemy (1, 11, warrior, 1);
+						InstanceEnemy (1, 11, dragon, 1);
+						break;
+
+					case 60:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 65:
+						SpawnSetGround (0, 1, 4, 12);
+
+						InstanceEnemy (0, 4, knight, 2);
+						InstanceEnemy (0, 4, slime, 2);
+
+						InstanceEnemy (1, 12, warrior, 2);
+						InstanceEnemy (1, 12, slime, 2);
+						break;
+
+					case 75:
+						SpawnSetGround (0, 1, 5, 13);
+
+						InstanceEnemy (0, 5, warrior, 2);
+						InstanceEnemy (0, 5, slime, 2);
+
+						InstanceEnemy (1, 13, knight, 2);
+						InstanceEnemy (1, 13, slime, 2);
+						break;
+
+					case 90:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 95:
+						SpawnSetGround (0, 1, 6, 14);
+
+						InstanceEnemy (0, 6, slime, 2);
+						InstanceEnemy (0, 6, warrior, 1);
+						InstanceEnemy (0, 6, dragon, 1);
+
+						InstanceEnemy (1, 14, slime, 2);
+						InstanceEnemy (1, 14, knight, 1);
+						InstanceEnemy (1, 14, dragon, 1);
+						break;
+
+					case 105:
+						SpawnSetGround (0, 1, 7, 15);
+
+						InstanceEnemy (0, 7, slime, 2);
+						InstanceEnemy (0, 7, dragon, 2);
+
+						InstanceEnemy (1, 15, slime, 2);
+						InstanceEnemy (1, 15, dragon, 2);
+						break;
+					}
+				}
+
+			if (map.stageNum == 1) {
+				switch (timer) {
+					case 2:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 4:
+						SpawnSetGround (0, 1, 0, 8);
+						
+						InstanceEnemy (0, 0, slime, 1);
+						InstanceEnemy (0, 0, knight, 1);
+						InstanceEnemy (0, 0, warrior, 1);
+
+						InstanceEnemy (1, 8, slime, 1);
+						InstanceEnemy (1, 8, knight, 1);
+						InstanceEnemy (1, 8, warrior, 1);
+						break;
+
+					case 14:
+						SpawnSetGround (0, 1, 1, 9);
+
+						InstanceEnemy (0, 1, knight, 2);
+						InstanceEnemy (0, 1, warrior, 2);
+
+						InstanceEnemy (1, 9, knight, 2);
+						InstanceEnemy (1, 9, warrior, 2);
+						break;
+
+					case 24:
+						SpawnSetGround (0, 1, 2, 10);
+
+						InstanceEnemy (0, 2, knight, 1);
+						InstanceEnemy (0, 2, warrior, 1);
+						InstanceEnemy (0, 2, slime, 1);
+
+						InstanceEnemy (1, 10, knight, 1);
+						InstanceEnemy (1, 10, warrior, 2);
+						InstanceEnemy (1, 10, slime, 1);
+						break;
+
+					case 35:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 50:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 52:
+						SpawnSetGround (0, 1, 3, 11);
+
+						InstanceEnemy (0, 3, dragon, 2);
+						InstanceEnemy (0, 3, warrior, 1);
 						InstanceEnemy (0, 3, slime, 1);
-						InstanceEnemy (0, 3, warrior, 3);
 
-						InstanceEnemy (1, 7, slime, 1);
-						InstanceEnemy (1, 7, warrior, 3);
+						InstanceEnemy (1, 11, dragon, 2);
+						InstanceEnemy (1, 11, knight, 1);
+						InstanceEnemy (1, 11, slime, 1);
 						break;
 
 					case 70:
 						SpawnSetFly (2, 3, griffon, 1);
 						break;
 
+					case 72:
+						SpawnSetGround (0, 1, 4, 12);
+
+						InstanceEnemy (0, 4, dragon, 2);
+						InstanceEnemy (0, 4, knight, 1);
+						InstanceEnemy (0, 4, slime, 1);
+
+						InstanceEnemy (1, 12, dragon, 2);
+						InstanceEnemy (1, 12, warrior, 1);
+						InstanceEnemy (1, 12, slime, 1);
+						break;
+
 					case 100:
-						SpawnSetFly (2, 3, griffon, 1);
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 102:
+						SpawnSetGround (0, 1, 5, 13);
+
+						InstanceEnemy (0, 5, warrior, 1);
+						InstanceEnemy (0, 5, slime, 2);
+
+						InstanceEnemy (1, 13, warrior, 1);
+						InstanceEnemy (1, 13, slime, 2);
 						break;
 
 					case 105:
-						SpawnSetGround (0, 1, 0, 4);
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-						InstanceEnemy (0, 0, knight, 3);
+					case 112:
+						SpawnSetGround (0, 1, 6, 14);
+
+						InstanceEnemy (0, 6, knight, 1);
+						InstanceEnemy (0, 6, warrior, 1);
+						InstanceEnemy (0, 6, slime, 2);
+
+						InstanceEnemy (1, 14, knight, 1);
+						InstanceEnemy (1, 14, warrior, 1);
+						InstanceEnemy (1, 14, slime, 2);
+						break;
+
+					case 122:
+						SpawnSetGround (0, 1, 7, 15);
+
+						InstanceEnemy (0, 7, knight, 1);
+						InstanceEnemy (0, 7, slime, 2);
+
+						InstanceEnemy (1, 15, knight, 1);
+						InstanceEnemy (1, 15, slime, 2);
+						break;
+
+					case 140:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 170:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+				}
+			}
+
+			if (map.stageNum == 2) {
+				switch (timer) {
+					case 2:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 4:
+						SpawnSetGround (0, 1, 0, 8);
+
+						InstanceEnemy (0, 0, knight, 1);
+						InstanceEnemy (0, 0, warrior, 1);
 						InstanceEnemy (0, 0, slime, 1);
 
-						InstanceEnemy (1, 4, knight, 3);
-						InstanceEnemy (1, 4, slime, 1);
+						InstanceEnemy (1, 8, knight, 1);
+						InstanceEnemy (1, 8, warrior, 1);
+						InstanceEnemy (1, 8, slime, 1);
+						break;
+
+					case 14:
+						SpawnSetGround (0, 1, 1, 9);
+
+						InstanceEnemy (0, 1, knight, 1);
+						InstanceEnemy (0, 1, warrior, 1);
+						InstanceEnemy (0, 1, slime, 1);
+
+						InstanceEnemy (1, 9, knight, 1);
+						InstanceEnemy (1, 9, warrior, 1);
+						InstanceEnemy (1, 9, slime, 1);
+						break;
+
+					case 24:
+						SpawnSetGround (0, 1, 2, 10);
+
+						InstanceEnemy (0, 2, knight, 1);
+						InstanceEnemy (0, 2, warrior, 2);
+
+						InstanceEnemy (1, 10, knight, 1);
+						InstanceEnemy (1, 10, warrior, 2);
+						break;
+
+					case 35:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
+
+					case 50:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 52:
+						SpawnSetGround (0, 1, 3, 11);
+
+						InstanceEnemy (0, 3, dragon, 2);
+						InstanceEnemy (0, 3, warrior, 1);
+						InstanceEnemy (0, 3, slime, 1);
+
+						InstanceEnemy (1, 11, dragon, 2);
+						InstanceEnemy (1, 11, knight, 1);
+						InstanceEnemy (1, 11, slime, 1);
+						break;
+
+					case 70:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
+
+					case 72:
+						SpawnSetGround (0, 1, 4, 12);
+
+						InstanceEnemy (0, 4, dragon, 2);
+						InstanceEnemy (0, 4, knight, 1);
+						InstanceEnemy (0, 4, slime, 1);
+
+						InstanceEnemy (1, 12, dragon, 2);
+						InstanceEnemy (1, 12, warrior, 1);
+						InstanceEnemy (1, 12, slime, 1);
+						break;
+
+					case 100:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 102:
+						SpawnSetGround (0, 1, 5, 13);
+
+						InstanceEnemy (0, 5, warrior, 1);
+						InstanceEnemy (0, 5, slime, 2);
+
+						InstanceEnemy (1, 13, warrior, 1);
+						InstanceEnemy (1, 13, slime, 2);
+						break;
+
+					case 105:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
+
+					case 112:
+						SpawnSetGround (0, 1, 6, 14);
+
+						InstanceEnemy (0, 6, knight, 2);
+						InstanceEnemy (0, 6, warrior, 2);
+
+						InstanceEnemy (1, 14, knight, 2);
+						InstanceEnemy (1, 14, warrior, 2);
+						break;
+
+					case 120:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
+
+					case 122:
+						SpawnSetGround (0, 1, 7, 15);
+
+						InstanceEnemy (0, 7, knight, 2);
+						InstanceEnemy (0, 7, slime, 1);
+
+						InstanceEnemy (1, 15, knight, 2);
+						InstanceEnemy (1, 15, slime, 1);
+						break;
+
+					case 140:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
+
+					case 170:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
+				}
+			}
+
+			if (map.stageNum == 3) {
+				switch (timer) {
+					case 1:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 5:
+						SpawnSetGround (0, 1, 0, 8);
+
+						InstanceEnemy (0, 0, warrior, 4);
+						InstanceEnemy (1, 8, warrior, 4);
+						break;
+
+					case 15:
+						SpawnSetGround (0, 1, 1, 9);
+
+						InstanceEnemy (0, 1, knight, 4);
+						InstanceEnemy (1, 9, knight, 4);
+						break;
+
+					case 30:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 35:
+						SpawnSetGround (0, 1, 2, 10);
+
+						InstanceEnemy (0, 2, slime, 1);
+						InstanceEnemy (0, 2, knight, 2);
+						InstanceEnemy (0, 2, dragon, 1);
+
+						InstanceEnemy (1, 10, slime, 1);
+						InstanceEnemy (1, 10, knight, 2);
+						InstanceEnemy (1, 10, dragon, 1);
+						break;
+
+					case 45:
+						SpawnSetGround (0, 1, 3, 11);
+
+						InstanceEnemy (0, 3, slime, 1);
+						InstanceEnemy (0, 3, warrior, 2);
+						InstanceEnemy (0, 3, dragon, 1);
+
+						InstanceEnemy (1, 11, slime, 1);
+						InstanceEnemy (1, 11, warrior, 2);
+						InstanceEnemy (1, 11, dragon, 1);
+						break;
+
+					case 60:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 65:
+						SpawnSetGround (0, 1, 4, 12);
+
+						InstanceEnemy (0, 4, knight, 4);
+						InstanceEnemy (1, 12, warrior, 4);
+						break;
+
+					case 75:
+						SpawnSetGround (0, 1, 5, 13);
+
+						InstanceEnemy (0, 5, warrior, 4);
+						InstanceEnemy (1, 13, knight, 4);
+						break;
+
+					case 90:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 95:
+						SpawnSetGround (0, 1, 6, 14);
+
+						InstanceEnemy (0, 6, slime, 1);
+						InstanceEnemy (0, 6, warrior, 2);
+						InstanceEnemy (0, 6, dragon, 1);
+
+						InstanceEnemy (1, 14, slime, 1);
+						InstanceEnemy (1, 14, knight, 2);
+						InstanceEnemy (1, 14, dragon, 1);
+						break;
+
+					case 105:
+						SpawnSetGround (0, 1, 7, 15);
+
+						InstanceEnemy (0, 7, warrior, 2);
+						InstanceEnemy (0, 7, dragon, 2);
+
+						InstanceEnemy (1, 15, warrior, 2);
+						InstanceEnemy (1, 15, dragon, 2);
+						break;
+				}
+			}
+
+			if (map.stageNum == 4) {
+				switch (timer) {
+					case 2:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 4:
+						SpawnSetGround (0, 1, 0, 8);
+
+						InstanceEnemy (0, 0, knight, 2);
+						InstanceEnemy (0, 0, warrior, 1);
+
+						InstanceEnemy (1, 8, knight, 2);
+						InstanceEnemy (1, 8, warrior, 1);
+						break;
+
+					case 14:
+						SpawnSetGround (0, 1, 1, 9);
+
+						InstanceEnemy (0, 1, knight, 2);
+						InstanceEnemy (0, 1, warrior, 2);
+
+						InstanceEnemy (1, 9, knight, 2);
+						InstanceEnemy (1, 9, warrior, 2);
+						break;
+
+					case 24:
+						SpawnSetGround (0, 1, 2, 10);
+
+						InstanceEnemy (0, 2, knight, 1);
+						InstanceEnemy (0, 2, warrior, 2);
+
+						InstanceEnemy (1, 10, knight, 1);
+						InstanceEnemy (1, 10, warrior, 2);
+						break;
+
+					case 30:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 50:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 52:
+						SpawnSetGround (0, 1, 3, 11);
+
+						InstanceEnemy (0, 3, dragon, 2);
+						InstanceEnemy (0, 3, warrior, 2);
+
+						InstanceEnemy (1, 11, dragon, 2);
+						InstanceEnemy (1, 11, knight, 2);
+						break;
+
+					case 60:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 72:
+						SpawnSetGround (0, 1, 4, 12);
+
+						InstanceEnemy (0, 4, dragon, 2);
+						InstanceEnemy (0, 4, knight, 2);
+
+						InstanceEnemy (1, 12, dragon, 2);
+						InstanceEnemy (1, 12, warrior, 2);
+						break;
+
+					case 90:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 100:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 102:
+						SpawnSetGround (0, 1, 5, 13);
+
+						InstanceEnemy (0, 5, warrior, 1);
+						InstanceEnemy (0, 5, slime, 2);
+
+						InstanceEnemy (1, 13, warrior, 1);
+						InstanceEnemy (1, 13, slime, 2);
+						break;
+
+					case 112:
+						SpawnSetGround (0, 1, 6, 14);
+
+						InstanceEnemy (0, 6, knight, 2);
+						InstanceEnemy (0, 6, warrior, 2);
+
+						InstanceEnemy (1, 14, knight, 2);
+						InstanceEnemy (1, 14, warrior, 2);
 						break;
 
 					case 120:
 						SpawnSetFly (2, 3, griffon, 1);
 						break;
 
-					case 125:
-						SpawnSetGround (0, 1, 1, 5);
+					case 122:
+						SpawnSetGround (0, 1, 7, 15);
 
-						InstanceEnemy (0, 1, warrior, 3);
-						InstanceEnemy (0, 1, knight, 1);
+						InstanceEnemy (0, 7, knight, 2);
+						InstanceEnemy (0, 7, slime, 1);
 
-						InstanceEnemy (1, 5, warrior, 3);
-						InstanceEnemy (1, 5, knight, 1);
-						break;
-
-					case 145:
-						SpawnSetGround (0, 1, 2, 6);
-
-						InstanceEnemy (0, 2, slime, 2);
-						InstanceEnemy (0, 2, knight, 2);
-
-						InstanceEnemy (1, 6, slime, 2);
-						InstanceEnemy (1, 6, knight, 2);
+						InstanceEnemy (1, 15, knight, 2);
+						InstanceEnemy (1, 15, slime, 1);
 						break;
 
 					case 150:
 						SpawnSetFly (2, 3, griffon, 1);
 						break;
+				}
+			}
 
-					case 180:
-						SpawnSetGround (0, 1, 3, 7);
+			if (map.stageNum == 5) {
+				switch (timer) {
+					case 2:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 4:
+						SpawnSetGround (0, 1, 0, 8);
+
+						InstanceEnemy (0, 0, knight, 2);
+						InstanceEnemy (0, 0, warrior, 1);
+
+						InstanceEnemy (1, 8, knight, 2);
+						InstanceEnemy (1, 8, warrior, 1);
+						break;
+
+					case 14:
+						SpawnSetGround (0, 1, 1, 9);
+
+						InstanceEnemy (0, 1, knight, 2);
+						InstanceEnemy (0, 1, warrior, 2);
+
+						InstanceEnemy (1, 9, knight, 2);
+						InstanceEnemy (1, 9, warrior, 2);
+						break;
+
+					case 24:
+						SpawnSetGround (0, 1, 2, 10);
+
+						InstanceEnemy (0, 2, knight, 1);
+						InstanceEnemy (0, 2, warrior, 2);
+
+						InstanceEnemy (1, 10, knight, 1);
+						InstanceEnemy (1, 10, warrior, 2);
+						break;
+
+					case 30:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
+
+					case 50:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 52:
+						SpawnSetGround (0, 1, 3, 11);
 
 						InstanceEnemy (0, 3, dragon, 2);
+						InstanceEnemy (0, 3, warrior, 2);
 
-						InstanceEnemy (1, 7, dragon, 2);
+						InstanceEnemy (1, 11, dragon, 2);
+						InstanceEnemy (1, 11, knight, 2);
 						break;
 
-					case 190:
-						SpawnSetFly (2, 3, griffon, 1);
+					case 60:
+						SpawnSetFly (2, 3, cannon, 1);
 						break;
 
-					case 220:
-						SpawnSetFly (2, 3, griffon, 1);
+					case 72:
+						SpawnSetGround (0, 1, 4, 12);
+
+						InstanceEnemy (0, 4, dragon, 2);
+						InstanceEnemy (0, 4, knight, 2);
+
+						InstanceEnemy (1, 12, dragon, 2);
+						InstanceEnemy (1, 12, warrior, 2);
 						break;
 
-					case 225:
-						SpawnSetGround (0, 1, 0, 4);
-
-						InstanceEnemy (0, 0, warrior, 1);
-						InstanceEnemy (0, 0, slime, 3);
-
-						InstanceEnemy (1, 4, warrior, 1);
-						InstanceEnemy (1, 4, slime, 3);
+					case 90:
+						SpawnSetFly (2, 3, cannon, 1);
 						break;
 
-					case 235:
-						SpawnSetGround (0, 1, 1, 5);
+					case 100:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 102:
+						SpawnSetGround (0, 1, 5, 13);
+
+						InstanceEnemy (0, 5, warrior, 1);
+						InstanceEnemy (0, 5, slime, 2);
+
+						InstanceEnemy (1, 13, warrior, 1);
+						InstanceEnemy (1, 13, slime, 2);
+						break;
+
+					case 112:
+						SpawnSetGround (0, 1, 6, 14);
+
+						InstanceEnemy (0, 6, knight, 2);
+						InstanceEnemy (0, 6, warrior, 2);
+
+						InstanceEnemy (1, 14, knight, 2);
+						InstanceEnemy (1, 14, warrior, 2);
+						break;
+
+					case 120:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
+
+					case 122:
+						SpawnSetGround (0, 1, 7, 15);
+
+						InstanceEnemy (0, 7, knight, 2);
+						InstanceEnemy (0, 7, slime, 1);
+
+						InstanceEnemy (1, 15, knight, 2);
+						InstanceEnemy (1, 15, slime, 1);
+						break;
+
+					case 150:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
+				}
+			}
+
+			if (map.stageNum == 6) {
+				switch (timer) {
+					case 1:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 5:
+						SpawnSetGround (0, 1, 0, 8);
+
+						InstanceEnemy (0, 0, warrior, 4);
+						InstanceEnemy (1, 8, warrior, 4);
+						break;
+
+					case 15:
+						SpawnSetGround (0, 1, 1, 9);
 
 						InstanceEnemy (0, 1, knight, 4);
-
-						InstanceEnemy (1, 5, knight, 4);
+						InstanceEnemy (1, 9, knight, 4);
 						break;
 
-					case 240:
+					case 30:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 35:
+						SpawnSetGround (0, 1, 2, 10);
+
+						InstanceEnemy (0, 2, knight, 2);
+						InstanceEnemy (0, 2, dragon, 2);
+
+						InstanceEnemy (1, 10, knight, 2);
+						InstanceEnemy (1, 10, dragon, 2);
+						break;
+
+					case 45:
+						SpawnSetGround (0, 1, 3, 11);
+
+						InstanceEnemy (0, 3, warrior, 2);
+						InstanceEnemy (0, 3, dragon, 2);
+
+						InstanceEnemy (1, 11, warrior, 2);
+						InstanceEnemy (1, 11, dragon, 2);
+						break;
+
+					case 60:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 65:
+						SpawnSetGround (0, 1, 4, 12);
+
+						InstanceEnemy (0, 4, knight, 4);
+						InstanceEnemy (1, 12, warrior, 4);
+						break;
+
+					case 75:
+						SpawnSetGround (0, 1, 5, 13);
+
+						InstanceEnemy (0, 5, warrior, 4);
+						InstanceEnemy (1, 13, knight, 4);
+						break;
+
+					case 90:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 95:
+						SpawnSetGround (0, 1, 6, 14);
+
+						InstanceEnemy (0, 6, warrior, 2);
+						InstanceEnemy (0, 6, dragon, 2);
+
+						InstanceEnemy (1, 14, knight, 2);
+						InstanceEnemy (1, 14, dragon, 2);
+						break;
+
+					case 105:
+						SpawnSetGround (0, 1, 7, 15);
+
+						InstanceEnemy (0, 7, warrior, 2);
+						InstanceEnemy (0, 7, dragon, 2);
+
+						InstanceEnemy (1, 15, warrior, 2);
+						InstanceEnemy (1, 15, dragon, 2);
+						break;
+				}
+			}
+
+			if (map.stageNum == 7) {
+				switch (timer) {
+					case 2:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 4:
+						SpawnSetGround (0, 1, 0, 8);
+
+						InstanceEnemy (0, 0, knight, 2);
+						InstanceEnemy (0, 0, warrior, 1);
+
+						InstanceEnemy (1, 8, knight, 2);
+						InstanceEnemy (1, 8, warrior, 1);
+						break;
+
+					case 14:
+						SpawnSetGround (0, 1, 1, 9);
+
+						InstanceEnemy (0, 1, knight, 2);
+						InstanceEnemy (0, 1, warrior, 2);
+
+						InstanceEnemy (1, 9, knight, 2);
+						InstanceEnemy (1, 9, warrior, 2);
+						break;
+
+					case 24:
+						SpawnSetGround (0, 1, 2, 10);
+
+						InstanceEnemy (0, 2, knight, 1);
+						InstanceEnemy (0, 2, warrior, 2);
+
+						InstanceEnemy (1, 10, knight, 1);
+						InstanceEnemy (1, 10, warrior, 2);
+						break;
+
+					case 25:
 						SpawnSetFly (2, 3, griffon, 1);
 						break;
 
-					case 245:
-						SpawnSetGround (0, 1, 2, 6);
-
-						InstanceEnemy (0, 2, warrior, 1);
-						InstanceEnemy (0, 2, knight, 3);
-
-						InstanceEnemy (1, 6, warrior, 1);
-						InstanceEnemy (1, 6, knight, 3);
+					case 50:
+						currentTime = timer;
+						AlarmWave ();
 						break;
 
-					case 265:
-						SpawnSetGround (0, 1, 3, 7);
+					case 52:
+						SpawnSetGround (0, 1, 3, 11);
 
-						InstanceEnemy (0, 3, dragon, 3);
-						InstanceEnemy (0, 3, slime, 2);
+						InstanceEnemy (0, 3, dragon, 2);
+						InstanceEnemy (0, 3, warrior, 2);
 
-						InstanceEnemy (1, 7, dragon, 3);
-						InstanceEnemy (1, 7, slime, 2);
+						InstanceEnemy (1, 11, dragon, 2);
+						InstanceEnemy (1, 11, knight, 2);
 						break;
 
-					case 270 : 
+					case 55:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 72:
+						SpawnSetGround (0, 1, 4, 12);
+
+						InstanceEnemy (0, 4, dragon, 2);
+						InstanceEnemy (0, 4, knight, 2);
+
+						InstanceEnemy (1, 12, dragon, 2);
+						InstanceEnemy (1, 12, warrior, 2);
+						break;
+
+					case 80:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 100:
+						currentTime = timer;
+						AlarmWave ();
+						break;
+
+					case 102:
+						SpawnSetGround (0, 1, 5, 13);
+
+						InstanceEnemy (0, 5, warrior, 1);
+						InstanceEnemy (0, 5, knight, 2);
+
+						InstanceEnemy (1, 13, warrior, 1);
+						InstanceEnemy (1, 13, knight, 2);
+						break;
+
+					case 105:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 112:
+						SpawnSetGround (0, 1, 6, 14);
+
+						InstanceEnemy (0, 6, knight, 2);
+						InstanceEnemy (0, 6, warrior, 2);
+
+						InstanceEnemy (1, 14, knight, 2);
+						InstanceEnemy (1, 14, warrior, 2);
+						break;
+
+					case 122:
+						SpawnSetGround (0, 1, 7, 15);
+
+						InstanceEnemy (0, 7, knight, 2);
+						InstanceEnemy (0, 7, warrior, 1);
+
+						InstanceEnemy (1, 15, knight, 2);
+						InstanceEnemy (1, 15, warrior, 1);
+						break;
+
+					case 130:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 160:
 						SpawnSetFly (2, 3, griffon, 1);
 						break;
 				}
 			}
 
-
-			if (map.stageNum == 1) {
+			if (map.stageNum == 8) {
 				switch (timer) {
-				case 2:
-					currentTime = timer;
-					AlarmWave ();
-					SpawnSetFly (2, 3, cannon, 1);
+					case 2:
+						currentTime = timer;
+						AlarmWave ();
+						break;
 
-					break;
+					case 4:
+						SpawnSetGround (0, 1, 0, 8);
 
-				case 5:
-					SpawnSetGround (0, 1, 0, 4);
+						InstanceEnemy (0, 0, knight, 2);
+						InstanceEnemy (0, 0, warrior, 1);
 
-					InstanceEnemy (0, 0, warrior, 4);
-					InstanceEnemy (1, 4, warrior, 4);
-					break;
+						InstanceEnemy (1, 8, knight, 2);
+						InstanceEnemy (1, 8, warrior, 1);
+						break;
 
-				case 25:
-					SpawnSetGround (0, 1, 1, 5);
+					case 14:
+						SpawnSetGround (0, 1, 1, 9);
 
-					InstanceEnemy (0, 1, warrior, 3);
-					InstanceEnemy (0, 1, knight, 1);
+						InstanceEnemy (0, 1, knight, 2);
+						InstanceEnemy (0, 1, warrior, 2);
 
-					InstanceEnemy (1, 5, warrior, 3);
-					InstanceEnemy (1, 5, knight, 1);
-					break;
+						InstanceEnemy (1, 9, knight, 2);
+						InstanceEnemy (1, 9, warrior, 2);
+						break;
 
-				case 30:
-					SpawnSetFly (2, 3, cannon, 1);
-					break;
+					case 15:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-				case 45:
-					SpawnSetGround (0, 1, 2, 6);
+					case 24:
+						SpawnSetGround (0, 1, 2, 10);
 
-					InstanceEnemy (0, 2, slime, 1);
-					InstanceEnemy (0, 2, knight, 3);
+						InstanceEnemy (0, 2, knight, 1);
+						InstanceEnemy (0, 2, warrior, 2);
 
-					InstanceEnemy (1, 6, slime, 1);
-					InstanceEnemy (1, 6, knight, 3);
-					break;
+						InstanceEnemy (1, 10, knight, 1);
+						InstanceEnemy (1, 10, warrior, 2);
+						break;
 
-				case 65:
-					SpawnSetGround (0, 1, 3, 7);
+					case 30:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
 
-					InstanceEnemy (0, 3, slime, 1);
-					InstanceEnemy (0, 3, warrior, 3);
+					case 45:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-					InstanceEnemy (1, 7, slime, 1);
-					InstanceEnemy (1, 7, warrior, 3);
-					break;
+					case 50:
+						currentTime = timer;
+						AlarmWave ();
+						break;
 
-				case 60:
-					SpawnSetFly (2, 3, cannon, 1);
-					break;
+					case 52:
+						SpawnSetGround (0, 1, 3, 11);
 
-				case 90:
-					SpawnSetFly (2, 3, cannon, 1);
-					break;
+						InstanceEnemy (0, 3, dragon, 2);
+						InstanceEnemy (0, 3, warrior, 2);
 
-				case 115:
-					SpawnSetGround (0, 1, 0, 4);
+						InstanceEnemy (1, 11, dragon, 2);
+						InstanceEnemy (1, 11, knight, 2);
+						break;
 
-					InstanceEnemy (0, 0, knight, 3);
-					InstanceEnemy (0, 0, slime, 1);
+					case 60:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-					InstanceEnemy (1, 4, knight, 3);
-					InstanceEnemy (1, 4, slime, 1);
-					break;
+					case 72:
+						SpawnSetGround (0, 1, 4, 12);
 
-				case 120:
-					SpawnSetFly (2, 3, cannon, 1);
-					break;
+						InstanceEnemy (0, 4, dragon, 2);
+						InstanceEnemy (0, 4, knight, 2);
 
-				case 135:
-					SpawnSetGround (0, 1, 1, 5);
+						InstanceEnemy (1, 12, dragon, 2);
+						InstanceEnemy (1, 12, warrior, 2);
+						break;
 
-					InstanceEnemy (0, 1, warrior, 3);
-					InstanceEnemy (0, 1, knight, 1);
+					case 75:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-					InstanceEnemy (1, 5, warrior, 3);
-					InstanceEnemy (1, 5, knight, 1);
-					break;
+					case 90:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
 
-				case 150:
-					SpawnSetFly (2, 3, cannon, 1);
-					break;
+					case 100:
+						currentTime = timer;
+						AlarmWave ();
+						break;
 
-				case 155:
-					SpawnSetGround (0, 1, 2, 6);
+					case 102:
+						SpawnSetGround (0, 1, 5, 13);
 
-					InstanceEnemy (0, 2, slime, 2);
-					InstanceEnemy (0, 2, knight, 2);
+						InstanceEnemy (0, 5, warrior, 1);
+						InstanceEnemy (0, 5, dragon, 2);
 
-					InstanceEnemy (1, 6, slime, 2);
-					InstanceEnemy (1, 6, knight, 2);
-					break;
+						InstanceEnemy (1, 13, warrior, 1);
+						InstanceEnemy (1, 13, dragon, 2);
+						break;
 
-				case 180:
-					SpawnSetFly (2, 3, cannon, 1);
-					break;
+					case 105:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-				case 190:
-					SpawnSetGround (0, 1, 3, 7);
+					case 112:
+						SpawnSetGround (0, 1, 6, 14);
 
-					InstanceEnemy (0, 3, dragon, 2);
+						InstanceEnemy (0, 6, knight, 2);
+						InstanceEnemy (0, 6, warrior, 2);
 
-					InstanceEnemy (1, 7, dragon, 2);
-					break;
+						InstanceEnemy (1, 14, knight, 2);
+						InstanceEnemy (1, 14, warrior, 2);
+						break;
 
-				case 210:
-					SpawnSetFly (2, 3, cannon, 1);
-					break;
+					case 120:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
 
-				case 235:
-					SpawnSetGround (0, 1, 0, 4);
+					case 122:
+						SpawnSetGround (0, 1, 7, 15);
 
-					InstanceEnemy (0, 0, warrior, 1);
-					InstanceEnemy (0, 0, slime, 3);
+						InstanceEnemy (0, 7, knight, 2);
+						InstanceEnemy (0, 7, dragon, 1);
 
-					InstanceEnemy (1, 4, warrior, 1);
-					InstanceEnemy (1, 4, slime, 3);
-					break;
+						InstanceEnemy (1, 15, knight, 2);
+						InstanceEnemy (1, 15, dragon, 1);
+						break;
 
-				case 245:
-					SpawnSetGround (0, 1, 1, 5);
+					case 135:
+						SpawnSetFly (2, 3, griffon, 1);
+						break;
 
-					InstanceEnemy (0, 1, knight, 4);
-
-					InstanceEnemy (1, 5, knight, 4);
-					break;
-
-				case 240:
-					SpawnSetFly (2, 3, cannon, 1);
-					break;
-
-				case 255:
-					SpawnSetGround (0, 1, 2, 6);
-
-					InstanceEnemy (0, 2, warrior, 1);
-					InstanceEnemy (0, 2, knight, 3);
-
-					InstanceEnemy (1, 6, warrior, 1);
-					InstanceEnemy (1, 6, knight, 3);
-					break;
-
-				case 275:
-					SpawnSetGround (0, 1, 3, 7);
-
-					InstanceEnemy (0, 3, dragon, 3);
-					InstanceEnemy (0, 3, slime, 2);
-
-					InstanceEnemy (1, 7, dragon, 3);
-					InstanceEnemy (1, 7, slime, 2);
-					break;
-
-				case 270 : 
-					SpawnSetFly (2, 3, cannon, 1);
-					break;
+					case 150:
+						SpawnSetFly (2, 3, cannon, 1);
+						break;
 				}
 			}
 		}
@@ -549,10 +1290,10 @@ public class TestCode : MonoBehaviour
 		if (countCort == 20) {//2초마다
 			//스포너마다 IEnemy 2개씩 붙여서 존재시만 이동하게 하자
 			//지금 이동은 시작과 동시니까 각 부분별로 bool 넣어서 따로 제어하자
-			MovingLeader(pathOneArray, 0, 4);
-			MovingLeader(pathTwoArray, 4, 8);
-			MovingLeader(pathThrArray, 8, 10);
-			MovingLeader(pathFourArray, 10, 12);
+			MovingLeader(pathOneArray, 0, 7);
+			MovingLeader(pathTwoArray, 8, 15);
+			//MovingLeader(pathThrArray, 8, 10);
+			//MovingLeader(pathFourArray, 10, 12);
 
 			countCort = 0;//시간 0초
 		}

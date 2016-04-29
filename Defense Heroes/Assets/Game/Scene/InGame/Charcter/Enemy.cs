@@ -45,10 +45,10 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		dieTimer += Time.deltaTime;
 		//정해진 타입으로 수치 설정 및 이동 로직에서 길찾기 가져다 쓸것
-		if(dieTimer < 75 && !parent){//60초(도착) 이전에 리더 없어지면 다사라짐  
+		if(dieTimer < 145 && !parent){//60초(도착) 이전에 리더 없어지면 다사라짐  
 			Destroy (this.gameObject);
 		}
-		if (dieTimer > 79 && hp <= 0) {
+		if (dieTimer > 149 && hp <= 0) {
 			Destroy (this.gameObject);
 		}
 
