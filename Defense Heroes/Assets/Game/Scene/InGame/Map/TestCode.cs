@@ -248,6 +248,10 @@ public class TestCode : MonoBehaviour
 						InstanceEnemy (1, 15, slime, 2);
 						InstanceEnemy (1, 15, dragon, 2);
 						break;
+
+					case 240:
+					UnLockStage ();
+						break;
 					}
 				}
 
@@ -376,6 +380,10 @@ public class TestCode : MonoBehaviour
 
 					case 170:
 						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 180:
+						UnLockStage ();
 						break;
 				}
 			}
@@ -508,6 +516,10 @@ public class TestCode : MonoBehaviour
 					case 170:
 						SpawnSetFly (2, 3, cannon, 1);
 						break;
+
+					case 180:
+						UnLockStage ();
+						break;
 				}
 			}
 
@@ -605,6 +617,10 @@ public class TestCode : MonoBehaviour
 
 						InstanceEnemy (1, 15, warrior, 2);
 						InstanceEnemy (1, 15, dragon, 2);
+						break;
+
+					case 240:
+						UnLockStage ();
 						break;
 				}
 			}
@@ -725,6 +741,10 @@ public class TestCode : MonoBehaviour
 					case 150:
 						SpawnSetFly (2, 3, griffon, 1);
 						break;
+
+					case 180:
+						UnLockStage ();
+						break;
 				}
 			}
 
@@ -844,6 +864,10 @@ public class TestCode : MonoBehaviour
 					case 150:
 						SpawnSetFly (2, 3, cannon, 1);
 						break;
+
+					case 180:
+						UnLockStage ();
+						break;
 				}
 			}
 
@@ -935,6 +959,10 @@ public class TestCode : MonoBehaviour
 
 						InstanceEnemy (1, 15, warrior, 2);
 						InstanceEnemy (1, 15, dragon, 2);
+						break;
+
+					case 240:
+						UnLockStage ();
 						break;
 				}
 			}
@@ -1058,6 +1086,10 @@ public class TestCode : MonoBehaviour
 
 					case 160:
 						SpawnSetFly (2, 3, griffon, 1);
+						break;
+
+					case 180:
+						UnLockStage ();
 						break;
 				}
 			}
@@ -1198,6 +1230,10 @@ public class TestCode : MonoBehaviour
 					case 150:
 						SpawnSetFly (2, 3, cannon, 1);
 						break;
+
+					case 180:
+						UnLockStage ();
+						break;
 				}
 			}
 		}
@@ -1302,6 +1338,12 @@ public class TestCode : MonoBehaviour
 		StartCoroutine ("MoveLeader");
 	}
 
+	void UnLockStage(){
+		PlayerInfo.getInstance.SaveClear ("W I N");
+		if (PlayerInfo.getInstance.LoadCLEStage () <= map.stageNum) {
+			PlayerInfo.getInstance.SaveClearStage (map.stageNum);
+		}
+	}
 	//라인 디버깅
 	void OnDrawGizmos()
 	{

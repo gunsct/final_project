@@ -144,6 +144,7 @@ public class Player : MonoBehaviour {
 				if (corucnt == 0) {
 					audio.PlayOneShot (Lose, 1.0f);
 					PlayerInfo.getInstance.SaveScorePoint (score, point);
+					PlayerInfo.getInstance.SaveClear ("L O S E");
 					die = true;
 				}
 				corucnt++;

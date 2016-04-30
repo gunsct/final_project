@@ -13,12 +13,14 @@ public class ResultButton : MonoBehaviour {
 	}
 
 	void MainButton(){
-		Application.LoadLevel (0);
+		Application.LoadLevel ("Main");
 	}
 	void RestartButton(){
-		Application.LoadLevel (3);
+		Application.LoadLevel ("Game");
 	}
-
+	void StageButton(){
+		Application.LoadLevel ("Stage");
+	}
 	void UpdataButton(){
 		ma.GetComponent<PlayerInfo>().SavePacketType ("updatascore");
 		ma.GetComponent<Client>().sc.InitInfo ();

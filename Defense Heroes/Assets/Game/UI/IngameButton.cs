@@ -24,7 +24,7 @@ public class IngameButton : MonoBehaviour {
 	*********************************************/
 	void MenuButton(){
 		//백버튼
-		Application.LoadLevel (0);
+		Application.LoadLevel ("Stage");
 	}
 
 	/*********************************************

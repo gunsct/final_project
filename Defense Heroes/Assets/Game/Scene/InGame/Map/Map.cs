@@ -72,41 +72,38 @@ public class Map : MonoBehaviour {
 	 * @param String $cntLine csv텍스트 단어별	
 	***************************************************************/
 	void ExcelLoader(int _stageNum){
-		switch (_stageNum) {
-		case 0:
-				csvFile = (TextAsset)Resources.Load ("stage1") as TextAsset;
+		if (_stageNum == 0 || _stageNum == 3 || _stageNum == 6) {
+			csvFile = (TextAsset)Resources.Load ("stage1") as TextAsset;
 
-				oPlane.GetComponent<Renderer> ().material = (Material) Resources.Load ("SnowField") as Material;
-				foreach (Transform child in oRock.transform) {
-					child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
-					child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.3f,0.5f,0.5f));
-				}
+			oPlane.GetComponent<Renderer> ().material = (Material)Resources.Load ("SnowField") as Material;
+			foreach (Transform child in oRock.transform) {
+				child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+				child.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (0.3f, 0.5f, 0.5f));
+			}
 			
-				waveTime = 240.0f;
-				break;
+			waveTime = 240.0f;
+		}
+		if (_stageNum == 1 || _stageNum == 4 || _stageNum == 7) {
+			csvFile = (TextAsset)Resources.Load ("stage2") as TextAsset;
 
-			case 1:
-				csvFile = (TextAsset)Resources.Load ("stage2") as TextAsset;
+			oPlane.GetComponent<Renderer> ().material = (Material)Resources.Load ("ForestField") as Material;
+			foreach (Transform child in oRock.transform) {
+				child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+				child.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (0.2f, 0.2f, 0.2f));
+			}
+			waveTime = 180.0f;
+		}
 
-				oPlane.GetComponent<Renderer> ().material = (Material) Resources.Load ("ForestField") as Material;
-				foreach (Transform child in oRock.transform) {
-					child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
-					child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.2f,0.2f,0.2f));
-				}
-				waveTime = 180.0f;
-				break;
-
-			case 2:
-				csvFile = (TextAsset)Resources.Load ("stage3") as TextAsset;
-				//메테리얼 교체 및 메테리얼 이미션 색 교체
-				oPlane.GetComponent<Renderer> ().material = (Material)Resources.Load ("StoneField") as Material;
-				foreach (Transform child in oRock.transform) {
-					child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
-					child.GetComponent<Renderer> ().material.SetColor("_EmissionColor",new Color(0.0f,0.0f,0.0f));
-				}
+		if (_stageNum == 2 || _stageNum == 5 || _stageNum == 8) {
+			csvFile = (TextAsset)Resources.Load ("stage3") as TextAsset;
+			//메테리얼 교체 및 메테리얼 이미션 색 교체
+			oPlane.GetComponent<Renderer> ().material = (Material)Resources.Load ("StoneField") as Material;
+			foreach (Transform child in oRock.transform) {
+				child.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+				child.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (0.0f, 0.0f, 0.0f));
+			}
 				
-				waveTime = 180.0f;
-			break;
+			waveTime = 180.0f;
 		}
 
 		fileFullStr = csvFile.text;
@@ -159,14 +156,15 @@ public class Map : MonoBehaviour {
 					case "b":
 						GameObject Block = null;
 						map [i, j].type = Shell.sType.BLOCK;
-						if (stageNum == 0) {
-						Block = (GameObject)Instantiate (oBlockIce, oPos, Quaternion.identity);
+
+						if (stageNum == 0 || stageNum == 3 || stageNum == 6) {
+							Block = (GameObject)Instantiate (oBlockIce, oPos, Quaternion.identity);
 						}
-						if(stageNum == 1){
-						Block = (GameObject)Instantiate (oBlockTree, oPos, Quaternion.identity);
+						if(stageNum == 1 || stageNum == 4 || stageNum == 7){
+							Block = (GameObject)Instantiate (oBlockTree, oPos, Quaternion.identity);
 						}
-						if(stageNum == 2){
-						Block = (GameObject)Instantiate (oBlockRock, oPos, Quaternion.identity);
+						if(stageNum == 2 || stageNum == 5 || stageNum == 8){
+							Block = (GameObject)Instantiate (oBlockRock, oPos, Quaternion.identity);
 						}
 						
 						blockArray.Add (Block);

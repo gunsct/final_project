@@ -32,6 +32,10 @@ public class PlayerInfo : MonoBehaviour {
 		PlayerPrefs.SetInt ("Point", _point);
 		PlayerPrefs.Save ();
 	}
+	public void SaveClear(string _clear){
+		PlayerPrefs.SetString ("Clear", _clear);
+		PlayerPrefs.Save ();
+	}
 	public void SaveClearStage(int _stage){
 		PlayerPrefs.SetInt ("CLEStage", _stage);
 		PlayerPrefs.Save ();
@@ -68,8 +72,11 @@ public class PlayerInfo : MonoBehaviour {
 	public string LoadPassword(){
 		return PlayerPrefs.GetString ("Password", "****");
 	}
+	public string LoadClear(){
+		return PlayerPrefs.GetString ("Clear","L O S E");
+	}
 	public int LoadCLEStage(){
-		return PlayerPrefs.GetInt ("CLEStage", 0);
+		return PlayerPrefs.GetInt ("CLEStage", -1);
 	}
 	public int LoadStage(){
 		return PlayerPrefs.GetInt ("Stage", 0);
