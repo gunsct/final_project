@@ -66,7 +66,17 @@
         $result = mysqli_query($connect, $selectQuery);
             
         while($r = $result->fetch_assoc()) {
-        echo 'ID: '.$r['id'].' SCORE: '.$r['score']."\n";
+            $arr1 = str_split($r['id']);
+            if(count($arr1) < 12){
+                for($i = 0; $i <12 - count($arr1);$i++){
+                    array_push( $arr1," ");
+                }
+                if(count($arr1)%2 == 0){
+                    array_push( $arr1," ");
+                }
+            }
+        $idstr = implode ("",$arr1);
+        echo 'ID: '.$idstr.'SCORE: '.$r['score']."\n";
         }
       break;
       
