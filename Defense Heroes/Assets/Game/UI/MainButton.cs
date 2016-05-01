@@ -44,7 +44,7 @@ public class MainButton : MonoBehaviour {
 	 * @brief 업그레이드 위 시작을 위해 상점씬으로 전환
 	***************************************************************/
 	public void UpgradeButton(){
-		Debug.Log("버튼을 터치 이벤트!!");
+		Application.LoadLevel("Store");
 	}
 
 	public void LogOutButton(){

@@ -126,6 +126,8 @@
      <Compile Include="Assets\Game\UI\ResultButton.cs" />
      <Compile Include="Assets\Game\UI\ResultUI.cs" />
      <Compile Include="Assets\Game\UI\StageButton.cs" />
+     <Compile Include="Assets\Game\UI\StoreButton.cs" />
+     <Compile Include="Assets\Game\UI\StoreUI.cs" />
      <None Include="Assets\Plugins\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />

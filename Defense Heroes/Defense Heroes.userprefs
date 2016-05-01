@@ -1,12 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\UI\MainButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\UI\StoreButton.cs">
     <Files>
       <File FileName="Assets\Game\DB\PlayerInfo.cs" Line="1" Column="1" />
       <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="1" Column="1" />
       <File FileName="Assets\Game\Scene\InGame\Map\Map.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game\UI\MainButton.cs" Line="38" Column="66" />
-      <File FileName="Assets\Game\UI\InputBox.cs" Line="58" Column="10" />
+      <File FileName="Assets\Game\UI\InputBox.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\UI\StoreButton.cs" Line="33" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
