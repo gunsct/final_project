@@ -65,7 +65,7 @@ public class StageButton : MonoBehaviour {
 	IEnumerator UnLock(){//클리어 해야 다음게 풀림, 버튼 스크립트 껏다 켰다
 		for(int i = 1; i<9;i++){
 			Debug.Log (PlayerInfo.getInstance.LoadCLEStage ());
-			if (i - 1 > PlayerInfo.getInstance.LoadCLEStage ()) {//lock
+			if (i - 3 > PlayerInfo.getInstance.LoadCLEStage ()) {//lock i - 1
 				stageButton [i].transform.FindChild ("lock").gameObject.SetActive (true);
 				stageButton [i].GetComponent<UIButton> ().enabled = false;
 				stageButton [i].GetComponent<UIButtonScale> ().enabled = false;

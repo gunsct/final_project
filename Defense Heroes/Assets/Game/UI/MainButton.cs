@@ -17,12 +17,10 @@ public class MainButton : MonoBehaviour {
 	void Update () {
 		//로그인 아웃 띄우기
 		if (PlayerInfo.getInstance.LoadBLog () == 1) {
-			logout.transform.position = new Vector3 (logout.transform.position.x, logout.transform.position.y, 0.0f);
-			logout.GetComponent<BoxCollider> ().enabled = true;
+			logout.SetActive (true);
 		}
 		if (PlayerInfo.getInstance.LoadBLog () == 0) {
-			logout.transform.position = new Vector3 (logout.transform.position.x, logout.transform.position.y, 1000.0f);
-			logout.GetComponent<BoxCollider> ().enabled = false;
+			logout.SetActive (false);
 		}
 	}
 
@@ -30,6 +28,7 @@ public class MainButton : MonoBehaviour {
 	 * @brief 백버튼 누르면 프로그램 종료
 	***************************************************************/
 	public void ExitButton(){
+		PlayerInfo.getInstance.SaveBLog (0);
 		Application.Quit ();
 	}
 
