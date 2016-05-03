@@ -25,24 +25,49 @@ public class pScore{
 
 	public void InitInfo ()
 	{//lookscore, updatascore
-		type = PlayerInfo.getInstance.LoadPacketType();;
+		type = PlayerInfo.getInstance.LoadPacketType();
 		id = PlayerInfo.getInstance.LoadId();
 		score = PlayerInfo.getInstance.LoadScore();
 	}
 }
 
+public class pStore{
+	public string type{ get; set; }
+	public string id{ get; set;}
+	public string hp{ get; set;}
+	public string nomal{ get; set;}
+	public string powerball{ get; set;}
+	public string stome{ get; set;}
+	public string metear{ get; set;}
+	public string point{ get; set;}
+
+	public void InitInfo ()
+	{//lookscore, updatascore
+		type = PlayerInfo.getInstance.LoadPacketType();
+		id = PlayerInfo.getInstance.LoadId();
+		hp = PlayerInfo.getInstance.LoadHpLevel ().ToString();
+		nomal = PlayerInfo.getInstance.LoadNormalLevel ().ToString();
+		powerball = PlayerInfo.getInstance.LoadPowerBallLevel ().ToString();
+		stome = PlayerInfo.getInstance.LoadStomeLevel ().ToString();
+		metear = PlayerInfo.getInstance.LoadMetearLevel ().ToString();
+		point = PlayerInfo.getInstance.LoadPoint ().ToString();
+	}
+}
 public class Client : MonoBehaviour {
 	private static Client instance;
 
 	public GameObject resultText;
+	private string[] dbStr;
 	public pUserInfo ui;
 	public pScore sc;
+	public pStore st;
 	private string packet;
 	// Use this for initialization
 	void Start () {
 		resultText = GameObject.Find ("SystemMsg"); 
 		ui = new pUserInfo ();
 		sc = new pScore ();
+		st = new pStore ();
 		//PlayerInfo.getInstance.SaveBLog (0);
 	}
 
@@ -82,7 +107,16 @@ public class Client : MonoBehaviour {
 		Debug.Log (packet);
 		StartCoroutine (DatabaseInsert ());
 	}
-
+	public void ClickDownloadStore(){
+		packet = JsonMapper.ToJson (st);
+		Debug.Log (packet);
+		StartCoroutine (DatabaseInsert ());
+	}
+	public void ClickUploadStore(){
+		packet = JsonMapper.ToJson (st);
+		Debug.Log (packet);
+		StartCoroutine (DatabaseInsert ());
+	}
 	// INSERT(HTTP)
 	IEnumerator DatabaseInsert(){
 		string url = "http://gunsct.cafe24.com/Rank.php";
@@ -100,16 +134,43 @@ public class Client : MonoBehaviour {
 			if(resultText.GetComponent<UILabel>().text.Contains("환영")){
 				StartCoroutine ("Delay");
 			}
+			if(resultText.GetComponent<UILabel>().text.Contains("download")){
+				dbStr = resultText.GetComponent<UILabel> ().text.Split (' ');
+
+				PlayerInfo.getInstance.SaveHpStore (100 +int.Parse(dbStr [1]) * 100, 100.0f + int.Parse(dbStr [1]) * 20.0f, int.Parse(dbStr [1]));
+				PlayerInfo.getInstance.SaveNormalStore (200 + int.Parse(dbStr [2]) * 150, 1.5f + int.Parse(dbStr [2]) * 0.1f, int.Parse(dbStr [2]));
+				PlayerInfo.getInstance.SavePowerBallStore (250 + int.Parse(dbStr [3]) * 200, 10.0f + int.Parse(dbStr [3]) * 0.5f, int.Parse(dbStr [3]));
+				PlayerInfo.getInstance.SaveStomeStore (500 + int.Parse(dbStr [4]) * 400, 15.0f + int.Parse(dbStr [4]) * 1.0f, int.Parse(dbStr [4]));
+				PlayerInfo.getInstance.SaveMetearStore (1000 + int.Parse(dbStr [5]) * 700, 40.0f + int.Parse(dbStr [5]) * 5.0f, int.Parse(dbStr [5]));
+				PlayerInfo.getInstance.SavePoint (int.Parse(dbStr [6]));
+				resultText.GetComponent<UILabel> ().text = "";
+				dbStr = null;
+			}
+			if (resultText.GetComponent<UILabel> ().text.Contains ("없음")) {
+				PlayerInfo.getInstance.SaveHpStore (100, 100.0f, 0);
+				PlayerInfo.getInstance.SaveNormalStore (200, 1.5f, 0);
+				PlayerInfo.getInstance.SavePowerBallStore (250, 10.0f, 0);
+				PlayerInfo.getInstance.SaveStomeStore (500, 15.0f, 0);
+				PlayerInfo.getInstance.SaveMetearStore (1000, 40.0f, 0);
+				PlayerInfo.getInstance.SavePoint (0);
+			}
+			if (resultText.GetComponent<UILabel> ().text.Contains ("ok")){
+				Debug.Log(resultText.GetComponent<UILabel> ().text);
+			}
 		} else {
 			resultText.GetComponent<UILabel>().text = webSite.error;
 		}
 	}
 
 	IEnumerator Delay(){
-		yield return new WaitForSeconds (1.0f);
 		PlayerInfo.getInstance.SaveBLog (1);
 		Debug.Log (PlayerInfo.getInstance.LoadBLog());
+		yield return new WaitForSeconds (1.0f);
 		resultText.GetComponent<UILabel> ().text = "";
+
+		PlayerInfo.getInstance.SavePacketType ("download");
+		st.InitInfo ();
+		ClickDownloadStore ();
 	}
 	public int m_data{ set; get; }
 }

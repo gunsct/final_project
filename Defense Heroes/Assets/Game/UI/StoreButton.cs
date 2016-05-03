@@ -10,6 +10,8 @@ public class StoreButton : MonoBehaviour {
 
 	public AudioClip aShort,aUpgrade;
 	AudioSource audio;
+
+	public GameObject infomanager;
 	// Use this for initialization
 	void Start () {
 		tPoint.GetComponent<UILabel> ().text = PlayerInfo.getInstance.LoadPoint ().ToString();
@@ -36,7 +38,10 @@ public class StoreButton : MonoBehaviour {
 	void Update () {
 	}
 	void Back(){
-		Application.LoadLevel ("Main");
+		PlayerInfo.getInstance.SavePacketType ("upload");
+		infomanager.GetComponent<Client> ().st.InitInfo ();
+		infomanager.GetComponent<Client> ().ClickUploadStore ();
+		StartCoroutine ("DelayOut");
 	}
 
 	//각 버튼 누를시 업그레이드 단계와 가격 판별 후 데이터 및 텍스트 갱신
@@ -137,5 +142,10 @@ public class StoreButton : MonoBehaviour {
 		audio.PlayOneShot (aShort, 0.5f);
 		yield return new WaitForSeconds (3.0f);
 		tMsg.GetComponent<UILabel> ().text = msginit;
+	}
+
+	IEnumerator DelayOut(){
+		yield return new WaitForSeconds (0.5f);
+		Application.LoadLevel ("Main");
 	}
 }

@@ -2,11 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\NetWork\Client.cs">
     <Files>
-      <File FileName="Assets\Game\DB\PlayerInfo.cs" Line="31" Column="19" />
-      <File FileName="Assets\Game\UI\StoreButton.cs" Line="42" Column="43" />
-      <File FileName="Assets\Game\UI\InputBox.cs" Line="85" Column="40" />
-      <File FileName="Assets\Game\UI\MainButton.cs" Line="23" Column="27" />
-      <File FileName="Assets\Game\NetWork\Client.cs" Line="33" Column="1" />
+      <File FileName="Assets\Game\UI\StoreButton.cs" Line="44" Column="31" />
+      <File FileName="Assets\Game\NetWork\Client.cs" Line="140" Column="55" />
+      <File FileName="Assets\Game\DB\PlayerInfo.cs" Line="56" Column="29" />
+      <File FileName="Assets\Game\UI\InputBox.cs" Line="85" Column="54" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

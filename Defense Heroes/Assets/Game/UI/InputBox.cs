@@ -103,11 +103,4 @@ public class InputBox : MonoBehaviour {
 			Application.LoadLevel("Rank");
 		}
 	}
-
-	/*void UpdataRank(){
-		PlayerInfo.getInstance.SavePacketType ("updatascore");
-
-		infomanager.GetComponent<Client> ().sc.InitInfo ();
-		infomanager.GetComponent<Client> ().ClickUpdataScore ();
-	}*/
 }

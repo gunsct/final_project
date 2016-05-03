@@ -147,5 +147,54 @@
             }
       }
       break;
+      //$pType
+      case "upload":
+        $pId = $decode['id'];
+        $pHp = $decode['hp'];
+        $pNormal = $decode['normal'];
+        $pPowerball = $decode['powerball'];
+        $pStome = $decode['stome'];
+        $pMetear = $decode['metear'];
+        $pPoint = $decode['point'];
+        $bOn = false;
+        
+        $selectQuery = "SELECT id FROM gunsct.store WHERE id LIKE '$pId'";
+        $result = mysqli_query($connect, $selectQuery);
+        
+        while($r = $result->fetch_assoc()) {
+            if($r['id'] == $pId){
+                $updateQuery = "UPDATE gunsct.store set hp = '$pHp', normal = '$pNormal', powerball = '$pPowerball', stome = '$pStome', metear = '$pMetear', point = $pPoint where id LIKE '$pId';";
+                mysqli_query($connect, $updateQuery);
+                $bOn = true;
+            }
+       }
+       if($bOn == false){
+            $insertQuery = "INSERT into gunsct.store (id, hp, normal, powerball, stome, metear, point) values ('$pId', $pHp, $pNormal, $pPowerball, $pStome, $pMetear, $pPoint);";
+            mysqli_query($connect, $insertQuery);
+       }
+        
+      break;
+      
+      case "download":
+        $pId = $decode['id'];
+        
+        $selectQuery = "SELECT id FROM gunsct.store WHERE id LIKE '$pId'";
+        $result = mysqli_query($connect, $selectQuery);
+        $bOn = false;
+        
+        while($r = $result->fetch_assoc()) {
+            if($r['id'] == $pId){
+                $selectQuery2 = "SELECT hp, normal, powerball, stome, metear, point FROM gunsct.store where id LIKE '$pId';";
+                $allTuple2 = mysqli_query($connect, $selectQuery2);
+                $r = $allTuple2->fetch_assoc();
+                 
+                $bOn = true;
+                echo "download"." ".$r['hp']." ".$r['normal']." ".$r['powerball']." ".$r['stome']." ".$r['metear']." ".$r['point'];
+            }
+        }
+        if($bOn == false){
+            echo "없음";
+        }
+      break;
   }
 ?>
