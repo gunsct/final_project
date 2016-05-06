@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/BLINDED_AM_ME package/Scenes/Mesh_Cut - Play, click cube.unity
+- path: Assets/Game/Scene/Stage.unity
   isLoaded: 1
   isActive: 1

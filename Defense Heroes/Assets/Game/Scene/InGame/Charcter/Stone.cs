@@ -30,7 +30,7 @@ public class Stone : MonoBehaviour {
 		endPos = GameObject.Find ("MainTower(Clone)").transform.position;
 		endPos = new Vector3 (endPos.x, endPos.y + 5.0f, endPos.z);
 
-		hp = 10.0f;
+		hp = 1.0f;
 		dmg = 10.0f;
 		timer = 0.0f;
 		speed = 400.0f;
@@ -84,7 +84,7 @@ public class Stone : MonoBehaviour {
 		if (cutCnt == 0) {
 			timer += 0.01f;
 			float ratio = timer / (distanceY / vY);
-			float dh = (0.1f * ratio * (1.0f - ratio));
+			float dh = (0.02f * ratio * (1.0f - ratio));
 
 			if (timer >= (distanceY / vY) / 2.0f)
 				dh = -dh;
