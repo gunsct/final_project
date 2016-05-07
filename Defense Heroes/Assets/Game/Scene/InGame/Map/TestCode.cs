@@ -46,6 +46,7 @@ public class TestCode : MonoBehaviour
 	AudioSource audio;
 	//class
 	private Map map;
+	private Player player;
 	// Use this for initialization
 	void Start () 
     {
@@ -72,6 +73,8 @@ public class TestCode : MonoBehaviour
 		airPath = new Path[2];
 		airPath[0] = GameObject.Find ("AirPath1").GetComponent<Path>();
 		airPath[1] = GameObject.Find ("AirPath2").GetComponent<Path>();
+
+		player = GameObject.Find ("Player").GetComponent<Player> ();
 
 		audio = GetComponent<AudioSource>();
 		bLignt = false;
@@ -250,6 +253,8 @@ public class TestCode : MonoBehaviour
 						break;
 
 					case 240:
+					PlayerInfo.getInstance.SaveScorePoint (player.score, player.point);
+					PlayerInfo.getInstance.SaveClear ("W I N");
 					UnLockStage ();
 						break;
 					}
@@ -383,6 +388,8 @@ public class TestCode : MonoBehaviour
 						break;
 
 					case 180:
+						PlayerInfo.getInstance.SaveScorePoint (player.score, player.point);
+						PlayerInfo.getInstance.SaveClear ("W I N");
 						UnLockStage ();
 						break;
 				}
@@ -518,6 +525,8 @@ public class TestCode : MonoBehaviour
 						break;
 
 					case 180:
+						PlayerInfo.getInstance.SaveScorePoint (player.score, player.point);
+						PlayerInfo.getInstance.SaveClear ("W I N");
 						UnLockStage ();
 						break;
 				}
@@ -620,6 +629,8 @@ public class TestCode : MonoBehaviour
 						break;
 
 					case 240:
+						PlayerInfo.getInstance.SaveScorePoint (player.score, player.point);
+						PlayerInfo.getInstance.SaveClear ("W I N");
 						UnLockStage ();
 						break;
 				}
@@ -743,6 +754,8 @@ public class TestCode : MonoBehaviour
 						break;
 
 					case 180:
+						PlayerInfo.getInstance.SaveScorePoint (player.score, player.point);
+						PlayerInfo.getInstance.SaveClear ("W I N");
 						UnLockStage ();
 						break;
 				}
@@ -866,6 +879,8 @@ public class TestCode : MonoBehaviour
 						break;
 
 					case 180:
+						PlayerInfo.getInstance.SaveScorePoint (player.score, player.point);
+						PlayerInfo.getInstance.SaveClear ("W I N");
 						UnLockStage ();
 						break;
 				}
@@ -962,6 +977,8 @@ public class TestCode : MonoBehaviour
 						break;
 
 					case 240:
+						PlayerInfo.getInstance.SaveScorePoint (player.score, player.point);
+						PlayerInfo.getInstance.SaveClear ("W I N");
 						UnLockStage ();
 						break;
 				}
@@ -1089,6 +1106,8 @@ public class TestCode : MonoBehaviour
 						break;
 
 					case 180:
+						PlayerInfo.getInstance.SaveScorePoint (player.score, player.point);
+						PlayerInfo.getInstance.SaveClear ("W I N");
 						UnLockStage ();
 						break;
 				}
@@ -1232,6 +1251,8 @@ public class TestCode : MonoBehaviour
 						break;
 
 					case 180:
+						PlayerInfo.getInstance.SaveScorePoint (player.score, player.point);
+						PlayerInfo.getInstance.SaveClear ("W I N");
 						UnLockStage ();
 						break;
 				}

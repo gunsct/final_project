@@ -84,7 +84,7 @@ public class Stone : MonoBehaviour {
 		if (cutCnt == 0) {
 			timer += 0.01f;
 			float ratio = timer / (distanceY / vY);
-			float dh = (0.02f * ratio * (1.0f - ratio));
+			float dh = (0.1f * ratio * (1.0f - ratio));
 
 			if (timer >= (distanceY / vY) / 2.0f)
 				dh = -dh;

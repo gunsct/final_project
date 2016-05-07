@@ -156,12 +156,15 @@ public class Map : MonoBehaviour {
 					case "b":
 						GameObject Block = null;
 						map [i, j].type = Shell.sType.BLOCK;
+						string blockName = null;
 
 						if (stageNum == 0 || stageNum == 3 || stageNum == 6) {
-							Block = (GameObject)Instantiate (oBlockIce, oPos, Quaternion.identity);
+							blockName = "ice"+((int)Random.Range (1, 12)).ToString();
+							Block = (GameObject)Instantiate (oBlockIce.transform.FindChild(blockName).gameObject, oPos, Quaternion.identity);
 						}
 						if(stageNum == 1 || stageNum == 4 || stageNum == 7){
-							Block = (GameObject)Instantiate (oBlockTree, oPos, Quaternion.identity);
+							blockName = "tree"+((int)Random.Range (1, 12)).ToString();
+						Block = (GameObject)Instantiate (oBlockTree.transform.FindChild(blockName).gameObject, oPos, Quaternion.identity);
 						}
 						if(stageNum == 2 || stageNum == 5 || stageNum == 8){
 							Block = (GameObject)Instantiate (oBlockRock, oPos, Quaternion.identity);
