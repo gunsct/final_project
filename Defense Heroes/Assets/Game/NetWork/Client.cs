@@ -18,7 +18,11 @@ public class pUserInfo{
 	}
 }
 
-public class pScore{
+public class pLogOut{//로그아웃 패킷 받으면 걍 세션 종료
+	public string type{ get; set; }
+}
+
+public class pScore{//이미 로그인 되어있는 상태이므로 점수만 주ㄴ php쪽 세션정보로 처리하게 바꿀 예정 이하 로그인은 모두 같음 , 로그아웃도 만듬
 	public string type{ get; set; }
 	public string id{ get; set;}
 	public int score{ get; set;}

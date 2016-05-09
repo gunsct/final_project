@@ -47,6 +47,10 @@
                 if($r['password'] == $pPassword){
                     echo $r['id'].'님 환영합니다.';
                     $bOn = true;
+                    //////
+                    session_start();
+                    $_SESSION['login'] = true;
+                    $_SESSION['id'] = $pId; 
                     break;
                 }
                 else{
@@ -59,6 +63,11 @@
         if($bOn == false){
             echo '없는 아이디입니다.';
         }
+      break;
+      
+      case "logout":
+        session_unset();
+        session_destroy();
       break;
       
       case "lookrank":
@@ -80,7 +89,7 @@
         }
       break;
       
-      case "updatascore":
+      case "updatascore"://패킷도 세션처리로 로그인 된 상태면 그냥 있는 아이디로 한다. 패킷 최소화
         $pId = $decode['id'];
         $pScore = $decode['score'];
         $bOn = false;
