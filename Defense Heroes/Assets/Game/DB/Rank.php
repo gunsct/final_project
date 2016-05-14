@@ -1,4 +1,7 @@
 <?php
+session_start();
+$_SESSION['login'] = null;
+$_SESSION['id'] = null; 
 //get packet
   $packet = $_REQUEST['packet'];
   //packet decode
@@ -45,12 +48,11 @@
         while($r = $result->fetch_assoc()) {
             if($r['id'] == $pId){
                 if($r['password'] == $pPassword){
-                    echo $r['id'].'님 환영합니다.';
-                    $bOn = true;
-                    //////
-                    session_start();
                     $_SESSION['login'] = true;
                     $_SESSION['id'] = $pId; 
+                    
+                    echo $r['id'].'님 환영합니다.';
+                    $bOn = true;
                     break;
                 }
                 else{
@@ -90,7 +92,7 @@
       break;
       
       case "updatascore"://패킷도 세션처리로 로그인 된 상태면 그냥 있는 아이디로 한다. 패킷 최소화
-        $pId = $decode['id'];
+        $pId = $decode['id'];//$_SESSION['id'];
         $pScore = $decode['score'];
         $bOn = false;
         $bEcall = false;
@@ -158,7 +160,7 @@
       break;
       //$pType
       case "upload":
-        $pId = $decode['id'];
+        $pId = $decode['id'];//$_SESSION['id'];
         $pHp = $decode['hp'];
         $pNormal = $decode['normal'];
         $pPowerball = $decode['powerball'];
@@ -185,7 +187,7 @@
       break;
       
       case "download":
-        $pId = $decode['id'];
+        $pId = $decode['id'];//$_SESSION['id'];
         
         $selectQuery = "SELECT id FROM gunsct.store WHERE id LIKE '$pId'";
         $result = mysqli_query($connect, $selectQuery);
@@ -202,7 +204,7 @@
             }
         }
         if($bOn == false){
-            echo "없음";
+            echo $_SESSION['id']."없음";
         }
       break;
   }

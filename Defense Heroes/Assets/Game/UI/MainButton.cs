@@ -48,6 +48,9 @@ public class MainButton : MonoBehaviour {
 
 	public void LogOutButton(){
 		PlayerInfo.getInstance.SaveBLog (0);
+		PlayerInfo.getInstance.SavePacketType ("logout");
+		infomanager.GetComponent<Client> ().lo.InitInfo ();
+		infomanager.GetComponent<Client> ().ClickLogout ();
 		sysmsg.GetComponent<UILabel> ().text = "";
 
 	}

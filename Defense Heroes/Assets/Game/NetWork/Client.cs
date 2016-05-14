@@ -20,6 +20,9 @@ public class pUserInfo{
 
 public class pLogOut{//로그아웃 패킷 받으면 걍 세션 종료
 	public string type{ get; set; }
+	public void InitInfo(){
+		type = PlayerInfo.getInstance.LoadPacketType ();
+	}
 }
 
 public class pScore{//이미 로그인 되어있는 상태이므로 점수만 주ㄴ php쪽 세션정보로 처리하게 바꿀 예정 이하 로그인은 모두 같음 , 로그아웃도 만듬
@@ -63,6 +66,7 @@ public class Client : MonoBehaviour {
 	public GameObject resultText;
 	private string[] dbStr;
 	public pUserInfo ui;
+	public pLogOut lo;
 	public pScore sc;
 	public pStore st;
 	private string packet;
@@ -91,6 +95,12 @@ public class Client : MonoBehaviour {
 
 	public void ClickLogin() {
 		packet = JsonMapper.ToJson(ui);
+		Debug.Log (packet);
+		StartCoroutine ( DatabaseInsert () );
+	}
+
+	public void ClickLogout() {
+		packet = JsonMapper.ToJson(lo);
 		Debug.Log (packet);
 		StartCoroutine ( DatabaseInsert () );
 	}
@@ -151,6 +161,7 @@ public class Client : MonoBehaviour {
 				dbStr = null;
 			}
 			if (resultText.GetComponent<UILabel> ().text.Contains ("없음")) {
+				resultText.GetComponent<UILabel> ().text = "";
 				PlayerInfo.getInstance.SaveHpStore (100, 100.0f, 0);
 				PlayerInfo.getInstance.SaveNormalStore (200, 1.5f, 0);
 				PlayerInfo.getInstance.SavePowerBallStore (250, 10.0f, 0);

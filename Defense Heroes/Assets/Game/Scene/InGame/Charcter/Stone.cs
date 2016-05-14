@@ -12,7 +12,7 @@ public class Stone : MonoBehaviour {
 	private Vector3 endPos;
 
 	private float timer;
-	private float speed;
+	public float speed;
 	private float vY;
 	private float distanceY;
 	private float angle;
@@ -33,7 +33,6 @@ public class Stone : MonoBehaviour {
 		hp = 1.0f;
 		dmg = 10.0f;
 		timer = 0.0f;
-		speed = 400.0f;
 		vY = (startPos - endPos).y *(100.0f / speed);
 		distanceY = (startPos - endPos).y;
 		angle = Random.Range (20, 30);
@@ -54,7 +53,7 @@ public class Stone : MonoBehaviour {
 		this.transform.Translate ((endPos - startPos).x / speed,(endPos - startPos).y / speed, (endPos - startPos).z / speed);
 		this.transform.position = new Vector3(transform.position.x, transform.position.y + dh, transform.position.z);
 		//this.transform.Rotate (new Vector3 (0.0f, 0.0f, az) * Time.deltaTime);
-		this.transform.FindChild("rock").Rotate (new Vector3 (angle, angle, angle) * Time.deltaTime);
+		//this.transform.FindChild("rock").Rotate (new Vector3 (angle, angle, angle) * Time.deltaTime);
 
 		if (hp <= 0.0f && die == false) {
 			die = true;
