@@ -180,7 +180,7 @@ $_SESSION['id'] = null;
             }
        }
        if($bOn == false){
-            $insertQuery = "INSERT into gunsct.store (id, hp, normal, powerball, stome, metear, point) values ('$pId', $pHp, $pNormal, $pPowerball, $pStome, $pMetear, $pPoint);";
+            $insertQuery = "INSERT into gunsct.store (id, hp, normal, powerball, stome, metear, point) values ('$pId', '$pHp', '$pNormal', '$pPowerball', '$pStome', '$pMetear', '$pPoint');";
             mysqli_query($connect, $insertQuery);
        }
         

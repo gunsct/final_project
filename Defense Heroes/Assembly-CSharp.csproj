@@ -106,6 +106,9 @@
      <Compile Include="Assets\Game\Scene\InGame\Map\TestCode.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\UnityFlock.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Map\VehicleFollowing.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\myastar\AStar2.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\myastar\Node.cs" />
+     <Compile Include="Assets\Game\Scene\InGame\Map\myastar\priorityQ.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Senser\CutTool.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Senser\Gyroscpe.cs" />
      <Compile Include="Assets\Game\Scene\InGame\Senser\MeshCutter.cs" />

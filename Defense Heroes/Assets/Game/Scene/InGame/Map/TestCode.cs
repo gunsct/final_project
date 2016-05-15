@@ -400,7 +400,6 @@ public class TestCode : MonoBehaviour
 					case 2:
 						currentTime = timer;
 						AlarmWave ();
-					SpawnSetFly (2, 3, cannon, 1);
 						break;
 
 					case 4:

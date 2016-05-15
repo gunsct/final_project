@@ -58,6 +58,7 @@ public class CutTool : MonoBehaviour {
 			pieces [6] = BLINDED_AM_ME.MeshCut.Cut (pieces [3] [1], pieces [3] [1].transform.position, pieces [3] [1].transform.forward, capMaterial);
 
 			for (int i = 0; i < 7; i++) {
+				pieces [i][1].transform.localScale = new Vector3 (0.005f, 0.005f, 0.005f);
 				pieces [i] [1].AddComponent<Rigidbody> ();
 				pieces [i] [1].AddComponent<MeshCollider> ();
 				pieces [i] [1].GetComponent<MeshCollider> ().convex = true;
