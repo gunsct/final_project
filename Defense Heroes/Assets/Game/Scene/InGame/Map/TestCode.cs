@@ -136,6 +136,14 @@ public class TestCode : MonoBehaviour
 		pathThrArray = AStar.FindPath(startNode[2], goalNode);
 		pathFourArray = AStar.FindPath(startNode[3], goalNode);
 
+		/*pathOneArray = AStar2.Path(oStart [0].transform.position, oEnd.transform.position);
+		foreach(Node i in pathOneArray){
+			Debug.Log ("path :"+ i.pos.x +" "+ i.pos.y +" "+ i.pos.z);
+		}
+		pathTwoArray = AStar2.Path(oStart [1].transform.position, oEnd.transform.position);
+		pathThrArray = AStar2.Path(oStart [2].transform.position, oEnd.transform.position);
+		pathFourArray = AStar2.Path(oStart [3].transform.position, oEnd.transform.position);*/
+
 		if(bStart == false)
 			StartCoroutine ("MoveLeader");
 

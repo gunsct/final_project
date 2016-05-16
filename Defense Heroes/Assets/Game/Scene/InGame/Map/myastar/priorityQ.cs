@@ -30,6 +30,9 @@ public class priorityQ : MonoBehaviour {
 		if(Length() > 0){//노드가 존재할때 반환하고 없으면 null
 			return (Node)nodes[0];
 		}
+		if (Length () > 1) {
+			return (Node)nodes [1];
+		}
 		return null;
 	}
 }

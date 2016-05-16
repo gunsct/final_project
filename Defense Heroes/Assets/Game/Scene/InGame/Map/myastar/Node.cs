@@ -9,7 +9,7 @@ public class Node : IComparable  {
 	public sType type;//노드의 타입
 	public Vector3 pos;
 	public float fCost, gCost, hCost;
-	public bool block;
+	public Node parent;
 
 	public Node(){
 	}
@@ -19,8 +19,8 @@ public class Node : IComparable  {
 		fCost = 1.0f;
 		gCost = 0.0f;
 		hCost = 0.0f;
-		block = false;
 		pos = _pos;
+		parent = null;
 	}
 
 	//priorityqueue에서 총합비용 f = g+h를 기준으로 정렬하기 위한 비교

@@ -9,6 +9,7 @@ public class Map : MonoBehaviour {
 	//맵용 변수들
 	public float shellSize = 2.0f;//셀간격, 좌표에 사용될것 
 	Shell[,] map =null;
+	public Node[,] map2 = null;
 	public int stageNum;//스테이지 번호
 	public float waveTime = 0.0f;
 
@@ -131,6 +132,7 @@ public class Map : MonoBehaviour {
 	***************************************************************/
 	void MapSetting(){
 		map = new Shell[cntLine,cntLine];//shell배열 선언
+		//map2 = new Node[cntLine,cntLine];
 		//oBlock =  MonoBehaviour.Instantiate(Resources.Load("prefabs/Block") as GameObject);//이건 직접 폴더에서 부기 개멍청함
 
 
@@ -139,23 +141,29 @@ public class Map : MonoBehaviour {
 
 			for (int j = 0; j < cntLine; j++) {
 				map[i,j] = new Shell();//각 맵의 shell을 초기화..이거때문에 에러남 ㅠ..
-
+				//map2[i,j] = new Node();
 				//좌표설정
 				map [i, j].position.x = j * shellSize;
 				map [i, j].position.z = i * shellSize;
 				map [i, j].position.y = 0.0f;
 				Vector3 oPos = new Vector3 (map [i, j].position.x, map [i, j].position.y, map [i, j].position.z); 
+				//map2 [i, j].pos.x = j * shellSize;
+				//map2 [i, j].pos.z = i * shellSize;
+				//map2 [i, j].pos.y = 0.0f;
+				//Vector3 oPos = new Vector3 (map2 [i, j].pos.x, map2 [i, j].pos.y, map2 [i, j].pos.z); //내가 짠 에이스타에 쓸때
 
 				//타입설정
 				switch (charList [j]) {//왜 j가 14일때 값을 않넣어줄까?
 					case "p":
 						map [i, j].type = Shell.sType.PATH;
+					//map2 [i, j].type = Node.sType.PATH;
 					//GameObject Path = (GameObject)Instantiate (oPath, oPos, Quaternion.identity);
 						break;
 
 					case "b":
 						GameObject Block = null;
 						map [i, j].type = Shell.sType.BLOCK;
+					//map2 [i, j].type = Node.sType.BLOCK;
 						string blockName = null;
 
 						if (stageNum == 0 || stageNum == 3 || stageNum == 6) {
@@ -175,70 +183,83 @@ public class Map : MonoBehaviour {
 
 					case "s":
 						map [i, j].type = Shell.sType.SPAWN;
+					//map2 [i, j].type = Node.sType.SPAWN;
 						GameObject Spawn = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
 						spOneArray.Add(Spawn);
 						break;
 
 					case "s2":
 						map [i, j].type = Shell.sType.SPAWN;
+					//map2 [i, j].type = Node.sType.SPAWN;
 						GameObject Spawn2 = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
 						spTwoArray.Add(Spawn2);
 						break;
 
 					case "s3":
 						map [i, j].type = Shell.sType.SPAWN;
+					//map2 [i, j].type = Node.sType.SPAWN;
 						GameObject Spawn3 = (GameObject)Instantiate (oSpawn, oPos, Quaternion.identity);
 						spThrArray.Add (Spawn3);
 						break;
 
 					case "mn":
 						map [i, j].type = Shell.sType.MINITOWER;
+					//map2 [i, j].type = Node.sType.MINITOWER;
 						GameObject MiniTower = (GameObject)Instantiate (oMiniTower, oPos, Quaternion.identity);
 						break;
 					case "m":
 						map [i, j].type = Shell.sType.MAINTOWER;
+					//map2 [i, j].type = Node.sType.MAINTOWER;
 						GameObject MainTower = (GameObject)Instantiate (oMainTower, oPos, Quaternion.identity);
 						MainTower.transform.Rotate (270, 0, 0);
 						break;
 
 					case "cv":
 						map [i, j].type = Shell.sType.MAINTOWER;
+					//map2 [i, j].type = Node.sType.MAINTOWER;
 						GameObject CastleLongV = (GameObject)Instantiate (oCastleLong, oPos, Quaternion.identity);
 						CastleLongV.transform.Rotate (0, 90, 0);
 						break;
 					case "ch":
 						map [i, j].type = Shell.sType.MAINTOWER;
+					//map2 [i, j].type = Node.sType.MAINTOWER;
 						GameObject CastleLongH = (GameObject)Instantiate (oCastleLong, oPos, Quaternion.identity);
 						CastleLongH.transform.Rotate (0, 0, 0);
 						break;
 					case "clu":
 						map [i, j].type = Shell.sType.MAINTOWER;
+					//map2 [i, j].type = Node.sType.MAINTOWER;
 						GameObject CastleLongLU = (GameObject)Instantiate (oCastleCorner, oPos, Quaternion.identity);
 						CastleLongLU.transform.Rotate (0, 270, 0);
 						break;
 					case "cld":
 						map [i, j].type = Shell.sType.MAINTOWER;
+					//map2 [i, j].type = Node.sType.MAINTOWER;
 						GameObject CastleLongLD = (GameObject)Instantiate (oCastleCorner, oPos, Quaternion.identity);
 						CastleLongLD.transform.Rotate (0, 0, 0);
 						break;
 					case "cru":
 						map [i, j].type = Shell.sType.MAINTOWER;
+					//map2 [i, j].type = Node.sType.MAINTOWER;
 						GameObject CastleLongRU = (GameObject)Instantiate (oCastleCorner, oPos, Quaternion.identity);
 						CastleLongRU.transform.Rotate (0, 180, 0);
 						break;
 					case "crd":
 						map [i, j].type = Shell.sType.MAINTOWER;
+					//map2 [i, j].type = Node.sType.MAINTOWER;
 						GameObject CastleLongRD = (GameObject)Instantiate (oCastleCorner, oPos, Quaternion.identity);
 						CastleLongRD.transform.Rotate (0, 90, 0);
 						break;
 
 					case "dd":
 						map [i, j].type = Shell.sType.MAINTOWER;
+					//map2 [i, j].type = Node.sType.MAINTOWER;
 						GameObject DoorD = (GameObject)Instantiate (oDoor, oPos, Quaternion.identity);
 						DoorD.transform.Rotate (0, 180, 0);
 						break;
 					case "du":
 						map [i, j].type = Shell.sType.MAINTOWER;
+					//map2 [i, j].type = Node.sType.MAINTOWER;
 						GameObject DoorU = (GameObject)Instantiate (oDoor, oPos, Quaternion.identity);
 						DoorU.transform.Rotate (0, 0, 0);
 						break;

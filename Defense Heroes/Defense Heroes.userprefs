@@ -1,15 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Map\AStar.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Map\Map.cs">
     <Files>
-      <File FileName="Assets\Game\Scene\InGame\Map\AStar.cs" Line="69" Column="5" />
-      <File FileName="Assets\Game\Scene\InGame\Map\PriorityQueue.cs" Line="28" Column="20" />
-      <File FileName="Assets\Game\Scene\InGame\Map\Shell.cs" Line="57" Column="3" />
-      <File FileName="Assets\Game\Scene\InGame\Map\GridManager.cs" Line="72" Column="22" />
-      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="131" Column="18" />
-      <File FileName="Assets\Game\Scene\InGame\Map\myastar\priorityQ.cs" Line="12" Column="46" />
-      <File FileName="Assets\Game\Scene\InGame\Map\myastar\Node.cs" Line="13" Column="2" />
-      <File FileName="Assets\Game\Scene\InGame\Map\Map.cs" Line="252" Column="46" />
+      <File FileName="Assets\Game\Scene\InGame\Map\AStar.cs" Line="42" Column="17" />
+      <File FileName="Assets\Game\Scene\InGame\Map\myastar\AStar2.cs" Line="14" Column="33" />
+      <File FileName="Assets\Game\Scene\InGame\Map\myastar\priorityQ.cs" Line="36" Column="3" />
+      <File FileName="Assets\Game\Scene\InGame\Map\myastar\Node.cs" Line="11" Column="35" />
+      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="118" Column="53" />
+      <File FileName="Assets\Game\Scene\InGame\Map\Map.cs" Line="262" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
