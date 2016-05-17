@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour {
 	private GameObject parent;
 	private GameObject player;
 	private GameObject manager;
-
+	private GameObject mapManager;
 	public GameObject particle, particleBurn;
 
 	public AudioClip aAttack, aDie, aCry;
@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour {
 		parent = this.transform.parent.gameObject;
 		player = GameObject.Find ("Player");//오브젝트 찾아서 연결
 		manager = GameObject.Find ("GameManager");
+		mapManager = GameObject.Find ("MapManager");
 		//particle = GameObject.Find ("Explosion");
 		audio = GetComponent<AudioSource>();
 
@@ -58,6 +59,8 @@ public class Enemy : MonoBehaviour {
 		if (bDuration == false) {
 			particleBurn.SetActive (false);
 		}
+
+		ChangeLeader ();
 
 		if (hp <= 0) {
 			player.GetComponent <Player> ().point += point;
@@ -141,5 +144,23 @@ public class Enemy : MonoBehaviour {
 		}
 		yield return new WaitForSeconds (1.0f);
 		StartCoroutine ("DurationDmg");
+	}
+
+	void ChangeLeader(){
+		if ((parent.transform.position - this.transform.position).magnitude > 7.0f) {
+			for(int i=0;i<mapManager.GetComponent<TestCode>().iEnemy.Length;i++){
+				if (mapManager.GetComponent<TestCode> ().iEnemy [i] == this.parent) {
+					if (i != mapManager.GetComponent<TestCode> ().iEnemy.Length - 1 && mapManager.GetComponent<TestCode> ().iEnemy [i + 1] != null) {
+						this.parent = mapManager.GetComponent<TestCode> ().iEnemy [i + 1];
+						Debug.Log (i + " leader-> " + (i + 1) + " leader");
+					} 
+
+					if (i == mapManager.GetComponent<TestCode> ().iEnemy.Length - 1 && mapManager.GetComponent<TestCode> ().iEnemy [0] != null) {
+						this.parent = mapManager.GetComponent<TestCode> ().iEnemy [0]; 
+						Debug.Log (i + " leader-> "+"0 leader");
+					}
+				}
+			}
+		}
 	}
 }

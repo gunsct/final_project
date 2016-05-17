@@ -37,7 +37,7 @@ public class CutTool : MonoBehaviour {
 				Destroy (victim, 5);
 			}*/
 
-			if (victim.name.Equals ("Stone(Clone)")&& victim.GetComponent<Stone>().cutCnt == 0 && victim.GetComponent<Stone> ().hp <= 0) {
+			if (victim.name.Equals ("Stone4(Clone)")&& victim.GetComponent<Stone>().cutCnt == 0 && victim.GetComponent<Stone> ().hp <= 0) {
 				StartCoroutine ("DestroyStone");
 			}
 		}
@@ -58,17 +58,18 @@ public class CutTool : MonoBehaviour {
 			pieces [6] = BLINDED_AM_ME.MeshCut.Cut (pieces [3] [1], pieces [3] [1].transform.position, pieces [3] [1].transform.forward, capMaterial);
 
 			for (int i = 0; i < 7; i++) {
-				pieces [i][1].transform.localScale = new Vector3 (0.005f, 0.005f, 0.005f);
+				//pieces [i][1].transform.localScale = new Vector3 (0.005f, 0.005f, 0.005f);
 				pieces [i] [1].AddComponent<Rigidbody> ();
 				pieces [i] [1].AddComponent<MeshCollider> ();
 				pieces [i] [1].GetComponent<MeshCollider> ().convex = true;
+				pieces [i] [1].GetComponent<MeshCollider> ().isTrigger = true;
 			}
 			Destroy (victim, 3.0f);
 			for (int i = 0; i < 7; i++) {
 				Destroy (pieces [i] [1], 3.0f);
 			}
 		
-		yield return new WaitForSeconds (0.0f);
+		yield return new WaitForSeconds (0.5f);
 	}
 	void OnDrawGizmosSelected() {
 

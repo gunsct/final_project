@@ -5,17 +5,41 @@ public class IngameButton : MonoBehaviour {
 	public bool bShoot;
 	private GameObject player;
 	private GameObject shotPoint;
+	private GameObject[] button;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find ("Player");
 		shotPoint = GameObject.Find ("ShootPoint");
 		bShoot = false;
+
+		button = new GameObject[3];
+		button [0] = GameObject.Find ("FullButton");
+		button [1] = GameObject.Find ("MeteorButton");
+		button [2] = GameObject.Find ("LightningButton");
+
+		StartCoroutine ("CheckButton");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (player.GetComponent<Player> ().fullCnt > 0) {
+			button [0].transform.Rotate (new Vector3 (0.0f, 0.0f, 540.0f) * Time.deltaTime, Space.World);
+		} else {
+			button [0].transform.rotation = Quaternion.identity;
+		}
+
+		if (player.GetComponent<Player> ().coolMeteor >= player.GetComponent<Player> ().maxMeteor) {
+			button [1].transform.Rotate (new Vector3 (0.0f, 0.0f, 540.0f) * Time.deltaTime, Space.World);
+		} else {
+			button [1].transform.rotation = Quaternion.identity;
+		}
+
+		if (player.GetComponent<Player> ().coolLightning >= player.GetComponent<Player> ().maxLightning) {
+			button [2].transform.Rotate (new Vector3 (0.0f, 0.0f, 540.0f) * Time.deltaTime, Space.World);
+		}else {
+			button [2].transform.rotation = Quaternion.identity;
+		}
 	}
 
 	/*********************************************
@@ -54,5 +78,23 @@ public class IngameButton : MonoBehaviour {
 	void Lightning(){
 		if(player.GetComponent<Player>().die == false)
 			shotPoint.SendMessage ("Lightning");
+	}
+
+	IEnumerator CheckButton(){
+		if (player.GetComponent<Player> ().fullCnt > 0) {
+			button [0].transform.Rotate (new Vector3 (0.0f, 0.0f, 5.0f) * Time.deltaTime, Space.World);
+		} else {
+		}
+
+		if (player.GetComponent<Player> ().coolMeteor >= player.GetComponent<Player> ().maxMeteor) {
+			button [1].transform.Rotate (new Vector3 (0.0f, 0.0f, 5.0f) * Time.deltaTime, Space.World);
+		} else {
+		}
+
+		if (player.GetComponent<Player> ().coolLightning >= player.GetComponent<Player> ().maxLightning) {
+			button [2].transform.Rotate (new Vector3 (0.0f, 0.0f, 5.0f) * Time.deltaTime, Space.World);
+		} else {
+		}
+		yield return new WaitForSeconds (0.1f);
 	}
 }

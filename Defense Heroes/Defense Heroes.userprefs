@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Map\Map.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs">
     <Files>
-      <File FileName="Assets\Game\Scene\InGame\Map\AStar.cs" Line="42" Column="17" />
-      <File FileName="Assets\Game\Scene\InGame\Map\myastar\AStar2.cs" Line="14" Column="33" />
-      <File FileName="Assets\Game\Scene\InGame\Map\myastar\priorityQ.cs" Line="36" Column="3" />
-      <File FileName="Assets\Game\Scene\InGame\Map\myastar\Node.cs" Line="11" Column="35" />
-      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="118" Column="53" />
-      <File FileName="Assets\Game\Scene\InGame\Map\Map.cs" Line="262" Column="8" />
+      <File FileName="Assets\Game\Scene\InGame\Map\Map.cs" Line="27" Column="26" />
+      <File FileName="Assets\Game\Scene\InGame\Map\AStar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Scene\InGame\Map\myastar\AStar2.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Scene\InGame\Map\myastar\priorityQ.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Scene\InGame\Map\myastar\Node.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game\Scene\InGame\Map\TestCode.cs" Line="1391" Column="17" />
+      <File FileName="Assets\Game\Scene\InGame\Charcter\ShootLaser.cs" Line="198" Column="99" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

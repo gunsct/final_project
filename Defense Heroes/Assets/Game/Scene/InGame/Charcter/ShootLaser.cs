@@ -136,10 +136,13 @@ public class ShootLaser : MonoBehaviour {
 			}
 		}
 		if (_hitObj.transform.tag.Equals ("FlyEnemy")) {
-			if (_hitObj.transform.name.Equals ("Stone(Clone)")) {
-				_hitObj.transform.GetComponent<Stone> ().GetShot (player.GetComponent <Player> ().dmg);
-			} else {
-				_hitObj.transform.GetComponent<FlyEnemy> ().GetShot (player.GetComponent <Player> ().dmg);
+			if (_hitObj.transform != null) {
+				if (_hitObj.transform.name.Equals ("Stone4(Clone)")) {
+					_hitObj.transform.GetComponent<Stone> ().GetShot (player.GetComponent <Player> ().dmg);
+				} 
+				if(_hitObj.transform.name.Equals("Griffon(Clone)")){
+					_hitObj.transform.GetComponent<FlyEnemy> ().GetShot (player.GetComponent <Player> ().dmg);
+				}
 			}
 		}
 	}

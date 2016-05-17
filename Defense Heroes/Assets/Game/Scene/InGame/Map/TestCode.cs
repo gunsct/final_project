@@ -31,7 +31,7 @@ public class TestCode : MonoBehaviour
 	public GameObject cannon;
 	private Path[] airPath;
 
-	private GameObject[] iEnemy;
+	public GameObject[] iEnemy;
 	
     private float elapsedTime = 0.0f;
     public float intervalTime = 1.0f; //Interval time between path finding

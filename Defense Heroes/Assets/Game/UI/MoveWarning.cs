@@ -24,7 +24,7 @@ public class MoveWarning : MonoBehaviour {
 			pos = mainAimCamera.WorldToViewportPoint (target.transform.position);
 			x = subAimCamere.ViewportToWorldPoint (pos).x;
 			y = subAimCamere.ViewportToWorldPoint (pos).y;
-			Debug.Log(x+" "+y);
+			//Debug.Log(x+" "+y);
 			if (x > 1.9f && y > 0.0f) {
 				x = 1.9f;
 				y = 0.0f;
